@@ -1,0 +1,16 @@
+Package: opencv
+Type: Package
+Title: Bindings to OpenCV
+Version: 0.0
+Authors@R: c(
+    person("Jeroen", "Ooms", role = c("aut", "cre"), email = "jeroen@berkeley.edu",
+      comment = c(ORCID = "0000-0002-4035-0289")))
+Description: Just messing around.
+License: MIT + file LICENSE
+SystemRequirements: OpenCV
+URL: https://github.com/jeroen/opencv
+LinkingTo: Rcpp
+Imports: Rcpp, magrittr
+LazyData: true
+Encoding: UTF-8
+RoxygenNote: 6.0.1
