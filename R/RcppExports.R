@@ -41,8 +41,8 @@ cvmat_face <- function(ptr) {
     .Call('_opencv_cvmat_face', PACKAGE = 'opencv', ptr)
 }
 
-livestream <- function(cb) {
-    invisible(.Call('_opencv_livestream', PACKAGE = 'opencv', cb))
+livestream <- function(filter) {
+    invisible(.Call('_opencv_livestream', PACKAGE = 'opencv', filter))
 }
 
 take_picture <- function(width = 0L, height = 0L) {

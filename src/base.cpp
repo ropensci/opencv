@@ -128,16 +128,16 @@ XPtrMat cvmat_face(XPtrMat ptr){
 }
 
 // [[Rcpp::export]]
-void livestream(Rcpp::Function cb){
+void livestream(Rcpp::Function filter){
   VideoCapture cap(0);
   if(!cap.isOpened())
     throw std::runtime_error("Failed to open Camera");
   Mat image;
   namedWindow("mywindow", 1);
   try {
-    for(;;)  {
+    for(int i = 0;;i++)  {
       cap >> image;
-      XPtrMat out(cb(cvmat_xptr(&image))); //modify in place
+      XPtrMat out(filter(cvmat_xptr(&image), i)); //modify in place
       imshow("mywindow", image);
       if(waitKey(30) >= 0) break;
       Rcpp::checkUserInterrupt();

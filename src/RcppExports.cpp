@@ -118,12 +118,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // livestream
-void livestream(Rcpp::Function cb);
-RcppExport SEXP _opencv_livestream(SEXP cbSEXP) {
+void livestream(Rcpp::Function filter);
+RcppExport SEXP _opencv_livestream(SEXP filterSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::Function >::type cb(cbSEXP);
-    livestream(cb);
+    Rcpp::traits::input_parameter< Rcpp::Function >::type filter(filterSEXP);
+    livestream(filter);
     return R_NilValue;
 END_RCPP
 }
