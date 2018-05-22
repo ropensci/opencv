@@ -41,7 +41,7 @@ Replaces the background with a plot:
 ```r
 png('bg.png', width = 1280, height = 720)
 par(ask=FALSE)
-print(qplot(speed, dist, data = cars, geom = c("smooth", "point")))
+print(ggplot2::qplot(speed, dist, data = cars, geom = c("smooth", "point")))
 dev.off()
 bg <- ocv_read('bg.png')
 unlink('pg.png')
