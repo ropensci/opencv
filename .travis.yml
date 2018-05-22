@@ -1,0 +1,27 @@
+language: r
+cache: packages
+latex: false
+fortran: false
+pandoc: false
+
+matrix:
+  include:
+    - os: linux
+    - os: osx
+      osx_image: xcode9.3
+      brew_packages: opencv
+
+addons:
+  apt:
+    update: true
+    sources:
+      - sourceline: 'ppa:timsc/opencv-3.4'
+    packages:
+      - libopencv-dev
+
+warnings_are_errors: true
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
