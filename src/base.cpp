@@ -123,6 +123,36 @@ XPtrMat cvmat_face(XPtrMat ptr){
 }
 
 // [[Rcpp::export]]
+XPtrMat cvmat_facemask(XPtrMat ptr){
+  /* load training data */
+  CascadeClassifier face;
+  if(!face.load( "/usr/local/share/OpenCV/haarcascades/haarcascade_frontalface_alt.xml" ))
+    throw std::runtime_error("Failed to find haarcascade_frontalface_alt.xml");
+
+  Mat gray;
+  Mat input = get_mat(ptr);
+  cvtColor( input, gray, COLOR_BGR2GRAY );
+  equalizeHist(gray, gray);
+  std::vector<Rect> faces;
+  face.detectMultiScale( gray, faces, 1.1, 2, 0
+                              //|CASCADE_FIND_BIGGEST_OBJECT
+                              //|CASCADE_DO_ROUGH_SEARCH
+                              |CASCADE_SCALE_IMAGE,
+                              Size(50, 50) );
+
+  Mat mask(gray.size(), gray.type(), Scalar::all(0));
+  for ( size_t i = 0; i < faces.size(); i++ ) {
+    Point center;
+    Rect r = faces.at(i);
+    center.x = cvRound((r.x + r.width*0.5));
+    center.y = cvRound((r.y + r.height*0.5));
+    int radius = cvRound((r.width + r.height)*0.25);
+    circle( mask, center, radius, Scalar::all(255), -1);
+  }
+  return cvmat_xptr(mask);
+}
+
+// [[Rcpp::export]]
 XPtrMat cvmat_mog2(XPtrMat ptr) {
   static Ptr<BackgroundSubtractorMOG2> model = createBackgroundSubtractorMOG2();
   model->setVarThreshold(10);

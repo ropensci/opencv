@@ -117,6 +117,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// cvmat_facemask
+XPtrMat cvmat_facemask(XPtrMat ptr);
+RcppExport SEXP _opencv_cvmat_facemask(SEXP ptrSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtrMat >::type ptr(ptrSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvmat_facemask(ptr));
+    return rcpp_result_gen;
+END_RCPP
+}
 // cvmat_mog2
 XPtrMat cvmat_mog2(XPtrMat ptr);
 RcppExport SEXP _opencv_cvmat_mog2(SEXP ptrSEXP) {
@@ -185,6 +196,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_resize", (DL_FUNC) &_opencv_cvmat_resize, 3},
     {"_opencv_cvmat_bitmap", (DL_FUNC) &_opencv_cvmat_bitmap, 1},
     {"_opencv_cvmat_face", (DL_FUNC) &_opencv_cvmat_face, 1},
+    {"_opencv_cvmat_facemask", (DL_FUNC) &_opencv_cvmat_facemask, 1},
     {"_opencv_cvmat_mog2", (DL_FUNC) &_opencv_cvmat_mog2, 1},
     {"_opencv_cvmat_knn", (DL_FUNC) &_opencv_cvmat_knn, 1},
     {"_opencv_cvmat_edges", (DL_FUNC) &_opencv_cvmat_edges, 1},

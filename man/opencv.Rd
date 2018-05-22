@@ -8,6 +8,7 @@
 \alias{ocv_camera}
 \alias{ocv_resize}
 \alias{ocv_face}
+\alias{ocv_facemask}
 \alias{ocv_mog2}
 \alias{ocv_knn}
 \alias{ocv_copyto}
@@ -27,6 +28,8 @@ ocv_camera()
 ocv_resize(image, width = 0, height = 0)
 
 ocv_face(image)
+
+ocv_facemask(image)
 
 ocv_mog2(image)
 
@@ -64,5 +67,11 @@ unlink('pg.png')
 ocv_video(function(input){
   mask <- ocv_mog2(input)
   return(ocv_copyto(input, bg, mask))
+})
+
+# Overlay face filter
+ocv_video(function(input){
+  mask <- ocv_facemask(input)
+  ocv_copyto(input, bg, mask)
 })
 }

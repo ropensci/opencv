@@ -41,6 +41,10 @@ cvmat_face <- function(ptr) {
     .Call('_opencv_cvmat_face', PACKAGE = 'opencv', ptr)
 }
 
+cvmat_facemask <- function(ptr) {
+    .Call('_opencv_cvmat_facemask', PACKAGE = 'opencv', ptr)
+}
+
 cvmat_mog2 <- function(ptr) {
     .Call('_opencv_cvmat_mog2', PACKAGE = 'opencv', ptr)
 }

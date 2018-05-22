@@ -17,6 +17,12 @@
 #'   mask <- ocv_mog2(input)
 #'   return(ocv_copyto(input, bg, mask))
 #' })
+#'
+#' # Overlay face filter
+#' ocv_video(function(input){
+#'   mask <- ocv_facemask(input)
+#'   ocv_copyto(input, bg, mask)
+#' })
 ocv_read <- function(path){
   path <- normalizePath(path, mustWork = TRUE)
   cvmat_read(path)
@@ -73,6 +79,12 @@ ocv_resize <- function(image, width = 0, height = 0){
 #' @rdname opencv
 ocv_face <- function(image){
   cvmat_face(image)
+}
+
+#' @export
+#' @rdname opencv
+ocv_facemask <- function(image){
+  cvmat_facemask(image)
 }
 
 #' @export
