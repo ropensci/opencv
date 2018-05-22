@@ -163,10 +163,7 @@ void livestream(Rcpp::Function filter){
       waitKey(30);
       Rcpp::checkUserInterrupt();
     }
-  } catch(Rcpp::internal::InterruptedException e) {
-    Rprintf("Interrupt!\n");
-  }
-  Rprintf("Destroying window");
+  } catch(Rcpp::internal::InterruptedException e) { }
   cap.release();
   cv::destroyWindow("mywindow");
 }
