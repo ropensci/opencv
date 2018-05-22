@@ -57,11 +57,3 @@ livestream <- function(filter) {
     invisible(.Call('_opencv_livestream', PACKAGE = 'opencv', filter))
 }
 
-take_picture <- function(width = 0L, height = 0L) {
-    .Call('_opencv_take_picture', PACKAGE = 'opencv', width, height)
-}
-
-test <- function() {
-    .Call('_opencv_test', PACKAGE = 'opencv')
-}
-

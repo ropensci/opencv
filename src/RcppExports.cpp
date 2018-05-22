@@ -160,28 +160,6 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
-// take_picture
-Rcpp::RawVector take_picture(int width, int height);
-RcppExport SEXP _opencv_take_picture(SEXP widthSEXP, SEXP heightSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< int >::type width(widthSEXP);
-    Rcpp::traits::input_parameter< int >::type height(heightSEXP);
-    rcpp_result_gen = Rcpp::wrap(take_picture(width, height));
-    return rcpp_result_gen;
-END_RCPP
-}
-// test
-int test();
-RcppExport SEXP _opencv_test() {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(test());
-    return rcpp_result_gen;
-END_RCPP
-}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_dead", (DL_FUNC) &_opencv_cvmat_dead, 1},
@@ -198,8 +176,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_knn", (DL_FUNC) &_opencv_cvmat_knn, 1},
     {"_opencv_cvmat_edges", (DL_FUNC) &_opencv_cvmat_edges, 1},
     {"_opencv_livestream", (DL_FUNC) &_opencv_livestream, 1},
-    {"_opencv_take_picture", (DL_FUNC) &_opencv_take_picture, 2},
-    {"_opencv_test", (DL_FUNC) &_opencv_test, 0},
     {NULL, NULL, 0}
 };
 

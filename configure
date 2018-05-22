@@ -10,7 +10,7 @@ PKG_CONFIG_NAME="opencv"
 PKG_DEB_NAME="opencv-dev"
 PKG_RPM_NAME="opencv-devel"
 PKG_BREW_NAME="opencv"
-PKG_TEST_HEADER="<opencv2/imgproc.hpp>"
+PKG_TEST_HEADER="<opencv2/opencv.hpp>"
 PKG_CFLAGS=""
 
 # Use pkg-config if available
