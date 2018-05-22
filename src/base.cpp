@@ -1,4 +1,3 @@
-#include <opencv2/opencv.hpp>
 #include "opencv_types.h"
 #include "util.hpp"
 
