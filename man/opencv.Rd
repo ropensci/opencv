@@ -8,6 +8,8 @@
 \alias{print.opencv-image}
 \alias{ocv_resize}
 \alias{ocv_face}
+\alias{ocv_mog2}
+\alias{ocv_video}
 \title{OpenCV}
 \usage{
 ocv_read(path)
@@ -23,6 +25,10 @@ ocv_camera()
 ocv_resize(image, width = 0, height = 0)
 
 ocv_face(image)
+
+ocv_mog2(image)
+
+ocv_video(filter)
 }
 \arguments{
 \item{x}{passed to [print]}

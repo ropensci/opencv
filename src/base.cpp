@@ -3,6 +3,7 @@
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui.hpp>
 #include <opencv2/objdetect.hpp>
+#include <opencv2/video.hpp>
 
 #include "util.hpp"
 
@@ -127,6 +128,24 @@ XPtrMat cvmat_face(XPtrMat ptr){
   return ptr;
 }
 
+
+Ptr<BackgroundSubtractorMOG2> pMOG2;
+
+// [[Rcpp::export]]
+XPtrMat cvmat_mog2(XPtrMat ptr) {
+  static bool initiated = false;
+  if(!initiated){
+    pMOG2 = createBackgroundSubtractorMOG2();
+    pMOG2->setVarThreshold(10);
+    initiated = true;
+  }
+  cv::Mat frame = get_mat(ptr);
+  cv::Mat mask, out_frame;
+  pMOG2->apply(frame, mask, -1);
+  refineSegments(frame, mask, out_frame);
+  return cvmat_xptr(out_frame);
+}
+
 // [[Rcpp::export]]
 void livestream(Rcpp::Function filter){
   VideoCapture cap(0);
@@ -135,11 +154,11 @@ void livestream(Rcpp::Function filter){
   Mat image;
   namedWindow("mywindow", 1);
   try {
-    for(int i = 0;;i++)  {
+    for(int i = 0;;i++) {
       cap >> image;
-      XPtrMat out(filter(cvmat_xptr(&image), i)); //modify in place
-      imshow("mywindow", image);
-      if(waitKey(30) >= 0) break;
+      XPtrMat out(filter(cvmat_xptr(&image)));
+      imshow("mywindow", get_mat(out));
+      waitKey(30);
       Rcpp::checkUserInterrupt();
     }
   } catch(Rcpp::internal::InterruptedException e) {

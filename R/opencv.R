@@ -56,6 +56,20 @@ ocv_face <- function(image){
   cvmat_face(image)
 }
 
+#' @export
+#' @rdname opencv
+ocv_mog2 <- function(image){
+  cvmat_mog2(image)
+}
+
+#' @export
+#' @rdname opencv
+ocv_video <- function(filter){
+  if(!is.function(filter))
+    stop("Filter must be a function")
+  livestream(filter)
+}
+
 #' @importFrom magrittr %>%
 #' @export
 magrittr::`%>%`
