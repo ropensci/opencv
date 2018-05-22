@@ -2,6 +2,8 @@
 #include "opencv2/highgui.hpp"
 #include "opencv2/objdetect.hpp"
 
+#include "util.hpp"
+
 using namespace cv;
 using namespace std;
 

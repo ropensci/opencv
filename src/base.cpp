@@ -156,7 +156,7 @@ void livestream(Rcpp::Function filter){
   try {
     for(int i = 0;;i++) {
       cap >> image;
-      XPtrMat out(filter(cvmat_xptr(&image)));
+      XPtrMat out(filter(cvmat_xptr(image)));
       imshow("mywindow", get_mat(out));
       waitKey(30);
       Rcpp::checkUserInterrupt();
