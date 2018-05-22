@@ -45,6 +45,10 @@ cvmat_mog2 <- function(ptr) {
     .Call('_opencv_cvmat_mog2', PACKAGE = 'opencv', ptr)
 }
 
+cvmat_knn <- function(ptr) {
+    .Call('_opencv_cvmat_knn', PACKAGE = 'opencv', ptr)
+}
+
 livestream <- function(filter) {
     invisible(.Call('_opencv_livestream', PACKAGE = 'opencv', filter))
 }

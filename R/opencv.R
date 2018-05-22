@@ -64,6 +64,12 @@ ocv_mog2 <- function(image){
 
 #' @export
 #' @rdname opencv
+ocv_knn <- function(image){
+  cvmat_knn(image)
+}
+
+#' @export
+#' @rdname opencv
 ocv_video <- function(filter){
   if(!is.function(filter))
     stop("Filter must be a function")

@@ -128,22 +128,24 @@ XPtrMat cvmat_face(XPtrMat ptr){
   return ptr;
 }
 
-
-Ptr<BackgroundSubtractorMOG2> pMOG2;
-
 // [[Rcpp::export]]
 XPtrMat cvmat_mog2(XPtrMat ptr) {
-  static bool initiated = false;
-  if(!initiated){
-    pMOG2 = createBackgroundSubtractorMOG2();
-    pMOG2->setVarThreshold(10);
-    initiated = true;
-  }
+  static Ptr<BackgroundSubtractorMOG2> model = createBackgroundSubtractorMOG2();
+  model->setVarThreshold(10);
   cv::Mat frame = get_mat(ptr);
   cv::Mat mask, out_frame;
-  pMOG2->apply(frame, mask, -1);
-  refineSegments(frame, mask, out_frame);
-  return cvmat_xptr(out_frame);
+  model->apply(frame, mask);
+  //refineSegments(frame, mask, out_frame);
+  return cvmat_xptr(mask);
+}
+
+// [[Rcpp::export]]
+XPtrMat cvmat_knn(XPtrMat ptr) {
+  static Ptr<BackgroundSubtractorKNN> model = createBackgroundSubtractorKNN();
+  cv::Mat frame = get_mat(ptr);
+  cv::Mat mask, out_frame;
+  model->apply(frame, mask);
+  return cvmat_xptr(mask);
 }
 
 // [[Rcpp::export]]

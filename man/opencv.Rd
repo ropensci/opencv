@@ -9,6 +9,7 @@
 \alias{ocv_resize}
 \alias{ocv_face}
 \alias{ocv_mog2}
+\alias{ocv_knn}
 \alias{ocv_video}
 \title{OpenCV}
 \usage{
@@ -27,6 +28,8 @@ ocv_resize(image, width = 0, height = 0)
 ocv_face(image)
 
 ocv_mog2(image)
+
+ocv_knn(image)
 
 ocv_video(filter)
 }
