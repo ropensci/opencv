@@ -10,12 +10,14 @@ First install opencv:
 brew install opencv
 ```
 
-And then the usual:
+And then install the R bindings:
 
 ```r
 devtools::install_github("ropenscilabs/opencv")
 library(opencv)
 ```
+
+Works best in the terminal (rstudio doesn't like the popup window).
 
 ## Background Filter
 
