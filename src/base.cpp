@@ -149,6 +149,16 @@ XPtrMat cvmat_knn(XPtrMat ptr) {
 }
 
 // [[Rcpp::export]]
+XPtrMat cvmat_edges(XPtrMat ptr) {
+  cv::Mat edges;
+  cv::Mat frame = get_mat(ptr);
+  cvtColor(frame, edges, COLOR_BGR2GRAY);
+  GaussianBlur(edges, edges, Size(7,7), 1.5, 1.5);
+  Canny(edges, edges, 0, 30, 3);
+  return cvmat_xptr(edges);
+}
+
+// [[Rcpp::export]]
 void livestream(Rcpp::Function filter){
   VideoCapture cap(0);
   if(!cap.isOpened())

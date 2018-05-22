@@ -139,6 +139,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// cvmat_edges
+XPtrMat cvmat_edges(XPtrMat ptr);
+RcppExport SEXP _opencv_cvmat_edges(SEXP ptrSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtrMat >::type ptr(ptrSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvmat_edges(ptr));
+    return rcpp_result_gen;
+END_RCPP
+}
 // livestream
 void livestream(Rcpp::Function filter);
 RcppExport SEXP _opencv_livestream(SEXP filterSEXP) {
@@ -185,6 +196,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_face", (DL_FUNC) &_opencv_cvmat_face, 1},
     {"_opencv_cvmat_mog2", (DL_FUNC) &_opencv_cvmat_mog2, 1},
     {"_opencv_cvmat_knn", (DL_FUNC) &_opencv_cvmat_knn, 1},
+    {"_opencv_cvmat_edges", (DL_FUNC) &_opencv_cvmat_edges, 1},
     {"_opencv_livestream", (DL_FUNC) &_opencv_livestream, 1},
     {"_opencv_take_picture", (DL_FUNC) &_opencv_take_picture, 2},
     {"_opencv_test", (DL_FUNC) &_opencv_test, 0},

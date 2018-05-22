@@ -26,6 +26,12 @@ ocv_bitmap <- function(image){
 
 #' @export
 #' @rdname opencv
+ocv_edges <- function(image){
+  cvmat_edges(image)
+}
+
+#' @export
+#' @rdname opencv
 ocv_camera <- function(){
   cvmat_camera()
 }

@@ -4,6 +4,7 @@
 \alias{ocv_read}
 \alias{ocv_write}
 \alias{ocv_bitmap}
+\alias{ocv_edges}
 \alias{ocv_camera}
 \alias{print.opencv-image}
 \alias{ocv_resize}
@@ -18,6 +19,8 @@ ocv_read(path)
 ocv_write(image, path)
 
 ocv_bitmap(image)
+
+ocv_edges(image)
 
 ocv_camera()
 

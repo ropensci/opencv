@@ -49,6 +49,10 @@ cvmat_knn <- function(ptr) {
     .Call('_opencv_cvmat_knn', PACKAGE = 'opencv', ptr)
 }
 
+cvmat_edges <- function(ptr) {
+    .Call('_opencv_cvmat_edges', PACKAGE = 'opencv', ptr)
+}
+
 livestream <- function(filter) {
     invisible(.Call('_opencv_livestream', PACKAGE = 'opencv', filter))
 }
