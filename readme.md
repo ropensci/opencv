@@ -19,7 +19,24 @@ library(opencv)
 
 Works best in the terminal (rstudio doesn't like the popup window).
 
-## Background Filter
+## Basic stuff:
+
+Basic face detection:
+
+```r
+ocv_video(ocv_face)
+```
+
+Edge detection:
+
+
+```r
+ocv_video(ocv_edges)
+```
+
+## Combine with Graphics
+
+Replaces the background with a plot:
 
 ```r
 png('bg.png', width = 1280, height = 720)
@@ -34,7 +51,7 @@ ocv_video(function(input){
 })
 ```
 
-## Face Detection
+Put your face in the plot:
 
 ```r
 # Overlay face filter
