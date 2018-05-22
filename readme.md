@@ -60,3 +60,31 @@ ocv_video(function(input){
   ocv_copyto(input, bg, mask)
 })
 ```
+
+## Live Face Survey
+
+Go stand on the left if you're a tidier
+
+```r
+makeplot <- function(x){
+  png('bg.png', width = 1280, height = 720, res = 96)
+  on.exit(unlink('bg.png'))
+  left <- rep("left", sum(x < 400))
+  middle <- rep("middle", sum(x >= 400 & x < 900))
+  right <- rep("right", sum(x >= 900))
+  f <- factor(c(left, middle, right), levels = c('left', 'middle', 'right'),
+              labels = c("Tidy!", "Whatever Works", "Base!"))
+  color = I(RColorBrewer::brewer.pal(nlevels(f), name = 'Dark2'))
+  plot(f, ylim = c(0, 5),
+       main = "Are you a tidyer or baser?", col = color)
+  dev.off()
+  ocv_read('bg.png')
+}
+
+ocv_video(function(input){
+  mask <- ocv_facemask(input)
+  faces <- attr(mask, 'faces')
+  bg <- makeplot(faces$x)
+  return(ocv_copyto(input, bg, mask))
+})
+```
