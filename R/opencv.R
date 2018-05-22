@@ -1,11 +1,12 @@
 #' OpenCV
 #'
-#' Utilities to read and write images with OpenCV.s
+#' Utilities to read and write images with OpenCV.
 #'
 #' @export
 #' @rdname opencv
 #' @importFrom Rcpp sourceCpp
 #' @useDynLib opencv
+#' @param path image file such as png or jpeg
 ocv_read <- function(path){
   path <- normalizePath(path, mustWork = TRUE)
   cvmat_read(path)
@@ -13,6 +14,7 @@ ocv_read <- function(path){
 
 #' @export
 #' @rdname opencv
+#' @param image a ocv image object
 ocv_write <- function(image, path){
   path <- normalizePath(path, mustWork = FALSE)
   cvmat_write(image, path)
@@ -37,8 +39,6 @@ ocv_camera <- function(){
 }
 
 #' @export
-#' @rdname opencv
-#' @param x passed to [print]
 `print.opencv-image` <- function(x, ...){
   viewer <- getOption("viewer")
   is_knit_image <- isTRUE(getOption('knitr.in.progress'))
@@ -47,11 +47,14 @@ ocv_camera <- function(){
     ocv_write(x, path = tmp)
     viewer(tmp)
   }
+  base::print.default(x)
   #TODO: copy from magick
 }
 
 #' @export
 #' @rdname opencv
+#' @param width output width in pixels
+#' @param height output height in pixels
 ocv_resize <- function(image, width = 0, height = 0){
   cvmat_resize(image, as.integer(width), as.integer(height))
 }
@@ -76,6 +79,7 @@ ocv_knn <- function(image){
 
 #' @export
 #' @rdname opencv
+#' @param filter an R function that takes and returns an opecv image
 ocv_video <- function(filter){
   if(!is.function(filter))
     stop("Filter must be a function")

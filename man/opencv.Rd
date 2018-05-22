@@ -6,7 +6,6 @@
 \alias{ocv_bitmap}
 \alias{ocv_edges}
 \alias{ocv_camera}
-\alias{print.opencv-image}
 \alias{ocv_resize}
 \alias{ocv_face}
 \alias{ocv_mog2}
@@ -24,8 +23,6 @@ ocv_edges(image)
 
 ocv_camera()
 
-\method{print}{opencv-image}(x, ...)
-
 ocv_resize(image, width = 0, height = 0)
 
 ocv_face(image)
@@ -37,8 +34,16 @@ ocv_knn(image)
 ocv_video(filter)
 }
 \arguments{
-\item{x}{passed to [print]}
+\item{path}{image file such as png or jpeg}
+
+\item{image}{a ocv image object}
+
+\item{width}{output width in pixels}
+
+\item{height}{output height in pixels}
+
+\item{filter}{an R function that takes and returns an opecv image}
 }
 \description{
-Utilities to read and write images with OpenCV.s
+Utilities to read and write images with OpenCV.
 }
