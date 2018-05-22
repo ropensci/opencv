@@ -74,7 +74,7 @@ makeplot <- function(x){
   right <- rep("right", sum(x >= 900))
   f <- factor(c(left, middle, right), levels = c('left', 'middle', 'right'),
               labels = c("Tidy!", "Whatever Works", "Base!"))
-  color = I(RColorBrewer::brewer.pal(nlevels(f), name = 'Dark2'))
+  color = I(wesanderson::wes_palette("GrandBudapest1", nlevels(f)))
   plot(f, ylim = c(0, 5),
        main = "Are you a tidyer or baser?", col = color)
   dev.off()
