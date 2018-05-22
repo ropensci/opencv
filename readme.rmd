@@ -24,6 +24,7 @@ Works best in the terminal (rstudio doesn't like the popup window).
 Basic face detection:
 
 ```r
+library(opencv)
 ocv_video(ocv_face)
 ```
 
@@ -31,6 +32,7 @@ Edge detection:
 
 
 ```r
+library(opencv)
 ocv_video(ocv_edges)
 ```
 
@@ -39,6 +41,7 @@ ocv_video(ocv_edges)
 Replaces the background with a plot:
 
 ```r
+library(opencv)
 png('bg.png', width = 1280, height = 720)
 par(ask=FALSE)
 print(ggplot2::qplot(speed, dist, data = cars, geom = c("smooth", "point")))
@@ -66,6 +69,7 @@ ocv_video(function(input){
 Go stand on the left if you're a tidier
 
 ```r
+library(opencv)
 makeplot <- function(x){
   png('bg.png', width = 1280, height = 720, res = 96)
   on.exit(unlink('bg.png'))
