@@ -10,6 +10,7 @@
 \alias{ocv_face}
 \alias{ocv_mog2}
 \alias{ocv_knn}
+\alias{ocv_copyto}
 \alias{ocv_video}
 \title{OpenCV}
 \usage{
@@ -31,6 +32,8 @@ ocv_mog2(image)
 
 ocv_knn(image)
 
+ocv_copyto(image, target, mask)
+
 ocv_video(filter)
 }
 \arguments{
@@ -42,8 +45,24 @@ ocv_video(filter)
 
 \item{height}{output height in pixels}
 
+\item{target}{the output image}
+
+\item{mask}{only copy pixels from the mask}
+
 \item{filter}{an R function that takes and returns an opecv image}
 }
 \description{
-Utilities to read and write images with OpenCV.
+Utilities to mess around with OpenCV.
+}
+\examples{
+png('bg.png', width = 1280, height = 720)
+par(ask=FALSE)
+qplot(speed, dist, data = cars, geom = c("smooth", "point"))
+dev.off()
+bg <- ocv_read('bg.png')
+unlink('pg.png')
+ocv_video(function(input){
+  mask <- ocv_mog2(input)
+  return(ocv_copyto(input, bg, mask))
+})
 }

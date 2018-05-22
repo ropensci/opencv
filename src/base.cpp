@@ -153,6 +153,13 @@ XPtrMat cvmat_edges(XPtrMat ptr) {
 }
 
 // [[Rcpp::export]]
+XPtrMat cvmat_copyto(XPtrMat from, XPtrMat to, XPtrMat mask) {
+  XPtrMat out = cvmat_xptr(get_mat(to));
+  get_mat(from).copyTo(get_mat(out), get_mat(mask));
+  return out;
+}
+
+// [[Rcpp::export]]
 void livestream(Rcpp::Function filter){
   VideoCapture cap(0);
   if(!cap.isOpened())

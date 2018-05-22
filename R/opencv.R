@@ -1,12 +1,22 @@
 #' OpenCV
 #'
-#' Utilities to read and write images with OpenCV.
+#' Utilities to mess around with OpenCV.
 #'
 #' @export
 #' @rdname opencv
 #' @importFrom Rcpp sourceCpp
 #' @useDynLib opencv
 #' @param path image file such as png or jpeg
+#' @examples png('bg.png', width = 1280, height = 720)
+#' par(ask=FALSE)
+#' qplot(speed, dist, data = cars, geom = c("smooth", "point"))
+#' dev.off()
+#' bg <- ocv_read('bg.png')
+#' unlink('pg.png')
+#' ocv_video(function(input){
+#'   mask <- ocv_mog2(input)
+#'   return(ocv_copyto(input, bg, mask))
+#' })
 ocv_read <- function(path){
   path <- normalizePath(path, mustWork = TRUE)
   cvmat_read(path)
@@ -79,11 +89,26 @@ ocv_knn <- function(image){
 
 #' @export
 #' @rdname opencv
+#' @param target the output image
+#' @param mask only copy pixels from the mask
+ocv_copyto <- function(image, target, mask){
+  cvmat_copyto(image, target, mask)
+}
+
+#' @export
+#' @rdname opencv
 #' @param filter an R function that takes and returns an opecv image
 ocv_video <- function(filter){
   if(!is.function(filter))
     stop("Filter must be a function")
-  livestream(filter)
+  livestream(function(image){
+    if(!inherits(image, 'opencv-image'))
+      stop("Image must be opencv-image")
+    out <- filter(image)
+    if(!inherits(out, 'opencv-image'))
+      stop("Output must be opencv-image")
+    return(out)
+  })
 }
 
 #' @importFrom magrittr %>%
