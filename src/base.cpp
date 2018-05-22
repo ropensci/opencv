@@ -141,6 +141,9 @@ XPtrMat cvmat_facemask(XPtrMat ptr){
                               Size(50, 50) );
 
   Mat mask(gray.size(), gray.type(), Scalar::all(0));
+  Rcpp::IntegerVector rvec(faces.size());
+  Rcpp::IntegerVector xvec(faces.size());
+  Rcpp::IntegerVector yvec(faces.size());
   for ( size_t i = 0; i < faces.size(); i++ ) {
     Point center;
     Rect r = faces.at(i);
@@ -148,8 +151,17 @@ XPtrMat cvmat_facemask(XPtrMat ptr){
     center.y = cvRound((r.y + r.height*0.5));
     int radius = cvRound((r.width + r.height)*0.25);
     circle( mask, center, radius, Scalar::all(255), -1);
+    rvec.at(i) = radius;
+    xvec.at(i) = center.x;
+    yvec.at(i) = center.y;
   }
-  return cvmat_xptr(mask);
+  XPtrMat out = cvmat_xptr(mask);
+  out.attr("faces") = Rcpp::DataFrame::create(
+    Rcpp::_["radius"] = rvec,
+    Rcpp::_["x"] = xvec,
+    Rcpp::_["y"] = yvec
+  );
+  return out;
 }
 
 // [[Rcpp::export]]
