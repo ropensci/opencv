@@ -49,6 +49,14 @@ cvmat_blur <- function(ptr, ksize) {
     .Call('_opencv_cvmat_blur', PACKAGE = 'opencv', ptr, ksize)
 }
 
+cvmat_sketch <- function(ptr, color) {
+    .Call('_opencv_cvmat_sketch', PACKAGE = 'opencv', ptr, color)
+}
+
+cvmat_stylize <- function(ptr) {
+    .Call('_opencv_cvmat_stylize', PACKAGE = 'opencv', ptr)
+}
+
 cvmat_face <- function(ptr) {
     .Call('_opencv_cvmat_face', PACKAGE = 'opencv', ptr)
 }

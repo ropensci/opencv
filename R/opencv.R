@@ -114,6 +114,20 @@ ocv_blur <- function(image, ksize = 5){
 
 #' @export
 #' @rdname opencv
+#' @param color true or false
+ocv_sketch <- function(image, color = TRUE){
+  cvmat_sketch(image, color)
+}
+
+#' @export
+#' @rdname opencv
+#' @param color true or false
+ocv_stylize <- function(image){
+  cvmat_stylize(image)
+}
+
+#' @export
+#' @rdname opencv
 ocv_markers <- function(image){
   cvmat_markers(image)
 }

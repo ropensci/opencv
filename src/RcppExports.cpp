@@ -141,6 +141,29 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// cvmat_sketch
+XPtrMat cvmat_sketch(XPtrMat ptr, bool color);
+RcppExport SEXP _opencv_cvmat_sketch(SEXP ptrSEXP, SEXP colorSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtrMat >::type ptr(ptrSEXP);
+    Rcpp::traits::input_parameter< bool >::type color(colorSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvmat_sketch(ptr, color));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cvmat_stylize
+XPtrMat cvmat_stylize(XPtrMat ptr);
+RcppExport SEXP _opencv_cvmat_stylize(SEXP ptrSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtrMat >::type ptr(ptrSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvmat_stylize(ptr));
+    return rcpp_result_gen;
+END_RCPP
+}
 // cvmat_face
 XPtrMat cvmat_face(XPtrMat ptr);
 RcppExport SEXP _opencv_cvmat_face(SEXP ptrSEXP) {
@@ -232,6 +255,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_copyto", (DL_FUNC) &_opencv_cvmat_copyto, 3},
     {"_opencv_livestream", (DL_FUNC) &_opencv_livestream, 1},
     {"_opencv_cvmat_blur", (DL_FUNC) &_opencv_cvmat_blur, 2},
+    {"_opencv_cvmat_sketch", (DL_FUNC) &_opencv_cvmat_sketch, 2},
+    {"_opencv_cvmat_stylize", (DL_FUNC) &_opencv_cvmat_stylize, 1},
     {"_opencv_cvmat_face", (DL_FUNC) &_opencv_cvmat_face, 1},
     {"_opencv_cvmat_facemask", (DL_FUNC) &_opencv_cvmat_facemask, 1},
     {"_opencv_cvmat_mog2", (DL_FUNC) &_opencv_cvmat_mog2, 1},

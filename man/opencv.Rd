@@ -13,6 +13,8 @@
 \alias{ocv_knn}
 \alias{ocv_hog}
 \alias{ocv_blur}
+\alias{ocv_sketch}
+\alias{ocv_stylize}
 \alias{ocv_markers}
 \alias{ocv_copyto}
 \alias{ocv_video}
@@ -42,6 +44,10 @@ ocv_hog(image)
 
 ocv_blur(image, ksize = 5)
 
+ocv_sketch(image, color = TRUE)
+
+ocv_stylize(image)
+
 ocv_markers(image)
 
 ocv_copyto(image, target, mask)
@@ -59,11 +65,15 @@ ocv_video(filter)
 
 \item{ksize}{size of blurring matrix}
 
+\item{color}{true or false}
+
 \item{target}{the output image}
 
 \item{mask}{only copy pixels from the mask}
 
 \item{filter}{an R function that takes and returns an opecv image}
+
+\item{color}{true or false}
 }
 \description{
 Utilities to mess around with OpenCV.
