@@ -114,6 +114,12 @@ ocv_blur <- function(image, ksize = 5){
 
 #' @export
 #' @rdname opencv
+ocv_markers <- function(image){
+  cvmat_markers(image)
+}
+
+#' @export
+#' @rdname opencv
 #' @param target the output image
 #' @param mask only copy pixels from the mask
 ocv_copyto <- function(image, target, mask){

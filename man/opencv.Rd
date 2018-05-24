@@ -13,6 +13,7 @@
 \alias{ocv_knn}
 \alias{ocv_hog}
 \alias{ocv_blur}
+\alias{ocv_markers}
 \alias{ocv_copyto}
 \alias{ocv_video}
 \title{OpenCV}
@@ -40,6 +41,8 @@ ocv_knn(image)
 ocv_hog(image)
 
 ocv_blur(image, ksize = 5)
+
+ocv_markers(image)
 
 ocv_copyto(image, target, mask)
 

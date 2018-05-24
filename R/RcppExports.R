@@ -73,3 +73,7 @@ cvmat_hog <- function(ptr) {
     .Call('_opencv_cvmat_hog', PACKAGE = 'opencv', ptr)
 }
 
+cvmat_markers <- function(ptr) {
+    .Call('_opencv_cvmat_markers', PACKAGE = 'opencv', ptr)
+}
+

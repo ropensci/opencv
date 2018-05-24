@@ -207,6 +207,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// cvmat_markers
+XPtrMat cvmat_markers(XPtrMat ptr);
+RcppExport SEXP _opencv_cvmat_markers(SEXP ptrSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtrMat >::type ptr(ptrSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvmat_markers(ptr));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_dead", (DL_FUNC) &_opencv_cvmat_dead, 1},
@@ -227,6 +238,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_knn", (DL_FUNC) &_opencv_cvmat_knn, 1},
     {"_opencv_cvmat_edges", (DL_FUNC) &_opencv_cvmat_edges, 1},
     {"_opencv_cvmat_hog", (DL_FUNC) &_opencv_cvmat_hog, 1},
+    {"_opencv_cvmat_markers", (DL_FUNC) &_opencv_cvmat_markers, 1},
     {NULL, NULL, 0}
 };
 
