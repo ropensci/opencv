@@ -106,6 +106,29 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// cvmat_copyto
+XPtrMat cvmat_copyto(XPtrMat from, XPtrMat to, XPtrMat mask);
+RcppExport SEXP _opencv_cvmat_copyto(SEXP fromSEXP, SEXP toSEXP, SEXP maskSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtrMat >::type from(fromSEXP);
+    Rcpp::traits::input_parameter< XPtrMat >::type to(toSEXP);
+    Rcpp::traits::input_parameter< XPtrMat >::type mask(maskSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvmat_copyto(from, to, mask));
+    return rcpp_result_gen;
+END_RCPP
+}
+// livestream
+void livestream(Rcpp::Function filter);
+RcppExport SEXP _opencv_livestream(SEXP filterSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::Function >::type filter(filterSEXP);
+    livestream(filter);
+    return R_NilValue;
+END_RCPP
+}
 // cvmat_face
 XPtrMat cvmat_face(XPtrMat ptr);
 RcppExport SEXP _opencv_cvmat_face(SEXP ptrSEXP) {
@@ -161,29 +184,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// cvmat_copyto
-XPtrMat cvmat_copyto(XPtrMat from, XPtrMat to, XPtrMat mask);
-RcppExport SEXP _opencv_cvmat_copyto(SEXP fromSEXP, SEXP toSEXP, SEXP maskSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< XPtrMat >::type from(fromSEXP);
-    Rcpp::traits::input_parameter< XPtrMat >::type to(toSEXP);
-    Rcpp::traits::input_parameter< XPtrMat >::type mask(maskSEXP);
-    rcpp_result_gen = Rcpp::wrap(cvmat_copyto(from, to, mask));
-    return rcpp_result_gen;
-END_RCPP
-}
-// livestream
-void livestream(Rcpp::Function filter);
-RcppExport SEXP _opencv_livestream(SEXP filterSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::Function >::type filter(filterSEXP);
-    livestream(filter);
-    return R_NilValue;
-END_RCPP
-}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_dead", (DL_FUNC) &_opencv_cvmat_dead, 1},
@@ -195,13 +195,13 @@ static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_write", (DL_FUNC) &_opencv_cvmat_write, 2},
     {"_opencv_cvmat_resize", (DL_FUNC) &_opencv_cvmat_resize, 3},
     {"_opencv_cvmat_bitmap", (DL_FUNC) &_opencv_cvmat_bitmap, 1},
+    {"_opencv_cvmat_copyto", (DL_FUNC) &_opencv_cvmat_copyto, 3},
+    {"_opencv_livestream", (DL_FUNC) &_opencv_livestream, 1},
     {"_opencv_cvmat_face", (DL_FUNC) &_opencv_cvmat_face, 1},
     {"_opencv_cvmat_facemask", (DL_FUNC) &_opencv_cvmat_facemask, 1},
     {"_opencv_cvmat_mog2", (DL_FUNC) &_opencv_cvmat_mog2, 1},
     {"_opencv_cvmat_knn", (DL_FUNC) &_opencv_cvmat_knn, 1},
     {"_opencv_cvmat_edges", (DL_FUNC) &_opencv_cvmat_edges, 1},
-    {"_opencv_cvmat_copyto", (DL_FUNC) &_opencv_cvmat_copyto, 3},
-    {"_opencv_livestream", (DL_FUNC) &_opencv_livestream, 1},
     {NULL, NULL, 0}
 };
 

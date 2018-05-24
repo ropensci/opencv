@@ -37,6 +37,14 @@ cvmat_bitmap <- function(ptr) {
     .Call('_opencv_cvmat_bitmap', PACKAGE = 'opencv', ptr)
 }
 
+cvmat_copyto <- function(from, to, mask) {
+    .Call('_opencv_cvmat_copyto', PACKAGE = 'opencv', from, to, mask)
+}
+
+livestream <- function(filter) {
+    invisible(.Call('_opencv_livestream', PACKAGE = 'opencv', filter))
+}
+
 cvmat_face <- function(ptr) {
     .Call('_opencv_cvmat_face', PACKAGE = 'opencv', ptr)
 }
@@ -55,13 +63,5 @@ cvmat_knn <- function(ptr) {
 
 cvmat_edges <- function(ptr) {
     .Call('_opencv_cvmat_edges', PACKAGE = 'opencv', ptr)
-}
-
-cvmat_copyto <- function(from, to, mask) {
-    .Call('_opencv_cvmat_copyto', PACKAGE = 'opencv', from, to, mask)
-}
-
-livestream <- function(filter) {
-    invisible(.Call('_opencv_livestream', PACKAGE = 'opencv', filter))
 }
 

@@ -1,4 +1,3 @@
-#include <opencv2/opencv.hpp>
 #include "util.hpp"
 
 using namespace cv;
