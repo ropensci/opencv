@@ -129,6 +129,18 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// cvmat_blur
+XPtrMat cvmat_blur(XPtrMat ptr, size_t ksize);
+RcppExport SEXP _opencv_cvmat_blur(SEXP ptrSEXP, SEXP ksizeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtrMat >::type ptr(ptrSEXP);
+    Rcpp::traits::input_parameter< size_t >::type ksize(ksizeSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvmat_blur(ptr, ksize));
+    return rcpp_result_gen;
+END_RCPP
+}
 // cvmat_face
 XPtrMat cvmat_face(XPtrMat ptr);
 RcppExport SEXP _opencv_cvmat_face(SEXP ptrSEXP) {
@@ -184,6 +196,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// cvmat_hog
+XPtrMat cvmat_hog(XPtrMat ptr);
+RcppExport SEXP _opencv_cvmat_hog(SEXP ptrSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtrMat >::type ptr(ptrSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvmat_hog(ptr));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_dead", (DL_FUNC) &_opencv_cvmat_dead, 1},
@@ -197,11 +220,13 @@ static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_bitmap", (DL_FUNC) &_opencv_cvmat_bitmap, 1},
     {"_opencv_cvmat_copyto", (DL_FUNC) &_opencv_cvmat_copyto, 3},
     {"_opencv_livestream", (DL_FUNC) &_opencv_livestream, 1},
+    {"_opencv_cvmat_blur", (DL_FUNC) &_opencv_cvmat_blur, 2},
     {"_opencv_cvmat_face", (DL_FUNC) &_opencv_cvmat_face, 1},
     {"_opencv_cvmat_facemask", (DL_FUNC) &_opencv_cvmat_facemask, 1},
     {"_opencv_cvmat_mog2", (DL_FUNC) &_opencv_cvmat_mog2, 1},
     {"_opencv_cvmat_knn", (DL_FUNC) &_opencv_cvmat_knn, 1},
     {"_opencv_cvmat_edges", (DL_FUNC) &_opencv_cvmat_edges, 1},
+    {"_opencv_cvmat_hog", (DL_FUNC) &_opencv_cvmat_hog, 1},
     {NULL, NULL, 0}
 };
 

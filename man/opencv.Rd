@@ -11,6 +11,8 @@
 \alias{ocv_facemask}
 \alias{ocv_mog2}
 \alias{ocv_knn}
+\alias{ocv_hog}
+\alias{ocv_blur}
 \alias{ocv_copyto}
 \alias{ocv_video}
 \title{OpenCV}
@@ -35,6 +37,10 @@ ocv_mog2(image)
 
 ocv_knn(image)
 
+ocv_hog(image)
+
+ocv_blur(image, ksize = 5)
+
 ocv_copyto(image, target, mask)
 
 ocv_video(filter)
@@ -47,6 +53,8 @@ ocv_video(filter)
 \item{width}{output width in pixels}
 
 \item{height}{output height in pixels}
+
+\item{ksize}{size of blurring matrix}
 
 \item{target}{the output image}
 

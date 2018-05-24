@@ -45,6 +45,10 @@ livestream <- function(filter) {
     invisible(.Call('_opencv_livestream', PACKAGE = 'opencv', filter))
 }
 
+cvmat_blur <- function(ptr, ksize) {
+    .Call('_opencv_cvmat_blur', PACKAGE = 'opencv', ptr, ksize)
+}
+
 cvmat_face <- function(ptr) {
     .Call('_opencv_cvmat_face', PACKAGE = 'opencv', ptr)
 }
@@ -63,5 +67,9 @@ cvmat_knn <- function(ptr) {
 
 cvmat_edges <- function(ptr) {
     .Call('_opencv_cvmat_edges', PACKAGE = 'opencv', ptr)
+}
+
+cvmat_hog <- function(ptr) {
+    .Call('_opencv_cvmat_hog', PACKAGE = 'opencv', ptr)
 }
 

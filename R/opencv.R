@@ -101,6 +101,19 @@ ocv_knn <- function(image){
 
 #' @export
 #' @rdname opencv
+ocv_hog <- function(image){
+  cvmat_hog(image)
+}
+
+#' @export
+#' @rdname opencv
+#' @param ksize size of blurring matrix
+ocv_blur <- function(image, ksize = 5){
+  cvmat_blur(image, ksize)
+}
+
+#' @export
+#' @rdname opencv
 #' @param target the output image
 #' @param mask only copy pixels from the mask
 ocv_copyto <- function(image, target, mask){
