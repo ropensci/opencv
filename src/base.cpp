@@ -132,4 +132,5 @@ void livestream(Rcpp::Function filter){
   } catch(Rcpp::internal::InterruptedException e) { }
   cap.release();
   cv::destroyWindow("mywindow");
+  cvWaitKey(1);
 }
