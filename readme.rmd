@@ -1,6 +1,10 @@
 # Vision and Graphics
 
-Some experiments combining vision and graphics.
+> Some experiments combining vision and graphics.
+
+[![Project Status: Concept](http://www.repostatus.org/badges/latest/concept.svg)](http://www.repostatus.org/#concept)
+[![Build Status](https://travis-ci.org/ropenscilabs/opencv.svg?branch=master)](https://travis-ci.org/ropenscilabs/opencv)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropensci/opencv?branch=master&svg=true)](https://ci.appveyor.com/project/jeroen/opencv)
 
 __Note for RStudio users__: currently opencv does work work well in rstudio. Better use the terminal or RGui.
 
