@@ -28,3 +28,5 @@ clean:
 
 winlibs:
 	"${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe" "../tools/winlibs.R" ${VERSION}
+	mkdir -p ../inst
+	cp -r ${RWINLIB}/share ../inst/
