@@ -111,9 +111,10 @@ height <- dim(bitmap)[3]
 makeplot <- function(x){
   png('bg.png', width = width, height = height, res = 96)
   on.exit(unlink('bg.png'))
-  left <- rep("left", sum(x < 400))
-  middle <- rep("middle", sum(x >= 400 & x < 900))
-  right <- rep("right", sum(x >= 900))
+  groups <- seq(0, width, length.out = 4)
+  left <- rep("left", sum(x < groups[2]))
+  middle <- rep("middle", sum(x >= groups[2] & x < groups[3]))
+  right <- rep("right", sum(x >= groups[3]))
   f <- factor(c(left, middle, right), levels = c('left', 'middle', 'right'),
               labels = c("Tidy!", "Whatever Works", "Base!"))
   color = I(c("#F1BB7B", "#FD6467", "#5B1A18"))
