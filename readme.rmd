@@ -27,7 +27,24 @@ Works best in the terminal (rstudio doesn't like the popup window).
 
 ## Basic stuff:
 
-Basic face detection:
+Face recognition:
+
+```r
+unconf <- ocv_read('https://jeroen.github.io/images/unconf18.jpg')
+faces <- ocv_face(unconf)
+ocv_write(faces, 'faces.jpg')
+```
+
+Or get the face location data:
+
+```r
+facemask <- ocv_facemask(unconf)
+attr(facemask, 'faces')
+```
+
+## Live Webcam Examples
+
+Live face detection:
 
 ```r
 library(opencv)
@@ -35,7 +52,6 @@ ocv_video(ocv_face)
 ```
 
 Edge detection:
-
 
 ```r
 library(opencv)

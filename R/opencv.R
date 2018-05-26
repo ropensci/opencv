@@ -29,7 +29,7 @@ ocv_read <- function(path){
   if(grepl("https?://", path)){
     base <- basename(path)
     tmp <- file.path(tempdir(), base)
-    download.file(path, tmp, mode = 'wb')
+    utils::download.file(path, tmp, mode = 'wb')
     path <- tmp
   }
   path <- normalizePath(path, mustWork = TRUE)
