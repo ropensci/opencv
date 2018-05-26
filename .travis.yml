@@ -15,7 +15,7 @@ addons:
   apt:
     update: true
     sources:
-      - sourceline: 'ppa:timsc/opencv-3.4'
+      - sourceline: 'ppa:orangain/opencv'
     packages:
       - libopencv-dev
 
