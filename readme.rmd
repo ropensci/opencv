@@ -2,9 +2,11 @@
 
 Some experiments combining vision and graphics.
 
+__Note for RStudio users__: currently opencv does work work well in rstudio. Better use the terminal or RGui.
+
 ## Installation
 
-First install opencv:
+On MacOS or Linux, first install opencv (not needed on Windows):
 
 ```sh
 brew install opencv
