@@ -75,13 +75,12 @@ ocv_video(filter)
 \item{mask}{only copy pixels from the mask}
 
 \item{filter}{an R function that takes and returns an opecv image}
-
-\item{color}{true or false}
 }
 \description{
 Utilities to mess around with OpenCV.
 }
 \examples{
+\dontrun{
 png('bg.png', width = 1280, height = 720)
 par(ask=FALSE)
 qplot(speed, dist, data = cars, geom = c("smooth", "point"))
@@ -98,4 +97,5 @@ ocv_video(function(input){
   mask <- ocv_facemask(input)
   ocv_copyto(input, bg, mask)
 })
+}
 }

@@ -7,7 +7,8 @@
 #' @importFrom Rcpp sourceCpp
 #' @useDynLib opencv
 #' @param path image file such as png or jpeg
-#' @examples png('bg.png', width = 1280, height = 720)
+#' @examples \dontrun{
+#' png('bg.png', width = 1280, height = 720)
 #' par(ask=FALSE)
 #' qplot(speed, dist, data = cars, geom = c("smooth", "point"))
 #' dev.off()
@@ -23,6 +24,7 @@
 #'   mask <- ocv_facemask(input)
 #'   ocv_copyto(input, bg, mask)
 #' })
+#' }
 ocv_read <- function(path){
   path <- normalizePath(path, mustWork = TRUE)
   cvmat_read(path)
@@ -121,7 +123,6 @@ ocv_sketch <- function(image, color = TRUE){
 
 #' @export
 #' @rdname opencv
-#' @param color true or false
 ocv_stylize <- function(image){
   cvmat_stylize(image)
 }
