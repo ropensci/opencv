@@ -121,7 +121,7 @@ void cvmat_display(XPtrMat ptr){
   imshow("mywindow", get_mat(ptr));
   try {
     for(int i = 0;;i++) {
-      if(waitKey(30) >= 0)
+      if(waitKey(30) >= 0 || cv::getWindowProperty("mywindow", 0) < 0)
         break;
       Rcpp::checkUserInterrupt();
     }
@@ -142,7 +142,7 @@ void livestream(Rcpp::Function filter){
       cap >> image;
       XPtrMat out(filter(cvmat_xptr(image)));
       imshow("mywindow", get_mat(out));
-      if(waitKey(30) >= 0)
+      if(waitKey(30) >= 0 || cv::getWindowProperty("mywindow", 0) < 0)
         break;
       Rcpp::checkUserInterrupt();
     }
