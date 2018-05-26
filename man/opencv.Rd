@@ -17,6 +17,7 @@
 \alias{ocv_stylize}
 \alias{ocv_markers}
 \alias{ocv_copyto}
+\alias{ocv_display}
 \alias{ocv_video}
 \title{OpenCV}
 \usage{
@@ -51,6 +52,8 @@ ocv_stylize(image)
 ocv_markers(image)
 
 ocv_copyto(image, target, mask)
+
+ocv_display(image)
 
 ocv_video(filter)
 }

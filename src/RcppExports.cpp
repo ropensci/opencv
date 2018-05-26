@@ -119,6 +119,16 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// cvmat_display
+void cvmat_display(XPtrMat ptr);
+RcppExport SEXP _opencv_cvmat_display(SEXP ptrSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtrMat >::type ptr(ptrSEXP);
+    cvmat_display(ptr);
+    return R_NilValue;
+END_RCPP
+}
 // livestream
 void livestream(Rcpp::Function filter);
 RcppExport SEXP _opencv_livestream(SEXP filterSEXP) {
@@ -253,6 +263,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_resize", (DL_FUNC) &_opencv_cvmat_resize, 3},
     {"_opencv_cvmat_bitmap", (DL_FUNC) &_opencv_cvmat_bitmap, 1},
     {"_opencv_cvmat_copyto", (DL_FUNC) &_opencv_cvmat_copyto, 3},
+    {"_opencv_cvmat_display", (DL_FUNC) &_opencv_cvmat_display, 1},
     {"_opencv_livestream", (DL_FUNC) &_opencv_livestream, 1},
     {"_opencv_cvmat_blur", (DL_FUNC) &_opencv_cvmat_blur, 2},
     {"_opencv_cvmat_sketch", (DL_FUNC) &_opencv_cvmat_sketch, 2},

@@ -142,6 +142,12 @@ ocv_copyto <- function(image, target, mask){
 
 #' @export
 #' @rdname opencv
+ocv_display <- function(image){
+  cvmat_display(image)
+}
+
+#' @export
+#' @rdname opencv
 #' @param filter an R function that takes and returns an opecv image
 ocv_video <- function(filter){
   if(!is.function(filter))

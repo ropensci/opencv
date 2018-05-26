@@ -67,6 +67,7 @@ XPtrMat cvmat_camera(){
     throw std::runtime_error("Failed to start Camera");
   Mat frame;
   cap >> frame;
+  cap >> frame;
   cap.release();
   return cvmat_xptr(frame);
 }
@@ -115,6 +116,21 @@ XPtrMat cvmat_copyto(XPtrMat from, XPtrMat to, XPtrMat mask) {
 }
 
 // [[Rcpp::export]]
+void cvmat_display(XPtrMat ptr){
+  namedWindow("mywindow", 1);
+  imshow("mywindow", get_mat(ptr));
+  try {
+    for(int i = 0;;i++) {
+      if(waitKey(30) >= 0)
+        break;
+      Rcpp::checkUserInterrupt();
+    }
+  } catch(Rcpp::internal::InterruptedException e) { }
+  cv::destroyWindow("mywindow");
+  cvWaitKey(1);
+}
+
+// [[Rcpp::export]]
 void livestream(Rcpp::Function filter){
   VideoCapture cap(0);
   if(!cap.isOpened())
@@ -126,7 +142,8 @@ void livestream(Rcpp::Function filter){
       cap >> image;
       XPtrMat out(filter(cvmat_xptr(image)));
       imshow("mywindow", get_mat(out));
-      waitKey(30);
+      if(waitKey(30) >= 0)
+        break;
       Rcpp::checkUserInterrupt();
     }
   } catch(Rcpp::internal::InterruptedException e) { }
