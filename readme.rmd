@@ -100,8 +100,16 @@ Go stand on the left if you're a tidier
 
 ```r
 library(opencv)
+
+# get webcam size
+test <- ocv_camera()
+bitmap <- ocv_bitmap(test)
+width <- dim(bitmap)[2]
+height <- dim(bitmap)[3]
+
+# generates the plot
 makeplot <- function(x){
-  png('bg.png', width = 1280, height = 720, res = 96)
+  png('bg.png', width = width, height = height, res = 96)
   on.exit(unlink('bg.png'))
   left <- rep("left", sum(x < 400))
   middle <- rep("middle", sum(x >= 400 & x < 900))
@@ -115,6 +123,7 @@ makeplot <- function(x){
   ocv_read('bg.png')
 }
 
+# overlays faces on the plot
 ocv_video(function(input){
   mask <- ocv_facemask(input)
   faces <- attr(mask, 'faces')
