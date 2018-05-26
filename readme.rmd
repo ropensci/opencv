@@ -52,9 +52,9 @@ library(ggplot2)
 
 # get webcam size
 test <- ocv_camera()
-info <- ocv_info(test)
-width <- info$width
-height <- info$height
+bitmap <- ocv_bitmap(test)
+width <- dim(bitmap)[2]
+height <- dim(bitmap)[3]
 
 png('bg.png', width = width, height = height)
 par(ask=FALSE)
