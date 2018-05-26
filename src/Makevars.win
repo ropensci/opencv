@@ -1,20 +1,30 @@
-PKG_CPPFLAGS= \
-	-IC:/msys64/mingw64/include
+VERSION = 3.4.1-tbb
+RWINLIB = ../windows/opencv-${VERSION}
+PKG_CPPFLAGS = -I${RWINLIB}/include
 
-PKG_LIBS=-LC:/msys64/mingw64/lib -lopencv_stitching -lopencv_superres \
+PKG_LIBS = -L${RWINLIB}/lib${R_ARCH} \
+	-lopencv_stitching -lopencv_superres \
 	-lopencv_videostab -lopencv_aruco -lopencv_bgsegm -lopencv_ccalib \
-	-lopencv_dpm -lopencv_face -lopencv_photo -lopencv_fuzzy -lopencv_hdf \
+	-lopencv_dpm -lopencv_face -lopencv_photo -lopencv_fuzzy \
 	-lopencv_img_hash -lopencv_line_descriptor -lopencv_optflow -lopencv_reg \
-	-lopencv_rgbd -lopencv_saliency -lopencv_sfm -lopencv_stereo -lopencv_structured_light \
+	-lopencv_rgbd -lopencv_saliency -lopencv_stereo -lopencv_structured_light \
 	-lopencv_phase_unwrapping -lopencv_surface_matching -lopencv_tracking -lopencv_datasets \
-	-lopencv_text -lopencv_dnn -lopencv_plot -lopencv_xfeatures2d \
+	-lopencv_dnn -lopencv_plot -lopencv_xfeatures2d \
 	-lopencv_shape -lopencv_video -lopencv_ml -lopencv_ximgproc -lopencv_calib3d \
 	-lopencv_features2d -lopencv_highgui -lopencv_videoio -lopencv_flann -lopencv_xobjdetect \
-	-lopencv_imgcodecs -lopencv_objdetect -lopencv_xphoto -lopencv_imgproc -lopencv_core
+	-lopencv_imgcodecs -lopencv_objdetect -lopencv_xphoto -lopencv_imgproc -lopencv_core \
+	-lIlmImf -lIlmImfUtil -lIex -lHalf -lIlmThread \
+	-ltbb -lopenblas -lgfortran -lquadmath \
+	-lpng -ljpeg -lwebp -ltiff -lz \
+	-lcomctl32 -lgdi32 -lole32 -lsetupapi -lws2_32 -lavifil32 -lavicap32 -lwinmm -lmsvfw32 \
+	-lopengl32 -lglu32 -lcomdlg32 -lOleAut32 -luuid
 
 CXX_STD=CXX11
 
-all: clean
+all: clean winlibs
 
 clean:
 	rm -f $(SHLIB) $(OBJECTS)
+
+winlibs:
+	"${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe" "../tools/winlibs.R" ${VERSION}
