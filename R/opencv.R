@@ -26,6 +26,12 @@
 #' })
 #' }
 ocv_read <- function(path){
+  if(grepl("https?://", path)){
+    base <- basename(path)
+    tmp <- file.path(tempdir(), base)
+    download.file(path, tmp, mode = 'wb')
+    path <- tmp
+  }
   path <- normalizePath(path, mustWork = TRUE)
   cvmat_read(path)
 }
@@ -75,18 +81,6 @@ ocv_camera <- function(){
 #' @param height output height in pixels
 ocv_resize <- function(image, width = 0, height = 0){
   cvmat_resize(image, as.integer(width), as.integer(height))
-}
-
-#' @export
-#' @rdname opencv
-ocv_face <- function(image){
-  cvmat_face(image)
-}
-
-#' @export
-#' @rdname opencv
-ocv_facemask <- function(image){
-  cvmat_facemask(image)
 }
 
 #' @export

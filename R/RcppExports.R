@@ -65,12 +65,12 @@ cvmat_stylize <- function(ptr) {
     .Call('_opencv_cvmat_stylize', PACKAGE = 'opencv', ptr)
 }
 
-cvmat_face <- function(ptr) {
-    .Call('_opencv_cvmat_face', PACKAGE = 'opencv', ptr)
+cvmat_face <- function(ptr, facedata, eyedata) {
+    .Call('_opencv_cvmat_face', PACKAGE = 'opencv', ptr, facedata, eyedata)
 }
 
-cvmat_facemask <- function(ptr) {
-    .Call('_opencv_cvmat_facemask', PACKAGE = 'opencv', ptr)
+cvmat_facemask <- function(ptr, facedata) {
+    .Call('_opencv_cvmat_facemask', PACKAGE = 'opencv', ptr, facedata)
 }
 
 cvmat_mog2 <- function(ptr) {

@@ -3,13 +3,13 @@
 using namespace cv;
 
 // [[Rcpp::export]]
-XPtrMat cvmat_face(XPtrMat ptr){
+XPtrMat cvmat_face(XPtrMat ptr, const char * facedata, const char * eyedata){
   /* load training data */
   CascadeClassifier face, eyes;
-  if(!face.load( "/usr/local/share/OpenCV/haarcascades/haarcascade_frontalface_alt.xml" ))
-    throw std::runtime_error("Failed to find haarcascade_frontalface_alt.xml");
-  if(!eyes.load( "/usr/local/share/OpenCV/haarcascades/haarcascade_eye_tree_eyeglasses.xml" ))
-    throw std::runtime_error("Failed to find haarcascade_eye_tree_eyeglasses.xml");
+  if(!face.load( facedata ))
+    throw std::runtime_error(std::string("Failed to load: ") + facedata);
+  if(!eyes.load( eyedata ))
+    throw std::runtime_error(std::string("Failed to load: ") + eyedata);
 
   //modify in place
   detectAndDraw(get_mat(ptr), face, eyes, 1, 0);
@@ -17,11 +17,11 @@ XPtrMat cvmat_face(XPtrMat ptr){
 }
 
 // [[Rcpp::export]]
-XPtrMat cvmat_facemask(XPtrMat ptr){
+XPtrMat cvmat_facemask(XPtrMat ptr, const char * facedata){
   /* load training data */
   CascadeClassifier face;
-  if(!face.load( "/usr/local/share/OpenCV/haarcascades/haarcascade_frontalface_alt.xml" ))
-    throw std::runtime_error("Failed to find haarcascade_frontalface_alt.xml");
+  if(!face.load( facedata ))
+    throw std::runtime_error(std::string("Failed to load: ") + facedata);
 
   Mat gray;
   Mat input = get_mat(ptr);

@@ -186,24 +186,27 @@ BEGIN_RCPP
 END_RCPP
 }
 // cvmat_face
-XPtrMat cvmat_face(XPtrMat ptr);
-RcppExport SEXP _opencv_cvmat_face(SEXP ptrSEXP) {
+XPtrMat cvmat_face(XPtrMat ptr, const char * facedata, const char * eyedata);
+RcppExport SEXP _opencv_cvmat_face(SEXP ptrSEXP, SEXP facedataSEXP, SEXP eyedataSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< XPtrMat >::type ptr(ptrSEXP);
-    rcpp_result_gen = Rcpp::wrap(cvmat_face(ptr));
+    Rcpp::traits::input_parameter< const char * >::type facedata(facedataSEXP);
+    Rcpp::traits::input_parameter< const char * >::type eyedata(eyedataSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvmat_face(ptr, facedata, eyedata));
     return rcpp_result_gen;
 END_RCPP
 }
 // cvmat_facemask
-XPtrMat cvmat_facemask(XPtrMat ptr);
-RcppExport SEXP _opencv_cvmat_facemask(SEXP ptrSEXP) {
+XPtrMat cvmat_facemask(XPtrMat ptr, const char * facedata);
+RcppExport SEXP _opencv_cvmat_facemask(SEXP ptrSEXP, SEXP facedataSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< XPtrMat >::type ptr(ptrSEXP);
-    rcpp_result_gen = Rcpp::wrap(cvmat_facemask(ptr));
+    Rcpp::traits::input_parameter< const char * >::type facedata(facedataSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvmat_facemask(ptr, facedata));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -280,8 +283,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_blur", (DL_FUNC) &_opencv_cvmat_blur, 2},
     {"_opencv_cvmat_sketch", (DL_FUNC) &_opencv_cvmat_sketch, 2},
     {"_opencv_cvmat_stylize", (DL_FUNC) &_opencv_cvmat_stylize, 1},
-    {"_opencv_cvmat_face", (DL_FUNC) &_opencv_cvmat_face, 1},
-    {"_opencv_cvmat_facemask", (DL_FUNC) &_opencv_cvmat_facemask, 1},
+    {"_opencv_cvmat_face", (DL_FUNC) &_opencv_cvmat_face, 3},
+    {"_opencv_cvmat_facemask", (DL_FUNC) &_opencv_cvmat_facemask, 2},
     {"_opencv_cvmat_mog2", (DL_FUNC) &_opencv_cvmat_mog2, 1},
     {"_opencv_cvmat_knn", (DL_FUNC) &_opencv_cvmat_knn, 1},
     {"_opencv_cvmat_edges", (DL_FUNC) &_opencv_cvmat_edges, 1},
