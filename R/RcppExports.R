@@ -41,6 +41,10 @@ cvmat_copyto <- function(from, to, mask) {
     .Call('_opencv_cvmat_copyto', PACKAGE = 'opencv', from, to, mask)
 }
 
+cvmat_info <- function(image) {
+    .Call('_opencv_cvmat_info', PACKAGE = 'opencv', image)
+}
+
 cvmat_display <- function(ptr) {
     invisible(.Call('_opencv_cvmat_display', PACKAGE = 'opencv', ptr))
 }

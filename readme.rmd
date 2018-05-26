@@ -48,7 +48,15 @@ Replaces the background with a plot:
 
 ```r
 library(opencv)
-png('bg.png', width = 1280, height = 720)
+library(ggplot2)
+
+# get webcam size
+test <- ocv_camera()
+info <- ocv_info(test)
+width <- info$width
+height <- info$height
+
+png('bg.png', width = width, height = height)
 par(ask=FALSE)
 print(ggplot2::qplot(speed, dist, data = cars, geom = c("smooth", "point")))
 dev.off()

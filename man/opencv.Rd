@@ -16,6 +16,7 @@
 \alias{ocv_sketch}
 \alias{ocv_stylize}
 \alias{ocv_markers}
+\alias{ocv_info}
 \alias{ocv_copyto}
 \alias{ocv_display}
 \alias{ocv_video}
@@ -50,6 +51,8 @@ ocv_sketch(image, color = TRUE)
 ocv_stylize(image)
 
 ocv_markers(image)
+
+ocv_info(image)
 
 ocv_copyto(image, target, mask)
 

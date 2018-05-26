@@ -119,6 +119,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// cvmat_info
+Rcpp::List cvmat_info(XPtrMat image);
+RcppExport SEXP _opencv_cvmat_info(SEXP imageSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtrMat >::type image(imageSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvmat_info(image));
+    return rcpp_result_gen;
+END_RCPP
+}
 // cvmat_display
 void cvmat_display(XPtrMat ptr);
 RcppExport SEXP _opencv_cvmat_display(SEXP ptrSEXP) {
@@ -263,6 +274,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_resize", (DL_FUNC) &_opencv_cvmat_resize, 3},
     {"_opencv_cvmat_bitmap", (DL_FUNC) &_opencv_cvmat_bitmap, 1},
     {"_opencv_cvmat_copyto", (DL_FUNC) &_opencv_cvmat_copyto, 3},
+    {"_opencv_cvmat_info", (DL_FUNC) &_opencv_cvmat_info, 1},
     {"_opencv_cvmat_display", (DL_FUNC) &_opencv_cvmat_display, 1},
     {"_opencv_livestream", (DL_FUNC) &_opencv_livestream, 1},
     {"_opencv_cvmat_blur", (DL_FUNC) &_opencv_cvmat_blur, 2},

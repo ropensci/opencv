@@ -135,6 +135,12 @@ ocv_markers <- function(image){
 
 #' @export
 #' @rdname opencv
+ocv_info <- function(image){
+  cvmat_info(image)
+}
+
+#' @export
+#' @rdname opencv
 #' @param target the output image
 #' @param mask only copy pixels from the mask
 ocv_copyto <- function(image, target, mask){
