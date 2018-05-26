@@ -14,7 +14,7 @@ XPtrMat cvmat_hog(XPtrMat ptr){
   // groupThreshold (set groupThreshold to 0 to turn off the grouping completely).
   hog.detectMultiScale(get_mat(ptr), found, 0, Size(8,8), Size(32,32), 1.05, 2);
   t = (double) getTickCount() - t;
-  cout << "detection time = " << (t*1000./cv::getTickFrequency()) << " ms" << endl;
+  //cout << "detection time = " << (t*1000./cv::getTickFrequency()) << " ms" << endl;
   for(size_t i = 0; i < found.size(); i++ )
   {
     Rect r = found[i];

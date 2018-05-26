@@ -6,7 +6,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^windows$
-^README.md$
+^readme.rmd$
 ^src/Makevars$
 ^appveyor\.yml$
 ^LICENSE\.md$
