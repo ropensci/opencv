@@ -14,7 +14,7 @@ XPtrMat cvmat_markers(XPtrMat ptr){
   TermCriteria termcrit(TermCriteria::COUNT|TermCriteria::EPS,20,0.03);
   cornerSubPix(gray, points, Size(10,10), Size(-1,-1), termcrit);
 
-  for(int i = 0; i < points.size(); i++ ) {
+  for(size_t i = 0; i < points.size(); i++ ) {
     circle( image, points[i], 3, Scalar(0,255,0), -1, 8);
   }
   return ptr;
