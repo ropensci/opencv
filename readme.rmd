@@ -6,7 +6,7 @@
 [![Build Status](https://travis-ci.org/ropenscilabs/opencv.svg?branch=master)](https://travis-ci.org/ropenscilabs/opencv)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropenscilabs/opencv?branch=master&svg=true)](https://ci.appveyor.com/project/jeroen/opencv)
 
-__NOTE:__ *this package is still very experimental. It may crash R.
+__NOTE:__ *this package is still very experimental. It may crash R.*
 
 ## Installation
 
@@ -116,7 +116,7 @@ makeplot <- function(x){
   right <- rep("right", sum(x >= 900))
   f <- factor(c(left, middle, right), levels = c('left', 'middle', 'right'),
               labels = c("Tidy!", "Whatever Works", "Base!"))
-  color = I(wesanderson::wes_palette("GrandBudapest1", nlevels(f)))
+  color = I(c("#F1BB7B", "#FD6467", "#5B1A18"))
   plot(f, ylim = c(0, 5),
        main = "Are you a tidyer or baser?", col = color)
   dev.off()
