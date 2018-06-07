@@ -8,7 +8,8 @@ Authors@R: c(
 Description: Just messing around.
 License: MIT + file LICENSE
 SystemRequirements: OpenCV
-URL: https://github.com/jeroen/opencv
+URL: https://github.com/ropenscilabs/opencv
+BugReports: URL: https://github.com/ropenscilabs/opencv/issues
 LinkingTo: Rcpp
 Imports: Rcpp, magrittr
 LazyData: true
