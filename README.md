@@ -2,7 +2,6 @@
 
 > Some experiments combining vision and graphics.
 
-![status](https://img.shields.io/badge/status-highly_experimental-ff6600.svg)
 [![Project Status: Concept – Minimal or no implementation has been done yet, or the repository is only intended to be a limited example, demo, or proof-of-concept.](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)
 [![Build Status](https://travis-ci.org/ropenscilabs/opencv.svg?branch=master)](https://travis-ci.org/ropenscilabs/opencv)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropenscilabs/opencv?branch=master&svg=true)](https://ci.appveyor.com/project/jeroen/opencv)
