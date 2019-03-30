@@ -6,7 +6,7 @@ pandoc: false
 
 matrix:
   include:
-#    - os: linux
+    - dist: xenial
     - os: osx
       brew_packages: opencv@3
       env: PKG_CONFIG_PATH="/usr/local/opt/opencv@3/lib/pkgconfig"
@@ -20,11 +20,9 @@ addons:
   apt:
     update: true
     sources:
-      - sourceline: 'ppa:orangain/opencv'
+      - sourceline: 'ppa:timsc/opencv-3.4'
     packages:
       - libopencv-dev
-
-warnings_are_errors: true
 
 notifications:
   email:
