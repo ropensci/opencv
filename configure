@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Anticonf (tm) script by Jeroen Ooms (2018)
-PKG_CONFIG_NAME="opencv"
+PKG_CONFIG_NAME="opencv4"
 PKG_DEB_NAME="libopencv-dev"
 PKG_RPM_NAME="opencv-devel"
 PKG_BREW_NAME="opencv"
@@ -41,13 +41,19 @@ fi
 echo "Using PKG_CFLAGS=$PKG_CFLAGS"
 echo "Using PKG_LIBS=$PKG_LIBS"
 
-# Find compiler
-CXXCPP=`${R_HOME}/bin/R CMD config CXXCPP`
-CXXFLAGS=`${R_HOME}/bin/R CMD config CXXFLAGS`
+# OpenCV 4 enforces C++11 in the headers
 CPPFLAGS=`${R_HOME}/bin/R CMD config CPPFLAGS`
+CXX11STD=`${R_HOME}/bin/R CMD config CXX11STD`
+if [ $? -eq 0 ]; then
+CXX11=`${R_HOME}/bin/R CMD config CXX11`
+CXX11CPP="$CXX11 -E $CXX11STD"
+else
+CXX11CPP=`${R_HOME}/bin/R CMD config CXXCPP`
+fi
+
 
 # Test configuration
-echo "#include $PKG_TEST_HEADER" | ${CXXCPP} ${CPPFLAGS} ${PKG_CFLAGS} ${CXXFLAGS} -xc++ - >/dev/null 2>&1
+echo "#include $PKG_TEST_HEADER" | ${CXX11CPP} ${CPPFLAGS} ${PKG_CFLAGS} -xc++ - >/dev/null
 
 # Customize the error
 if [ $? -ne 0 ]; then

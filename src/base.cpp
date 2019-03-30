@@ -136,7 +136,7 @@ void cvmat_display(XPtrMat ptr){
     }
   } catch(Rcpp::internal::InterruptedException e) { }
   cv::destroyWindow("mywindow");
-  cvWaitKey(1);
+  cv::waitKey(1);
 }
 
 // [[Rcpp::export]]
@@ -158,5 +158,5 @@ void livestream(Rcpp::Function filter){
   } catch(Rcpp::internal::InterruptedException e) { }
   cap.release();
   cv::destroyWindow("mywindow");
-  cvWaitKey(1);
+  cv::waitKey(1);
 }
