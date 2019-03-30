@@ -1,27 +1,18 @@
 VERSION = 3.4.1-tbb
-RWINLIB = ../windows/opencv-${VERSION}
-PKG_CPPFLAGS = -I${RWINLIB}/include
+RWINLIB = /mingw$(WIN)
+PKG_CPPFLAGS = -I$(RWINLIB)/include/opencv4
 
-PKG_LIBS = -L${RWINLIB}/lib${R_ARCH} \
-	-lopencv_stitching -lopencv_superres \
-	-lopencv_videostab -lopencv_aruco -lopencv_bgsegm -lopencv_ccalib \
-	-lopencv_dpm -lopencv_face -lopencv_photo -lopencv_fuzzy \
-	-lopencv_img_hash -lopencv_line_descriptor -lopencv_optflow -lopencv_reg \
-	-lopencv_rgbd -lopencv_saliency -lopencv_stereo -lopencv_structured_light \
-	-lopencv_phase_unwrapping -lopencv_surface_matching -lopencv_tracking -lopencv_datasets \
-	-lopencv_dnn -lopencv_plot -lopencv_xfeatures2d \
-	-lopencv_shape -lopencv_video -lopencv_ml -lopencv_ximgproc -lopencv_calib3d \
-	-lopencv_features2d -lopencv_highgui -lopencv_videoio -lopencv_flann -lopencv_xobjdetect \
-	-lopencv_imgcodecs -lopencv_objdetect -lopencv_xphoto -lopencv_imgproc -lopencv_core \
-	-lIlmImf -lIlmImfUtil -lIex -lHalf -lIlmThread \
-	-ltbb -lopenblas -lgfortran -lquadmath \
-	-lpng -ljpeg -lwebp -ltiff -lz \
+PKG_LIBS = -L${RWINLIB}/lib/opencv4/3rdparty \
+	-lopencv_gapi -lopencv_ml -lopencv_objdetect -lopencv_photo -lopencv_stitching \
+	-lopencv_video -lopencv_calib3d -lopencv_features2d -lopencv_highgui -lopencv_flann \
+	-lopencv_videoio -lopencv_imgcodecs -lopencv_imgproc -lopencv_core -lquirc -ltbb \
+	-lade -lcomctl32 -lgdi32 -lole32 -lsetupapi -lws2_32 -ljpeg -lwebp -lpng -lz -ltiff \
 	-lcomctl32 -lgdi32 -lole32 -lsetupapi -lws2_32 -lavifil32 -lavicap32 -lwinmm -lmsvfw32 \
 	-lopengl32 -lglu32 -lcomdlg32 -lOleAut32 -luuid
 
 CXX_STD=CXX11
 
-all: clean winlibs
+all: clean
 
 clean:
 	rm -f $(SHLIB) $(OBJECTS)
