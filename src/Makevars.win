@@ -1,8 +1,11 @@
-VERSION = 3.4.1-tbb
-RWINLIB = /mingw$(WIN)
+VERSION = 4.0.1
+RWINLIB = ../windows/opencv-$(VERSION)
 PKG_CPPFLAGS = -I$(RWINLIB)/include/opencv4
+TARGET = lib$(subst gcc,,$(COMPILED_BY))$(R_ARCH)
 
-PKG_LIBS = -L${RWINLIB}/lib/opencv4/3rdparty \
+PKG_LIBS = \
+	-L$(RWINLIB)/$(TARGET) \
+	-L$(RWINLIB)/lib$(R_ARCH) \
 	-lopencv_gapi -lopencv_ml -lopencv_objdetect -lopencv_photo -lopencv_stitching \
 	-lopencv_video -lopencv_calib3d -lopencv_features2d -lopencv_highgui -lopencv_flann \
 	-lopencv_videoio -lopencv_imgcodecs -lopencv_imgproc -lopencv_core -lquirc -ltbb \
@@ -12,7 +15,7 @@ PKG_LIBS = -L${RWINLIB}/lib/opencv4/3rdparty \
 
 CXX_STD=CXX11
 
-all: clean
+all: clean winlibs
 
 clean:
 	rm -f $(SHLIB) $(OBJECTS)
@@ -20,4 +23,4 @@ clean:
 winlibs:
 	"${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe" "../tools/winlibs.R" ${VERSION}
 	mkdir -p ../inst
-	cp -r ${RWINLIB}/share ../inst/
+	cp -r $(RWINLIB)/share ../inst/
