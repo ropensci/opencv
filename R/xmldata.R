@@ -1,6 +1,7 @@
 find_data_dir <- function(){
   paths <- c(
     system.file('share', package = 'opencv'),
+    "/usr/local/share/opencv4",
     "/usr/local/share/OpenCV",
     "/usr/share/OpenCV"
   )
