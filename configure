@@ -15,12 +15,16 @@ calib3d,features2d,highgui,videoio,flann,xobjdetect,imgcodecs,objdetect,xphoto,i
 #export PKG_CONFIG_PATH="/usr/local/opt/opencv@3/lib/pkgconfig"
 
 # Use pkg-config if available
-if pkg-config --exists ${PKG_CONFIG_NAME} ; then
-  PKGCONFIG_CFLAGS=$(pkg-config --cflags ${PKG_CONFIG_NAME})
-  PKGCONFIG_LIBS=$(pkg-config --libs ${PKG_CONFIG_NAME})
-elif pkg-config --exists ${PKG_CONFIG_NAME_ALT}; then
-  PKGCONFIG_CFLAGS=$(pkg-config --cflags ${PKG_CONFIG_NAME_ALT})
-  PKGCONFIG_LIBS=$(pkg-config --libs ${PKG_CONFIG_NAME_ALT})
+PCVERSION=$(pkg-config --version 2>/dev/null)
+if [ $? -eq 0 ]; then
+  echo "This is pkg-config $PCVERSION"
+  if pkg-config --exists ${PKG_CONFIG_NAME} ; then
+    PKGCONFIG_CFLAGS=$(pkg-config --cflags ${PKG_CONFIG_NAME})
+    PKGCONFIG_LIBS=$(pkg-config --libs ${PKG_CONFIG_NAME})
+  elif pkg-config --exists ${PKG_CONFIG_NAME_ALT}; then
+    PKGCONFIG_CFLAGS=$(pkg-config --cflags ${PKG_CONFIG_NAME_ALT})
+    PKGCONFIG_LIBS=$(pkg-config --libs ${PKG_CONFIG_NAME_ALT})
+  fi
 fi
 
 # Note that cflags may be empty in case of success
