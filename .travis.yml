@@ -23,6 +23,7 @@ addons:
       - sourceline: 'ppa:timsc/opencv-3.4'
     packages:
       - libopencv-dev
+      - opencv-data
 
 notifications:
   email:
