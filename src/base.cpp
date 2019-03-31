@@ -1,5 +1,8 @@
 #include "util.hpp"
 
+#define xstr(s) str(s)
+#define str(s) #s
+
 using namespace cv;
 
 void finalize_mat( cv::Mat * frame ){
@@ -159,4 +162,12 @@ void livestream(Rcpp::Function filter){
   cap.release();
   cv::destroyWindow("mywindow");
   cv::waitKey(1);
+}
+
+// [[Rcpp::export]]
+Rcpp::String data_prefix(){
+#ifdef _DATA_PREFIX
+  return Rcpp::String(xstr(_DATA_PREFIX));
+#endif
+  return Rcpp::String("/usr");
 }

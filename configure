@@ -21,9 +21,11 @@ if [ $? -eq 0 ]; then
   if pkg-config --exists ${PKG_CONFIG_NAME} ; then
     PKGCONFIG_CFLAGS=$(pkg-config --cflags ${PKG_CONFIG_NAME})
     PKGCONFIG_LIBS=$(pkg-config --libs ${PKG_CONFIG_NAME})
+    PKGCONFIG_PREFIX=$(pkg-config --variable=prefix ${PKG_CONFIG_NAME})
   elif pkg-config --exists ${PKG_CONFIG_NAME_ALT}; then
     PKGCONFIG_CFLAGS=$(pkg-config --cflags ${PKG_CONFIG_NAME_ALT})
     PKGCONFIG_LIBS=$(pkg-config --libs ${PKG_CONFIG_NAME_ALT})
+    PKGCONFIG_PREFIX=$(pkg-config --variable=prefix ${PKG_CONFIG_NAME_ALT})
   fi
 fi
 
@@ -32,6 +34,9 @@ if [ "$PKGCONFIG_CFLAGS" ] || [ "$PKGCONFIG_LIBS" ]; then
   echo "Found pkg-config cflags and libs!"
   PKG_CFLAGS=${PKGCONFIG_CFLAGS}
   PKG_LIBS=${PKGCONFIG_LIBS}
+  if [ "$PKGCONFIG_PREFIX" ]; then
+    PKG_CFLAGS="$PKG_CFLAGS -D_DATA_PREFIX=${PKGCONFIG_PREFIX}"
+  fi
 else
   case "$OSTYPE" in "darwin"*)
   brew --version 2>/dev/null

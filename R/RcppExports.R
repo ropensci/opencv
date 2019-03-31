@@ -53,6 +53,10 @@ livestream <- function(filter) {
     invisible(.Call('_opencv_livestream', PACKAGE = 'opencv', filter))
 }
 
+data_prefix <- function() {
+    .Call('_opencv_data_prefix', PACKAGE = 'opencv')
+}
+
 cvmat_blur <- function(ptr, ksize) {
     .Call('_opencv_cvmat_blur', PACKAGE = 'opencv', ptr, ksize)
 }

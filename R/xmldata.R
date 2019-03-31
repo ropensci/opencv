@@ -1,9 +1,8 @@
 find_data_dir <- function(){
+  datapath <- c("/share/opencv", "/share/opencv4", "/share/OpenCV")
   paths <- c(
     system.file('share', package = 'opencv'),
-    "/usr/local/share/opencv4",
-    "/usr/local/share/OpenCV",
-    "/usr/share/OpenCV"
+    paste0(data_prefix(), datapath)
   )
   for(x in paths){
     if(file.exists(x))

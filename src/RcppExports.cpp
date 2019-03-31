@@ -150,6 +150,16 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// data_prefix
+Rcpp::String data_prefix();
+RcppExport SEXP _opencv_data_prefix() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(data_prefix());
+    return rcpp_result_gen;
+END_RCPP
+}
 // cvmat_blur
 XPtrMat cvmat_blur(XPtrMat ptr, size_t ksize);
 RcppExport SEXP _opencv_cvmat_blur(SEXP ptrSEXP, SEXP ksizeSEXP) {
@@ -280,6 +290,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_info", (DL_FUNC) &_opencv_cvmat_info, 1},
     {"_opencv_cvmat_display", (DL_FUNC) &_opencv_cvmat_display, 1},
     {"_opencv_livestream", (DL_FUNC) &_opencv_livestream, 1},
+    {"_opencv_data_prefix", (DL_FUNC) &_opencv_data_prefix, 0},
     {"_opencv_cvmat_blur", (DL_FUNC) &_opencv_cvmat_blur, 2},
     {"_opencv_cvmat_sketch", (DL_FUNC) &_opencv_cvmat_sketch, 2},
     {"_opencv_cvmat_stylize", (DL_FUNC) &_opencv_cvmat_stylize, 1},
