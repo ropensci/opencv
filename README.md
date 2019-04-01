@@ -2,11 +2,9 @@
 
 > Some experiments combining vision and graphics.
 
-[![Project Status: Concept – Minimal or no implementation has been done yet, or the repository is only intended to be a limited example, demo, or proof-of-concept.](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)
-[![Build Status](https://travis-ci.org/ropenscilabs/opencv.svg?branch=master)](https://travis-ci.org/ropenscilabs/opencv)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropenscilabs/opencv?branch=master&svg=true)](https://ci.appveyor.com/project/jeroen/opencv)
+[![Build Status](https://travis-ci.org/ropensci/opencv.svg?branch=master)](https://travis-ci.org/ropensci/opencv)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropensci/opencv?branch=master&svg=true)](https://ci.appveyor.com/project/jeroen/opencv)
 
-__NOTE:__ *this package is still very experimental. It may crash R.*
 
 ## Installation
 
@@ -16,14 +14,18 @@ On MacOS or Linux, first install opencv (not needed on Windows):
 brew install opencv
 ```
 
+On Ubuntu or Fedora you need [`libopencv-dev`](https://packages.debian.org/testing/libopencv-dev) or [`opencv-devel`](https://apps.fedoraproject.org/packages/opencv-devel/):
+
+```sh
+sudo apt-get install libopencv-dev
+```
+
 And then install the R bindings:
 
 ```r
-devtools::install_github("ropenscilabs/opencv")
+devtools::install_github("ropensci/opencv")
 library(opencv)
 ```
-
-Works best in the terminal (rstudio doesn't like the popup window).
 
 ## Basic stuff:
 

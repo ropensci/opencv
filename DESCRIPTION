@@ -1,15 +1,16 @@
 Package: opencv
 Type: Package
-Title: Bindings to OpenCV
+Title: Bindings to OpenCV Computer Vision Library
 Version: 0.1
-Authors@R: c(
-    person("Jeroen", "Ooms", role = c("aut", "cre"), email = "jeroen@berkeley.edu",
-      comment = c(ORCID = "0000-0002-4035-0289")))
-Description: Just messing around.
+Authors@R: c(person("Jeroen", "Ooms", role = c("aut", "cre"), 
+    email = "jeroen@berkeley.edu", comment = c(ORCID = "0000-0002-4035-0289")))
+Description: Experiment with computer vision and machine learning in R. This initial
+    version exposes some of the available OpenCV filters and algorithms (including 
+    face detection), which can be applied to either static images or live webcam input.
 License: MIT + file LICENSE
-SystemRequirements: OpenCV
-URL: https://github.com/ropenscilabs/opencv
-BugReports: URL: https://github.com/ropenscilabs/opencv/issues
+SystemRequirements: OpenCV: libopencv-dev (Debian, Ubuntu) or opencv-devel (Fedora)
+URL: https://github.com/ropensci/opencv
+BugReports: URL: https://github.com/ropensci/opencv/issues
 LinkingTo: Rcpp
 Imports: Rcpp, magrittr
 LazyData: true
