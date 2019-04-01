@@ -40,7 +40,7 @@ ocv_edges <- function(image){
 
 #' @export
 #' @rdname opencv
-ocv_camera <- function(){
+ocv_picture <- function(){
   cvmat_camera()
 }
 

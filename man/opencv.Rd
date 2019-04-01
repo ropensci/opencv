@@ -6,7 +6,7 @@
 \alias{ocv_write}
 \alias{ocv_bitmap}
 \alias{ocv_edges}
-\alias{ocv_camera}
+\alias{ocv_picture}
 \alias{ocv_resize}
 \alias{ocv_mog2}
 \alias{ocv_knn}
@@ -31,7 +31,7 @@ ocv_bitmap(image)
 
 ocv_edges(image)
 
-ocv_camera()
+ocv_picture()
 
 ocv_resize(image, width = 0, height = 0)
 

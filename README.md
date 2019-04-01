@@ -69,7 +69,7 @@ library(opencv)
 library(ggplot2)
 
 # get webcam size
-test <- ocv_camera()
+test <- ocv_picture()
 bitmap <- ocv_bitmap(test)
 width <- dim(bitmap)[2]
 height <- dim(bitmap)[3]
@@ -104,7 +104,7 @@ Go stand on the left if you're a tidier
 library(opencv)
 
 # get webcam size
-test <- ocv_camera()
+test <- ocv_picture()
 bitmap <- ocv_bitmap(test)
 width <- dim(bitmap)[2]
 height <- dim(bitmap)[3]
