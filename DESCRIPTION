@@ -10,7 +10,7 @@ Description: Experiment with computer vision and machine learning in R. This ini
 License: MIT + file LICENSE
 SystemRequirements: OpenCV: libopencv-dev (Debian, Ubuntu) or opencv-devel (Fedora)
 URL: https://github.com/ropensci/opencv
-BugReports: URL: https://github.com/ropensci/opencv/issues
+BugReports: https://github.com/ropensci/opencv/issues
 LinkingTo: Rcpp
 Imports: Rcpp, magrittr
 LazyData: true
