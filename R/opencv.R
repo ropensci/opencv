@@ -1,6 +1,9 @@
-#' OpenCV
+#' OpenCV Computer Vision
 #'
-#' Wrappers to experiment with OpenCV.
+#' Tools to experiment with computer vision algorithms. Use [ocv_read] and
+#' [ocv_write] to load/save images on disk, or use [ocv_picture] / [ocv_video]
+#' to use your webcam. In RSudio IDE the image objects will automatically be
+#' displayed in the viewer pane.
 #'
 #' @export
 #' @rdname opencv

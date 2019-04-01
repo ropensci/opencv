@@ -20,7 +20,7 @@
 \alias{ocv_copyto}
 \alias{ocv_display}
 \alias{ocv_video}
-\title{OpenCV}
+\title{OpenCV Computer Vision}
 \usage{
 ocv_face(image)
 
@@ -80,7 +80,10 @@ ocv_video(filter)
 \item{filter}{an R function that takes and returns an opecv image}
 }
 \description{
-Wrappers to experiment with OpenCV.
+Tools to experiment with computer vision algorithms. Use \link{ocv_read} and
+\link{ocv_write} to load/save images on disk, or use \link{ocv_picture} / \link{ocv_video}
+to use your webcam. In RSudio IDE the image objects will automatically be
+displayed in the viewer pane.
 }
 \examples{
 # Silly example
