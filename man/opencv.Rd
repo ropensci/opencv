@@ -95,6 +95,8 @@ ocv_markers(mona)
 
 # Find face
 faces <- ocv_face(mona)
-facemask <- ocv_facemask(mona)
-attr(facemask, 'faces')
+
+# To show locations of faces
+#facemask <- ocv_facemask(mona)
+#attr(facemask, 'faces')
 }

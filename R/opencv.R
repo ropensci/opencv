@@ -19,8 +19,10 @@
 #'
 #' # Find face
 #' faces <- ocv_face(mona)
-#' facemask <- ocv_facemask(mona)
-#' attr(facemask, 'faces')
+#'
+#' # To show locations of faces
+#' #facemask <- ocv_facemask(mona)
+#' #attr(facemask, 'faces')
 ocv_read <- function(path){
   if(grepl("https?://", path)){
     base <- basename(path)
