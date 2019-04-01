@@ -135,6 +135,7 @@ ocv_display <- function(image){
 ocv_video <- function(filter){
   if(!is.function(filter))
     stop("Filter must be a function")
+  message("Starting video window (could be behind this window)")
   livestream(function(image){
     if(!inherits(image, 'opencv-image'))
       stop("Image must be opencv-image")
