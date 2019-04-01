@@ -4,9 +4,10 @@ Title: Bindings to OpenCV Computer Vision Library
 Version: 0.1
 Authors@R: c(person("Jeroen", "Ooms", role = c("aut", "cre"), 
     email = "jeroen@berkeley.edu", comment = c(ORCID = "0000-0002-4035-0289")))
-Description: Experiment with computer vision and machine learning in R. This initial
-    version exposes some of the available OpenCV filters and algorithms (including 
-    face detection), which can be applied to either static images or live webcam input.
+Description: Experimenting with computer vision and machine learning in R. This 
+    package exposes some of the available OpenCV vision algorithms, such as edge, 
+    body or face detection. These can either be applied to analyze static images,
+    or to filter live video footage from a webcam device.
 License: MIT + file LICENSE
 SystemRequirements: OpenCV: libopencv-dev (Debian, Ubuntu) or opencv-devel (Fedora)
 URL: https://github.com/ropensci/opencv
