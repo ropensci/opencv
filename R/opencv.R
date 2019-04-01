@@ -1,12 +1,23 @@
 #' OpenCV
 #'
-#' Utilities to mess around with OpenCV.
+#' Wrappers to experiment with OpenCV.
 #'
 #' @export
 #' @rdname opencv
 #' @importFrom Rcpp sourceCpp
 #' @useDynLib opencv
 #' @param path image file such as png or jpeg
+#' @examples # Silly example
+#' mona <- ocv_read('https://jeroen.github.io/images/monalisa.jpg')
+#'
+#' # Edge detection
+#' ocv_edges(mona)
+#' ocv_markers(mona)
+#'
+#' # Find face
+#' faces <- ocv_face(mona)
+#' facemask <- ocv_facemask(mona)
+#' attr(facemask, 'faces')
 ocv_read <- function(path){
   if(grepl("https?://", path)){
     base <- basename(path)

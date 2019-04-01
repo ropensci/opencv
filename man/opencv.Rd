@@ -77,5 +77,18 @@ ocv_video(filter)
 \item{filter}{an R function that takes and returns an opecv image}
 }
 \description{
-Utilities to mess around with OpenCV.
+Wrappers to experiment with OpenCV.
+}
+\examples{
+# Silly example
+mona <- ocv_read('https://jeroen.github.io/images/monalisa.jpg')
+
+# Edge detection
+ocv_edges(mona)
+ocv_markers(mona)
+
+# Find face
+faces <- ocv_face(mona)
+facemask <- ocv_facemask(mona)
+attr(facemask, 'faces')
 }

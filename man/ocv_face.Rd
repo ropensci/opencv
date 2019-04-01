@@ -13,8 +13,10 @@ ocv_face(image)
 Find faces and eyes in a picture.
 }
 \examples{
+\donttest{
 unconf <- ocv_read('https://jeroen.github.io/images/unconf18.jpg')
 faces <- ocv_face(unconf)
 facemask <- ocv_facemask(unconf)
 attr(facemask, 'faces')
+}
 }

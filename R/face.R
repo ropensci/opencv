@@ -5,10 +5,12 @@
 #' @export
 #' @rdname ocv_face
 #' @inheritParams ocv_read
-#' @examples unconf <- ocv_read('https://jeroen.github.io/images/unconf18.jpg')
+#' @examples \donttest{
+#' unconf <- ocv_read('https://jeroen.github.io/images/unconf18.jpg')
 #' faces <- ocv_face(unconf)
 #' facemask <- ocv_facemask(unconf)
 #' attr(facemask, 'faces')
+#' }
 ocv_face <- function(image){
   facedata <- find_data_xml('haarcascades/haarcascade_frontalface_alt.xml')
   eyedata <- find_data_xml('haarcascades/haarcascade_eye_tree_eyeglasses.xml')
