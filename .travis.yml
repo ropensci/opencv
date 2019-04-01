@@ -6,7 +6,16 @@ pandoc: false
 
 matrix:
   include:
-    - dist: xenial
+    - dist: xenial # up-to-date 3.4 branch
+    - dist: xenial # 3.2 branch (Bionic / Buster)
+      addons:
+      apt:
+        update: true
+        sources:
+          - sourceline: 'ppa:opencpu/opencv-3.2'
+        packages:
+          - libopencv-dev
+          - opencv-data
     - os: osx
       brew_packages: opencv@3
       env: PKG_CONFIG_PATH="/usr/local/opt/opencv@3/lib/pkgconfig"
