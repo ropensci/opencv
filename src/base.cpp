@@ -94,7 +94,7 @@ XPtrMat cvmat_resize(XPtrMat ptr, int width = 0, int height = 0){
     width = round(input.cols * (height / double(input.rows)));
   }
   cv::Mat output;
-  cv::resize(input, output, cv::Size(width, height), 0, 0, INTER_LINEAR_EXACT);
+  cv::resize(input, output, cv::Size(width, height));
   return cvmat_xptr(output);
 }
 
