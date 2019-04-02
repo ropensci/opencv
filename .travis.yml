@@ -15,6 +15,7 @@ matrix:
             - sourceline: 'ppa:opencpu/opencv-3.2'
           packages:
             - libopencv-dev
+            - libopencv-shape-dev
             - opencv-data
     - os: osx
       brew_packages: opencv@3
