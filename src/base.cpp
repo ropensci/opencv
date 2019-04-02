@@ -171,3 +171,10 @@ Rcpp::String data_prefix(){
 #endif
   return Rcpp::String("/usr");
 }
+
+// [[Rcpp::export]]
+int set_num_threads(int n = 0){
+  if(n > 0)
+    setNumThreads(n);
+  return getNumThreads();
+}

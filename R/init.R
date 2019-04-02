@@ -7,10 +7,20 @@
   }
 }
 
+.onLoad <- function(libname, pkgname){
+  if(is_check()){
+    set_num_threads(2)
+  }
+}
+
 is_macos <- function(){
   grepl("darwin", R.Version()$platform)
 }
 
 is_iterm2 <- function(){
   identical(Sys.getenv('TERM_PROGRAM'), 'iTerm.app')
+}
+
+is_check <- function(){
+  grepl('opencv.Rcheck', getwd(), fixed = TRUE)
 }

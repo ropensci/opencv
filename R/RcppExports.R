@@ -57,6 +57,10 @@ data_prefix <- function() {
     .Call('_opencv_data_prefix', PACKAGE = 'opencv')
 }
 
+set_num_threads <- function(n = 0L) {
+    .Call('_opencv_set_num_threads', PACKAGE = 'opencv', n)
+}
+
 cvmat_blur <- function(ptr, ksize) {
     .Call('_opencv_cvmat_blur', PACKAGE = 'opencv', ptr, ksize)
 }
