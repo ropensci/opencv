@@ -6,6 +6,16 @@
 
 using namespace Rcpp;
 
+// cvmat_destroy
+void cvmat_destroy(XPtrMat image);
+RcppExport SEXP _opencv_cvmat_destroy(SEXP imageSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtrMat >::type image(imageSEXP);
+    cvmat_destroy(image);
+    return R_NilValue;
+END_RCPP
+}
 // cvmat_dead
 bool cvmat_dead(XPtrMat image);
 RcppExport SEXP _opencv_cvmat_dead(SEXP imageSEXP) {
@@ -288,6 +298,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_opencv_cvmat_destroy", (DL_FUNC) &_opencv_cvmat_destroy, 1},
     {"_opencv_cvmat_dead", (DL_FUNC) &_opencv_cvmat_dead, 1},
     {"_opencv_cvmat_size", (DL_FUNC) &_opencv_cvmat_size, 1},
     {"_opencv_cvmat_new", (DL_FUNC) &_opencv_cvmat_new, 0},

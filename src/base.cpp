@@ -29,8 +29,15 @@ cv::Mat get_mat(XPtrMat image){
   if(!Rf_inherits(image, "opencv-image"))
     throw std::runtime_error("Image is not a opencv-image object");
   if(image.get() == NULL)
-    throw std::runtime_error("Image is dead");
+    throw std::runtime_error("Image has been destroyed");
   return * image.get();
+}
+
+// [[Rcpp::export]]
+void cvmat_destroy(XPtrMat image){
+  if(!Rf_inherits(image, "opencv-image"))
+    throw std::runtime_error("Image is not a opencv-image object");
+  image.release();
 }
 
 // [[Rcpp::export]]

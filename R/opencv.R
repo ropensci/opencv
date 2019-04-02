@@ -44,6 +44,12 @@ ocv_write <- function(image, path){
 
 #' @export
 #' @rdname opencv
+ocv_destroy <- function(image){
+  cvmat_destroy(image)
+}
+
+#' @export
+#' @rdname opencv
 ocv_bitmap <- function(image){
   cvmat_bitmap(image)
 }
