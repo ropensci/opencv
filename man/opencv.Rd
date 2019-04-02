@@ -104,5 +104,5 @@ facemask <- ocv_facemask(mona)
 attr(facemask, 'faces')
 
 # This is not strictly needed
-image_destroy(mona)
+ocv_destroy(mona)
 }

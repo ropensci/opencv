@@ -26,7 +26,7 @@ XPtrMat cvmat_xptr(cv::Mat orig){
 
 //opencv has internal refcount system
 cv::Mat get_mat(XPtrMat image){
-  if(!Rf_inherits(image, "opencv-image"))
+  if(!image.inherits("opencv-image"))
     throw std::runtime_error("Image is not a opencv-image object");
   if(image.get() == NULL)
     throw std::runtime_error("Image has been destroyed");
@@ -35,7 +35,7 @@ cv::Mat get_mat(XPtrMat image){
 
 // [[Rcpp::export]]
 void cvmat_destroy(XPtrMat image){
-  if(!Rf_inherits(image, "opencv-image"))
+  if(!image.inherits("opencv-image"))
     throw std::runtime_error("Image is not a opencv-image object");
   image.release();
 }

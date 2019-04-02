@@ -25,7 +25,7 @@
 #' attr(facemask, 'faces')
 #'
 #' # This is not strictly needed
-#' image_destroy(mona)
+#' ocv_destroy(mona)
 ocv_read <- function(path){
   if(grepl("https?://", path)){
     base <- basename(path)
