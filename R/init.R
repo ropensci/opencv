@@ -1,8 +1,12 @@
 .onAttach <- function(libname, pkgname){
-  if(is_macos() && is_iterm2()){
-    version <- Sys.getenv('TERM_PROGRAM_VERSION', NA)
-    if(!is.na(version) && as.numeric_version(version) < '3.2.8'){
-      packageStartupMessage("Your iTerm2 is outdated which may crash R. Upgrade ASAP")
+  if(is_macos()){
+    if(is_iterm2()){
+      version <- Sys.getenv('TERM_PROGRAM_VERSION', NA)
+      if(!is.na(version) && as.numeric_version(version) < '3.2.8'){
+        packageStartupMessage("Your iTerm2 is outdated which may crash R. Upgrade ASAP")
+      }
+    } else if(is_rstudio() && is_mojave()){
+      packageStartupMessage("Warning: Camera might crash rstudio due to Mojave privacy protection")
     }
   }
 }
@@ -23,4 +27,13 @@ is_iterm2 <- function(){
 
 is_check <- function(){
   grepl('opencv.Rcheck', getwd(), fixed = TRUE)
+}
+
+is_mojave <- function(){
+  ver <- utils::tail(strsplit(sessionInfo()$running, ' ')[[1]], 1)
+  as.numeric_version(ver) >= "10.14"
+}
+
+is_rstudio <- function(){
+  Sys.getenv('RSTUDIO') == "1"
 }
