@@ -1,6 +1,9 @@
-# Vision and Graphics
+# Bindings to 'OpenCV' Computer Vision Library
 
-> Some experiments combining vision and graphics.
+> Experimenting with computer vision and machine learning in R. This 
+  package exposes some of the available 'OpenCV' <https://opencv.org/> algorithms,
+  such as edge, body or face detection. These can either be applied to analyze 
+  static images, or to filter live video footage from a camera device.
 
 [![Build Status](https://travis-ci.org/ropensci/opencv.svg?branch=master)](https://travis-ci.org/ropensci/opencv)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropensci/opencv?branch=master&svg=true)](https://ci.appveyor.com/project/jeroen/opencv)
@@ -10,7 +13,15 @@
 
 ## Installation
 
-On MacOS or Linux, first install opencv (not needed on Windows):
+On Windows and MacOS, the package can be installed directoy from CRAN:
+
+```r
+install.packages("opencv")
+```
+
+### Install from source
+
+To install from source on MacOS, you need to install the opencv library from homebrew:
 
 ```sh
 brew install opencv
