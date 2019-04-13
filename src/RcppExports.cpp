@@ -285,6 +285,36 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// cvmat_morphology
+XPtrMat cvmat_morphology(XPtrMat input, int operation, int k_shape, int k_height, int k_width, int iterations);
+RcppExport SEXP _opencv_cvmat_morphology(SEXP inputSEXP, SEXP operationSEXP, SEXP k_shapeSEXP, SEXP k_heightSEXP, SEXP k_widthSEXP, SEXP iterationsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtrMat >::type input(inputSEXP);
+    Rcpp::traits::input_parameter< int >::type operation(operationSEXP);
+    Rcpp::traits::input_parameter< int >::type k_shape(k_shapeSEXP);
+    Rcpp::traits::input_parameter< int >::type k_height(k_heightSEXP);
+    Rcpp::traits::input_parameter< int >::type k_width(k_widthSEXP);
+    Rcpp::traits::input_parameter< int >::type iterations(iterationsSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvmat_morphology(input, operation, k_shape, k_height, k_width, iterations));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cvmat_morphology_custom
+XPtrMat cvmat_morphology_custom(XPtrMat input, int operation, Rcpp::NumericVector kernel, int iterations);
+RcppExport SEXP _opencv_cvmat_morphology_custom(SEXP inputSEXP, SEXP operationSEXP, SEXP kernelSEXP, SEXP iterationsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtrMat >::type input(inputSEXP);
+    Rcpp::traits::input_parameter< int >::type operation(operationSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type kernel(kernelSEXP);
+    Rcpp::traits::input_parameter< int >::type iterations(iterationsSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvmat_morphology_custom(input, operation, kernel, iterations));
+    return rcpp_result_gen;
+END_RCPP
+}
 // cvmat_markers
 XPtrMat cvmat_markers(XPtrMat ptr);
 RcppExport SEXP _opencv_cvmat_markers(SEXP ptrSEXP) {
@@ -323,6 +353,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_knn", (DL_FUNC) &_opencv_cvmat_knn, 1},
     {"_opencv_cvmat_edges", (DL_FUNC) &_opencv_cvmat_edges, 1},
     {"_opencv_cvmat_hog", (DL_FUNC) &_opencv_cvmat_hog, 1},
+    {"_opencv_cvmat_morphology", (DL_FUNC) &_opencv_cvmat_morphology, 6},
+    {"_opencv_cvmat_morphology_custom", (DL_FUNC) &_opencv_cvmat_morphology_custom, 4},
     {"_opencv_cvmat_markers", (DL_FUNC) &_opencv_cvmat_markers, 1},
     {NULL, NULL, 0}
 };

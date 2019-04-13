@@ -2,7 +2,9 @@ Package: opencv
 Type: Package
 Title: Bindings to 'OpenCV' Computer Vision Library
 Version: 0.1.9000
-Authors@R: c(person("Jeroen", "Ooms", role = c("aut", "cre"), 
+Authors@R: c(person("Simon", "Garnier", role = c("aut", "cre"),
+    email = "garnier@njit.edu", comment = c(ORCID = "0000-0002-3886-3974")),
+      person("Jeroen", "Ooms", role = c("aut", "cre"), 
     email = "jeroen@berkeley.edu", comment = c(ORCID = "0000-0002-4035-0289")))
 Description: Experimenting with computer vision and machine learning in R. This 
     package exposes some of the available 'OpenCV' <https://opencv.org/> algorithms,

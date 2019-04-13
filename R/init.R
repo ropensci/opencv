@@ -30,7 +30,7 @@ is_check <- function(){
 }
 
 is_mojave <- function(){
-  ver <- utils::tail(strsplit(sessionInfo()$running, ' ')[[1]], 1)
+  ver <- utils::tail(strsplit(utils::sessionInfo()$running, ' ')[[1]], 1)
   as.numeric_version(ver) >= "10.14"
 }
 

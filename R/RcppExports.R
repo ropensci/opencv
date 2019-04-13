@@ -101,6 +101,14 @@ cvmat_hog <- function(ptr) {
     .Call('_opencv_cvmat_hog', PACKAGE = 'opencv', ptr)
 }
 
+cvmat_morphology <- function(input, operation, k_shape, k_height, k_width, iterations) {
+    .Call('_opencv_cvmat_morphology', PACKAGE = 'opencv', input, operation, k_shape, k_height, k_width, iterations)
+}
+
+cvmat_morphology_custom <- function(input, operation, kernel, iterations) {
+    .Call('_opencv_cvmat_morphology_custom', PACKAGE = 'opencv', input, operation, kernel, iterations)
+}
+
 cvmat_markers <- function(ptr) {
     .Call('_opencv_cvmat_markers', PACKAGE = 'opencv', ptr)
 }
