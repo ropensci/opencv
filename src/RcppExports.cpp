@@ -181,6 +181,42 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// cv_dist_transform
+XPtrMat cv_dist_transform(XPtrMat src, int distanceType, int maskSize, int dstType);
+RcppExport SEXP _opencv_cv_dist_transform(SEXP srcSEXP, SEXP distanceTypeSEXP, SEXP maskSizeSEXP, SEXP dstTypeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtrMat >::type src(srcSEXP);
+    Rcpp::traits::input_parameter< int >::type distanceType(distanceTypeSEXP);
+    Rcpp::traits::input_parameter< int >::type maskSize(maskSizeSEXP);
+    Rcpp::traits::input_parameter< int >::type dstType(dstTypeSEXP);
+    rcpp_result_gen = Rcpp::wrap(cv_dist_transform(src, distanceType, maskSize, dstType));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cv_grayscale
+XPtrMat cv_grayscale(XPtrMat src);
+RcppExport SEXP _opencv_cv_grayscale(SEXP srcSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtrMat >::type src(srcSEXP);
+    rcpp_result_gen = Rcpp::wrap(cv_grayscale(src));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cv_binary
+XPtrMat cv_binary(XPtrMat src);
+RcppExport SEXP _opencv_cv_binary(SEXP srcSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtrMat >::type src(srcSEXP);
+    rcpp_result_gen = Rcpp::wrap(cv_binary(src));
+    return rcpp_result_gen;
+END_RCPP
+}
 // cvmat_blur
 XPtrMat cvmat_blur(XPtrMat ptr, size_t ksize);
 RcppExport SEXP _opencv_cvmat_blur(SEXP ptrSEXP, SEXP ksizeSEXP) {
@@ -314,6 +350,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"_opencv_livestream", (DL_FUNC) &_opencv_livestream, 1},
     {"_opencv_data_prefix", (DL_FUNC) &_opencv_data_prefix, 0},
     {"_opencv_set_num_threads", (DL_FUNC) &_opencv_set_num_threads, 1},
+    {"_opencv_cv_dist_transform", (DL_FUNC) &_opencv_cv_dist_transform, 4},
+    {"_opencv_cv_grayscale", (DL_FUNC) &_opencv_cv_grayscale, 1},
+    {"_opencv_cv_binary", (DL_FUNC) &_opencv_cv_binary, 1},
     {"_opencv_cvmat_blur", (DL_FUNC) &_opencv_cvmat_blur, 2},
     {"_opencv_cvmat_sketch", (DL_FUNC) &_opencv_cvmat_sketch, 2},
     {"_opencv_cvmat_stylize", (DL_FUNC) &_opencv_cvmat_stylize, 1},

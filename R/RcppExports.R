@@ -65,6 +65,18 @@ set_num_threads <- function(n = 0L) {
     .Call('_opencv_set_num_threads', PACKAGE = 'opencv', n)
 }
 
+cv_dist_transform <- function(src, distanceType, maskSize, dstType) {
+    .Call('_opencv_cv_dist_transform', PACKAGE = 'opencv', src, distanceType, maskSize, dstType)
+}
+
+cv_grayscale <- function(src) {
+    .Call('_opencv_cv_grayscale', PACKAGE = 'opencv', src)
+}
+
+cv_binary <- function(src) {
+    .Call('_opencv_cv_binary', PACKAGE = 'opencv', src)
+}
+
 cvmat_blur <- function(ptr, ksize) {
     .Call('_opencv_cvmat_blur', PACKAGE = 'opencv', ptr, ksize)
 }
