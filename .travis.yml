@@ -12,7 +12,7 @@ matrix:
         apt:
           update: true
           sources:
-            - sourceline: 'ppa:opencpu/opencv-3.2'
+            - sourceline: 'ppa:jeroen/opencv-3.2'
           packages:
             - libopencv-dev
             - libopencv-shape-dev
@@ -25,12 +25,13 @@ matrix:
     - os: osx
       osx_image: xcode7.3
       disable_homebrew: true
+      before_install: sed -i.bak 's/-isysroot /-I/g' $(R RHOME)/etc/Makeconf
 
 addons:
   apt:
     update: true
     sources:
-      - sourceline: 'ppa:opencpu/opencv'
+      - sourceline: 'ppa:jeroen/opencv'
     packages:
       - libopencv-dev
       - opencv-data
