@@ -12,7 +12,7 @@ matrix:
         apt:
           update: true
           sources:
-            - sourceline: 'ppa:jeroen/opencv-3.2'
+            - sourceline: 'ppa:cran/opencv-3.2'
           packages:
             - libopencv-dev
             - libopencv-shape-dev
@@ -31,7 +31,7 @@ addons:
   apt:
     update: true
     sources:
-      - sourceline: 'ppa:jeroen/opencv'
+      - sourceline: 'ppa:cran/opencv'
     packages:
       - libopencv-dev
       - opencv-data
