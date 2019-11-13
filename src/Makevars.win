@@ -8,8 +8,8 @@ PKG_LIBS = \
 	-L$(RWINLIB)/lib$(R_ARCH) \
 	-lopencv_gapi -lopencv_ml -lopencv_objdetect -lopencv_photo -lopencv_stitching \
 	-lopencv_video -lopencv_calib3d -lopencv_features2d -lopencv_highgui -lopencv_flann \
-	-lopencv_videoio -lopencv_imgcodecs -lopencv_imgproc -lopencv_core -lquirc -ltbb \
-	-lade -lcomctl32 -lgdi32 -lole32 -lsetupapi -lws2_32 -ljpeg -lwebp -lpng -lz -ltiff \
+	-lopencv_videoio -lopencv_imgcodecs -lopencv_imgproc -lopencv_core -ltbb \
+	-ljpeg -lwebp -lpng -lz -ltiff \
 	-lcomctl32 -lgdi32 -lole32 -lsetupapi -lws2_32 -lavifil32 -lavicap32 -lwinmm -lmsvfw32 \
 	-lopengl32 -lglu32 -lcomdlg32 -lOleAut32 -luuid
 
