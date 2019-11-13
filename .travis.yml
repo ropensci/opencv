@@ -35,8 +35,3 @@ addons:
     packages:
       - libopencv-dev
       - opencv-data
-
-notifications:
-  email:
-    on_success: change
-    on_failure: change
