@@ -35,7 +35,8 @@ XPtrMat cvmat_hog(XPtrMat ptr){
     r.width = cvRound(r.width*0.8);
     r.y += cvRound(r.height*0.07);
     r.height = cvRound(r.height*0.8);
-    rectangle(get_mat(ptr), r.tl(), r.br(), cv::Scalar(0,255,0), 3);
+    Mat img = get_mat(ptr);
+    rectangle(img, r.tl(), r.br(), cv::Scalar(0,255,0), 3);
   }
   return ptr;
 }

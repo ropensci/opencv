@@ -2,7 +2,6 @@
 void detectAndDraw( cv::Mat img, cv::CascadeClassifier& cascade,
                     cv::CascadeClassifier& nestedCascade,
                     double scale, bool tryflip );
-void refineSegments(const cv::Mat& img, cv::Mat& mask, cv::Mat& dst);
 cv::Mat get_mat(XPtrMat image);
 XPtrMat cvmat_xptr(cv::Mat *frame);
 XPtrMat cvmat_xptr(cv::Mat orig);

@@ -4,7 +4,7 @@ PKG_CONFIG_NAME="opencv4"
 PKG_CONFIG_NAME_ALT="opencv"
 PKG_DEB_NAME="libopencv-dev"
 PKG_RPM_NAME="opencv-devel"
-PKG_BREW_NAME="opencv"
+PKG_BREW_NAME="opencv@2"
 PKG_TEST_HEADER="<opencv2/opencv.hpp>"
 PKG_LIBS="-lopencv_{stitching,superres,videostab,aruco,bgsegm,bioinspired,ccalib,dnn_objdetect,\
 dpm,face,photo,fuzzy,hfs,img_hash,line_descriptor,optflow,reg,rgbd,saliency,stereo,structured_light,\
