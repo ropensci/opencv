@@ -10,3 +10,4 @@
 ^appveyor\.yml$
 ^LICENSE\.md$
 ^README\.md$
+^configure.log$

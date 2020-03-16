@@ -12,3 +12,4 @@ tools/option_table.txt
 inst/doc
 R/sysdata.rda
 windows
+configure.log

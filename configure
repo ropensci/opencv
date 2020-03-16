@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Anticonf (tm) script by Jeroen Ooms (2018)
+# Anticonf (tm) script by Jeroen Ooms (2020)
 PKG_CONFIG_NAME="opencv4"
 PKG_CONFIG_NAME_ALT="opencv"
 PKG_DEB_NAME="libopencv-dev"
 PKG_RPM_NAME="opencv-devel"
-PKG_BREW_NAME="opencv@2"
+PKG_BREW_NAME="opencv"
 PKG_TEST_HEADER="<opencv2/opencv.hpp>"
 PKG_LIBS="-lopencv_{stitching,superres,videostab,aruco,bgsegm,bioinspired,ccalib,dnn_objdetect,\
 dpm,face,photo,fuzzy,hfs,img_hash,line_descriptor,optflow,reg,rgbd,saliency,stereo,structured_light,\
@@ -66,22 +66,21 @@ else
 CXX11CPP=$(${R_HOME}/bin/R CMD config CXXCPP)
 fi
 
-
 # Test configuration
-echo "#include $PKG_TEST_HEADER" | ${CXX11CPP} ${CPPFLAGS} ${PKG_CFLAGS} -xc++ - >/dev/null
-
-# Customize the error
+echo "#include $PKG_TEST_HEADER" | ${CXX11CPP} ${CPPFLAGS} ${PKG_CFLAGS} -xc++ - >/dev/null 2>configure.log
 if [ $? -ne 0 ]; then
-  echo "------------------------- ANTICONF ERROR ---------------------------"
-  echo "Configuration failed because $PKG_CONFIG_NAME was not found. Try installing:"
+  echo "-----------------------------[ ANTICONF ]-------------------------------"
+  echo "Configuration failed to find $PKG_CONFIG_NAME library. Try installing:"
   echo " * deb: $PKG_DEB_NAME (Debian, Ubuntu, etc)"
   echo "   -> for Ubuntu Xenial use: ppa:cran/opencv"
   echo " * rpm: $PKG_RPM_NAME (Fedora, CentOS, RHEL)"
   echo " * brew: $PKG_BREW_NAME (Mac OSX)"
   echo "If $PKG_CONFIG_NAME is already installed, check that 'pkg-config' is in your"
   echo "PATH and PKG_CONFIG_PATH contains a $PKG_CONFIG_NAME.pc file."
-  echo "--------------------------------------------------------------------"
-  exit 1;
+  echo "---------------------------[ ERROR MESSAGE ]----------------------------"
+  cat configure.log
+  echo "------------------------------------------------------------------------"
+  exit 1
 fi
 
 # Write to Makevars
