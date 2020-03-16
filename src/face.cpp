@@ -60,6 +60,9 @@ XPtrMat cvmat_facemask(XPtrMat ptr, const char * facedata){
 
 // [[Rcpp::export]]
 XPtrMat cvmat_mog2(XPtrMat ptr) {
+#if CV_VERSION_EPOCH < 3
+  throw std::runtime_error("createBackgroundSubtractorMOG2 requires OpenCV 3 or newer");
+#else
   static Ptr<BackgroundSubtractorMOG2> model = createBackgroundSubtractorMOG2();
   model->setVarThreshold(10);
   cv::Mat frame = get_mat(ptr);
@@ -67,15 +70,20 @@ XPtrMat cvmat_mog2(XPtrMat ptr) {
   model->apply(frame, mask);
   //refineSegments(frame, mask, out_frame);
   return cvmat_xptr(mask);
+#endif
 }
 
 // [[Rcpp::export]]
 XPtrMat cvmat_knn(XPtrMat ptr) {
+#if CV_VERSION_EPOCH < 3
+  throw std::runtime_error("createBackgroundSubtractorKNN requires OpenCV 3 or newer");
+#else
   static Ptr<BackgroundSubtractorKNN> model = createBackgroundSubtractorKNN();
   cv::Mat frame = get_mat(ptr);
   cv::Mat mask, out_frame;
   model->apply(frame, mask);
   return cvmat_xptr(mask);
+#endif
 }
 
 // [[Rcpp::export]]

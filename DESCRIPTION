@@ -9,7 +9,7 @@ Description: Experimenting with computer vision and machine learning in R. This
     such as edge, body or face detection. These can either be applied to analyze 
     static images, or to filter live video footage from a camera device.
 License: MIT + file LICENSE
-SystemRequirements: OpenCV: libopencv-dev (Debian, Ubuntu) or opencv-devel (Fedora)
+SystemRequirements: OpenCV 3 or newer: libopencv-dev (Debian, Ubuntu) or opencv-devel (Fedora)
 URL: https://docs.ropensci.org/opencv,  https://opencv.org (upstream) https://github.com/ropensci/opencv (devel)
 BugReports: https://github.com/ropensci/opencv/issues
 LinkingTo: Rcpp
