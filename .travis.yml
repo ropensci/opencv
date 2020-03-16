@@ -6,13 +6,6 @@ pandoc: false
 
 matrix:
   include:
-    - dist: xenial # legacy opencv2
-      addons:
-        apt:
-          update: true
-          packages:
-            - libopencv-dev
-            - opencv-data
     - dist: xenial # up-to-date 3.4 branch
       addons:
         apt:
