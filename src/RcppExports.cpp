@@ -296,6 +296,23 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// text_detection
+Rcpp::DataFrame text_detection(std::string input, float confThreshold, float nmsThreshold, int inpWidth, int inpHeight, std::string model, bool draw);
+RcppExport SEXP _opencv_text_detection(SEXP inputSEXP, SEXP confThresholdSEXP, SEXP nmsThresholdSEXP, SEXP inpWidthSEXP, SEXP inpHeightSEXP, SEXP modelSEXP, SEXP drawSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type input(inputSEXP);
+    Rcpp::traits::input_parameter< float >::type confThreshold(confThresholdSEXP);
+    Rcpp::traits::input_parameter< float >::type nmsThreshold(nmsThresholdSEXP);
+    Rcpp::traits::input_parameter< int >::type inpWidth(inpWidthSEXP);
+    Rcpp::traits::input_parameter< int >::type inpHeight(inpHeightSEXP);
+    Rcpp::traits::input_parameter< std::string >::type model(modelSEXP);
+    Rcpp::traits::input_parameter< bool >::type draw(drawSEXP);
+    rcpp_result_gen = Rcpp::wrap(text_detection(input, confThreshold, nmsThreshold, inpWidth, inpHeight, model, draw));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_destroy", (DL_FUNC) &_opencv_cvmat_destroy, 1},
@@ -324,6 +341,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_edges", (DL_FUNC) &_opencv_cvmat_edges, 1},
     {"_opencv_cvmat_hog", (DL_FUNC) &_opencv_cvmat_hog, 1},
     {"_opencv_cvmat_markers", (DL_FUNC) &_opencv_cvmat_markers, 1},
+    {"_opencv_text_detection", (DL_FUNC) &_opencv_text_detection, 7},
     {NULL, NULL, 0}
 };
 
