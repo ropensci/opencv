@@ -1,6 +1,5 @@
 #include "util.hpp"
 #include <opencv2/imgproc.hpp>
-#include <opencv2/highgui.hpp>
 #include <opencv2/dnn.hpp>
 
 using namespace cv;
@@ -57,13 +56,14 @@ void decode(const Mat& scores, const Mat& geometry, float scoreThresh,
 
 // [[Rcpp::export]]
 XPtrMat
-  text_detection(XPtrMat ptr, float confThreshold,float nmsThreshold,
+  text_detection(XPtrMat input, float confThreshold,float nmsThreshold,
                  int inpWidth, int inpHeight, std::string model, bool draw)
   {
     if (model.empty())
       Rcpp::stop("No model defined");
 
-    Mat frame = get_mat(ptr);
+    Mat inp = get_mat(input);
+
 
     // Load network.
     Net net = readNet(model);
@@ -73,10 +73,10 @@ XPtrMat
     outNames[0] = "feature_fusion/Conv_7/Sigmoid";
     outNames[1] = "feature_fusion/concat_3";
 
-    Mat blob;
-    // Mat frame, blob;
+    Mat frame, blob;
     std::vector<int> indices;
 
+    frame = inp.clone();
 
     blobFromImage(frame, blob, 1.0, Size(inpWidth, inpHeight),
                   Scalar(123.68, 116.78, 103.94), true, false);

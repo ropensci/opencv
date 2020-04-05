@@ -15,7 +15,7 @@ ocv_text <- function(image, thrs = 0.5, nms = 20, width = 320, height = 320,
 
   model <- path.expand(model)
 
-  text_detection(ptr = image,
+  text_detection(input = image,
                  confThreshold = thrs,
                  nmsThreshold = nms,
                  inpWidth = width,

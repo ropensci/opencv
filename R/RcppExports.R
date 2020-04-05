@@ -105,7 +105,7 @@ cvmat_markers <- function(ptr) {
     .Call('_opencv_cvmat_markers', PACKAGE = 'opencv', ptr)
 }
 
-text_detection <- function(ptr, confThreshold, nmsThreshold, inpWidth, inpHeight, model, draw) {
-    .Call('_opencv_text_detection', PACKAGE = 'opencv', ptr, confThreshold, nmsThreshold, inpWidth, inpHeight, model, draw)
+text_detection <- function(input, confThreshold, nmsThreshold, inpWidth, inpHeight, model, draw) {
+    .Call('_opencv_text_detection', PACKAGE = 'opencv', input, confThreshold, nmsThreshold, inpWidth, inpHeight, model, draw)
 }
 
