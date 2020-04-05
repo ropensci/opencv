@@ -56,36 +56,25 @@ void decode(const Mat& scores, const Mat& geometry, float scoreThresh,
 
 
 // [[Rcpp::export]]
-Rcpp::DataFrame
-  text_detection(std::string input, float confThreshold,float nmsThreshold,
+XPtrMat
+  text_detection(XPtrMat ptr, float confThreshold,float nmsThreshold,
                  int inpWidth, int inpHeight, std::string model, bool draw)
 {
   if (model.empty())
     Rcpp::stop("No model defined");
 
+  Mat frame = get_mat(ptr);
+
   // Load network.
   Net net = readNet(model);
-
-  // Open a video file or an image file or a camera stream.
-  VideoCapture cap;
-  if (!input.empty())
-    cap.open(input);
-  else
-    cap.open(0);
-
-  static const std::string kWinName =
-    "EAST: An Efficient and Accurate Scene Text Detector";
-
-  if (draw) {
-    namedWindow(kWinName, WINDOW_NORMAL);
-  }
 
   std::vector<Mat> outs;
   std::vector<String> outNames(2);
   outNames[0] = "feature_fusion/Conv_7/Sigmoid";
   outNames[1] = "feature_fusion/concat_3";
 
-  Mat frame, blob;
+  Mat blob;
+  // Mat frame, blob;
   std::vector<int> indices;
 
   Rcpp::IntegerVector x1vec(indices.size());
@@ -98,14 +87,8 @@ Rcpp::DataFrame
   Rcpp::IntegerVector y4vec(indices.size());
 
   // if window is drawn, push super key to exit
-  while (waitKey(1) < 0)
-  {
-    cap >> frame;
-    if (frame.empty())
-    {
-      waitKey();
-      break;
-    }
+  // while (waitKey(1) < 0)
+  // {
 
     blobFromImage(frame, blob, 1.0, Size(inpWidth, inpHeight),
                   Scalar(123.68, 116.78, 103.94), true, false);
@@ -163,16 +146,11 @@ Rcpp::DataFrame
               FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 255, 0));
     }
 
-    if (draw)
-      imshow(kWinName, frame);
-    else
-      break;
-  }
+  //     break;
+  // }
 
-  // XPtrMat out = cvmat_xptr(box);
-  // out.attr("indices") = ;
-
-  return Rcpp::DataFrame::create(
+  XPtrMat out = cvmat_xptr(frame);
+  out.attr("indices") =  Rcpp::DataFrame::create(
     Rcpp::_["x1"] = x1vec,
     Rcpp::_["y1"] = y1vec,
     Rcpp::_["x2"] = x2vec,
@@ -182,4 +160,6 @@ Rcpp::DataFrame
     Rcpp::_["x4"] = x4vec,
     Rcpp::_["y4"] = y4vec
   );
+
+  return out;
 }

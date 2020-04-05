@@ -13,10 +13,9 @@ ocv_text <- function(image, thrs = 0.5, nms = 20, width = 320, height = 320,
   if(missing(model))
     stop("requires a model pb-file")
 
-  image <- path.expand(image)
   model <- path.expand(model)
 
-  text_detection(input = image,
+  text_detection(ptr = image,
                  confThreshold = thrs,
                  nmsThreshold = nms,
                  inpWidth = width,
