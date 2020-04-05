@@ -59,36 +59,24 @@ void decode(const Mat& scores, const Mat& geometry, float scoreThresh,
 XPtrMat
   text_detection(XPtrMat ptr, float confThreshold,float nmsThreshold,
                  int inpWidth, int inpHeight, std::string model, bool draw)
-{
-  if (model.empty())
-    Rcpp::stop("No model defined");
+  {
+    if (model.empty())
+      Rcpp::stop("No model defined");
 
-  Mat frame = get_mat(ptr);
+    Mat frame = get_mat(ptr);
 
-  // Load network.
-  Net net = readNet(model);
+    // Load network.
+    Net net = readNet(model);
 
-  std::vector<Mat> outs;
-  std::vector<String> outNames(2);
-  outNames[0] = "feature_fusion/Conv_7/Sigmoid";
-  outNames[1] = "feature_fusion/concat_3";
+    std::vector<Mat> outs;
+    std::vector<String> outNames(2);
+    outNames[0] = "feature_fusion/Conv_7/Sigmoid";
+    outNames[1] = "feature_fusion/concat_3";
 
-  Mat blob;
-  // Mat frame, blob;
-  std::vector<int> indices;
+    Mat blob;
+    // Mat frame, blob;
+    std::vector<int> indices;
 
-  Rcpp::IntegerVector x1vec(indices.size());
-  Rcpp::IntegerVector y1vec(indices.size());
-  Rcpp::IntegerVector x2vec(indices.size());
-  Rcpp::IntegerVector y2vec(indices.size());
-  Rcpp::IntegerVector x3vec(indices.size());
-  Rcpp::IntegerVector y3vec(indices.size());
-  Rcpp::IntegerVector x4vec(indices.size());
-  Rcpp::IntegerVector y4vec(indices.size());
-
-  // if window is drawn, push super key to exit
-  // while (waitKey(1) < 0)
-  // {
 
     blobFromImage(frame, blob, 1.0, Size(inpWidth, inpHeight),
                   Scalar(123.68, 116.78, 103.94), true, false);
@@ -106,6 +94,15 @@ XPtrMat
     // Apply non-maximum suppression procedure.
     NMSBoxes(boxes, confidences, confThreshold, nmsThreshold, indices);
 
+    Rcpp::IntegerVector x1vec(indices.size());
+    Rcpp::IntegerVector y1vec(indices.size());
+    Rcpp::IntegerVector x2vec(indices.size());
+    Rcpp::IntegerVector y2vec(indices.size());
+    Rcpp::IntegerVector x3vec(indices.size());
+    Rcpp::IntegerVector y3vec(indices.size());
+    Rcpp::IntegerVector x4vec(indices.size());
+    Rcpp::IntegerVector y4vec(indices.size());
+
 
     // Render detections.
     Point2f ratio((float)frame.cols / inpWidth, (float)frame.rows / inpHeight);
@@ -121,15 +118,14 @@ XPtrMat
         vertices[j].y *= ratio.y;
       }
 
-      // not the fastes way
-      x1vec.push_back(vertices[0].x);
-      y1vec.push_back(vertices[0].y);
-      x2vec.push_back(vertices[1].x);
-      y2vec.push_back(vertices[1].y);
-      x3vec.push_back(vertices[2].x);
-      y3vec.push_back(vertices[2].y);
-      x4vec.push_back(vertices[3].x);
-      y4vec.push_back(vertices[3].y);
+      x1vec.at(i) = vertices[0].x;
+      y1vec.at(i) = vertices[0].y;
+      x2vec.at(i) = vertices[1].x;
+      y2vec.at(i) = vertices[1].y;
+      x3vec.at(i) = vertices[2].x;
+      y3vec.at(i) = vertices[2].y;
+      x4vec.at(i) = vertices[3].x;
+      y4vec.at(i) = vertices[3].y;
 
       if (draw)
         for (int j = 0; j < 4; ++j)
@@ -146,20 +142,18 @@ XPtrMat
               FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 255, 0));
     }
 
-  //     break;
-  // }
 
-  XPtrMat out = cvmat_xptr(frame);
-  out.attr("indices") =  Rcpp::DataFrame::create(
-    Rcpp::_["x1"] = x1vec,
-    Rcpp::_["y1"] = y1vec,
-    Rcpp::_["x2"] = x2vec,
-    Rcpp::_["y2"] = y2vec,
-    Rcpp::_["x3"] = x3vec,
-    Rcpp::_["y3"] = y3vec,
-    Rcpp::_["x4"] = x4vec,
-    Rcpp::_["y4"] = y4vec
-  );
+    XPtrMat out = cvmat_xptr(frame);
+    out.attr("indices") =  Rcpp::DataFrame::create(
+      Rcpp::_["x1"] = x1vec,
+      Rcpp::_["y1"] = y1vec,
+      Rcpp::_["x2"] = x2vec,
+      Rcpp::_["y2"] = y2vec,
+      Rcpp::_["x3"] = x3vec,
+      Rcpp::_["y3"] = y3vec,
+      Rcpp::_["x4"] = x4vec,
+      Rcpp::_["y4"] = y4vec
+    );
 
-  return out;
-}
+    return out;
+  }
