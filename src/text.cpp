@@ -9,6 +9,9 @@ void decode(const Mat& scores, const Mat& geometry, float scoreThresh,
             std::vector<RotatedRect>& detections,
             std::vector<float>& confidences)
 {
+#if CV_VERSION_MAJOR < 3 and CV_VERSION_MINOR < 4 and  CV_VERSION_REVISION < 3
+  throw std::runtime_error("createBackgroundSubtractorMOG2 requires OpenCV 3 or newer");
+#else
   detections.clear();
   CV_Assert(scores.dims == 4); CV_Assert(geometry.dims == 4);
   CV_Assert(scores.size[0] == 1); CV_Assert(geometry.size[0] == 1);
@@ -51,6 +54,7 @@ void decode(const Mat& scores, const Mat& geometry, float scoreThresh,
       confidences.push_back(score);
     }
   }
+#endif
 }
 
 
@@ -59,6 +63,9 @@ XPtrMat
   text_detection(XPtrMat input, float confThreshold,float nmsThreshold,
                  int inpWidth, int inpHeight, std::string model, bool draw)
   {
+#if CV_VERSION_MAJOR < 3 and CV_VERSION_MINOR < 4 and  CV_VERSION_REVISION < 3
+    throw std::runtime_error("createBackgroundSubtractorMOG2 requires OpenCV 3 or newer");
+#else
     if (model.empty())
       Rcpp::stop("No model defined");
 
@@ -156,4 +163,5 @@ XPtrMat
     );
 
     return out;
+#endif
   }
