@@ -1,16 +1,19 @@
 #include "util.hpp"
 #include <opencv2/imgproc.hpp>
+
+#if CV_VERSION_MAJOR >= 3 && CV_VERSION_MINOR >= 4 &&  CV_VERSION_REVISION >= 3
 #include <opencv2/dnn.hpp>
+#endif
 
 using namespace cv;
-using namespace cv::dnn;
+// using namespace cv::dnn;
 
 void decode(const Mat& scores, const Mat& geometry, float scoreThresh,
             std::vector<RotatedRect>& detections,
             std::vector<float>& confidences)
 {
-#if CV_VERSION_MAJOR < 3 and CV_VERSION_MINOR < 4 and  CV_VERSION_REVISION < 3
-  throw std::runtime_error("createBackgroundSubtractorMOG2 requires OpenCV 3 or newer");
+#if CV_VERSION_MAJOR < 3 && CV_VERSION_MINOR < 4 &&  CV_VERSION_REVISION < 3
+  throw std::runtime_error("ocv_text requires OpenCV 3.4.3 or newer");
 #else
   detections.clear();
   CV_Assert(scores.dims == 4); CV_Assert(geometry.dims == 4);
@@ -63,8 +66,8 @@ XPtrMat
   text_detection(XPtrMat input, float confThreshold,float nmsThreshold,
                  int inpWidth, int inpHeight, std::string model, bool draw)
   {
-#if CV_VERSION_MAJOR < 3 and CV_VERSION_MINOR < 4 and  CV_VERSION_REVISION < 3
-    throw std::runtime_error("createBackgroundSubtractorMOG2 requires OpenCV 3 or newer");
+#if CV_VERSION_MAJOR < 3 && CV_VERSION_MINOR < 4 &&  CV_VERSION_REVISION < 3
+    throw std::runtime_error("ocv_text requires OpenCV 3.4.3 or newer");
 #else
     if (model.empty())
       Rcpp::stop("No model defined");
@@ -73,7 +76,7 @@ XPtrMat
 
 
     // Load network.
-    Net net = readNet(model);
+    cv::dnn::Net net = cv::dnn::readNet(model);
 
     std::vector<Mat> outs;
     std::vector<String> outNames(2);
@@ -85,8 +88,8 @@ XPtrMat
 
     frame = inp.clone();
 
-    blobFromImage(frame, blob, 1.0, Size(inpWidth, inpHeight),
-                  Scalar(123.68, 116.78, 103.94), true, false);
+    cv::dnn::blobFromImage(frame, blob, 1.0, Size(inpWidth, inpHeight),
+                           Scalar(123.68, 116.78, 103.94), true, false);
     net.setInput(blob);
     net.forward(outs, outNames);
 
@@ -99,7 +102,8 @@ XPtrMat
     decode(scores, geometry, confThreshold, boxes, confidences);
 
     // Apply non-maximum suppression procedure.
-    NMSBoxes(boxes, confidences, confThreshold, nmsThreshold, indices);
+
+    cv::dnn::NMSBoxes(boxes, confidences, confThreshold, nmsThreshold, indices);
 
     Rcpp::IntegerVector x1vec(indices.size());
     Rcpp::IntegerVector y1vec(indices.size());
