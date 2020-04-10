@@ -15,10 +15,9 @@ ocv_text(
 )
 }
 \arguments{
-\item{image}{Path to input image or video file. Skip this argument to capture
-frames from a camera.}
+\item{image}{opencv image to be processed.}
 
-\item{thrs}{Confidence threshold.}
+\item{thrs}{Confidence threshold between 0 and 1.}
 
 \item{nms}{Non-maximum suppression threshold.}
 

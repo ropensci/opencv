@@ -4,13 +4,12 @@
 #'   Detector) to detect text in images. Requires the EAST pb-model not included
 #'   in the package.
 #'
-#' @param image Path to input image or video file. Skip this argument to capture
-#'   frames from a camera.
+#' @param image opencv image to be processed.
 #' @param width Preprocess input image by resizing to a specific width. It
 #'   should be multiple by 32.
 #' @param height Preprocess input image by resizing to a specific height. It
 #'   should be multiple by 32.
-#' @param thrs Confidence threshold.
+#' @param thrs Confidence threshold between 0 and 1.
 #' @param nms Non-maximum suppression threshold.
 #' @param model Path to a binary .pb file contains trained network.
 #' @param draw Draws visual output to the image.

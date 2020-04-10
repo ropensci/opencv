@@ -72,24 +72,21 @@ XPtrMat
 #if !defined(HAVE_OPENCV_DNN) || OPENCV_VERSION < 30403
     throw std::runtime_error("ocv_text req. OpenCV 3.4.3 or newer with DNN");
 #else
-    if (model.empty())
-      Rcpp::stop("No model defined");
 
+
+    Mat frame, blob;
     Mat inp = get_mat(input);
+    frame = inp.clone();
 
-
-    // Load network.
-    cv::dnn::Net net = cv::dnn::readNet(model);
+    std::vector<int> indices;
 
     std::vector<Mat> outs;
     std::vector<String> outNames(2);
     outNames[0] = "feature_fusion/Conv_7/Sigmoid";
     outNames[1] = "feature_fusion/concat_3";
 
-    Mat frame, blob;
-    std::vector<int> indices;
-
-    frame = inp.clone();
+    // Load network.
+    cv::dnn::Net net = cv::dnn::readNet(model);
 
     cv::dnn::blobFromImage(frame, blob, 1.0, Size(inpWidth, inpHeight),
                            Scalar(123.68, 116.78, 103.94), true, false);
@@ -105,9 +102,9 @@ XPtrMat
     decode(scores, geometry, confThreshold, boxes, confidences);
 
     // Apply non-maximum suppression procedure.
-
     cv::dnn::NMSBoxes(boxes, confidences, confThreshold, nmsThreshold, indices);
 
+    // initiate output vetors
     Rcpp::IntegerVector x1vec(indices.size());
     Rcpp::IntegerVector y1vec(indices.size());
     Rcpp::IntegerVector x2vec(indices.size());
@@ -116,7 +113,6 @@ XPtrMat
     Rcpp::IntegerVector y3vec(indices.size());
     Rcpp::IntegerVector x4vec(indices.size());
     Rcpp::IntegerVector y4vec(indices.size());
-
 
     // Render detections.
     Point2f ratio((float)frame.cols / inpWidth, (float)frame.rows / inpHeight);
@@ -141,13 +137,14 @@ XPtrMat
       x4vec.at(i) = vertices[3].x;
       y4vec.at(i) = vertices[3].y;
 
+      // draws boxes to image
       if (draw)
         for (int j = 0; j < 4; ++j)
           line(frame, vertices[j], vertices[(j + 1) % 4], Scalar(0, 255, 0), 1);
     }
 
     if (draw) {
-      // Put efficiency information.
+      // Draws efficiency information to the image.
       std::vector<double> layersTimes;
       double freq = getTickFrequency() / 1000;
       double t = net.getPerfProfile(layersTimes) / freq;
@@ -156,7 +153,7 @@ XPtrMat
               FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 255, 0));
     }
 
-
+    // prepare output
     XPtrMat out = cvmat_xptr(frame);
     out.attr("indices") =  Rcpp::DataFrame::create(
       Rcpp::_["x1"] = x1vec,
