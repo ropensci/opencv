@@ -1,19 +1,22 @@
 #include "util.hpp"
 #include <opencv2/imgproc.hpp>
 
-#if CV_VERSION_MAJOR >= 3 && CV_VERSION_MINOR >= 4 &&  CV_VERSION_REVISION >= 3
-#include <opencv2/dnn.hpp>
+#define OPENCV_VERSION (CV_VERSION_MAJOR * 10000 \
++ CV_VERSION_MINOR * 100                         \
++ CV_VERSION_REVISION)
+
+#ifdef HAVE_OPENCV_DNN
+#include "opencv2/dnn.hpp"
 #endif
 
 using namespace cv;
-// using namespace cv::dnn;
 
 void decode(const Mat& scores, const Mat& geometry, float scoreThresh,
             std::vector<RotatedRect>& detections,
             std::vector<float>& confidences)
 {
-#if CV_VERSION_MAJOR < 3 && CV_VERSION_MINOR < 4 &&  CV_VERSION_REVISION < 3
-  throw std::runtime_error("ocv_text requires OpenCV 3.4.3 or newer");
+#if !defined(HAVE_OPENCV_DNN) || OPENCV_VERSION < 30403
+  throw std::runtime_error("ocv_text req. OpenCV 3.4.3 or newer with DNN");
 #else
   detections.clear();
   CV_Assert(scores.dims == 4); CV_Assert(geometry.dims == 4);
@@ -66,8 +69,8 @@ XPtrMat
   text_detection(XPtrMat input, float confThreshold,float nmsThreshold,
                  int inpWidth, int inpHeight, std::string model, bool draw)
   {
-#if CV_VERSION_MAJOR < 3 && CV_VERSION_MINOR < 4 &&  CV_VERSION_REVISION < 3
-    throw std::runtime_error("ocv_text requires OpenCV 3.4.3 or newer");
+#if !defined(HAVE_OPENCV_DNN) || OPENCV_VERSION < 30403
+    throw std::runtime_error("ocv_text req. OpenCV 3.4.3 or newer with DNN");
 #else
     if (model.empty())
       Rcpp::stop("No model defined");
