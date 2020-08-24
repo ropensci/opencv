@@ -6,6 +6,21 @@
 
 using namespace Rcpp;
 
+// cvmat_rect
+XPtrMat cvmat_rect(XPtrMat ptr, int x, int y, int width, int height);
+RcppExport SEXP _opencv_cvmat_rect(SEXP ptrSEXP, SEXP xSEXP, SEXP ySEXP, SEXP widthSEXP, SEXP heightSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtrMat >::type ptr(ptrSEXP);
+    Rcpp::traits::input_parameter< int >::type x(xSEXP);
+    Rcpp::traits::input_parameter< int >::type y(ySEXP);
+    Rcpp::traits::input_parameter< int >::type width(widthSEXP);
+    Rcpp::traits::input_parameter< int >::type height(heightSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvmat_rect(ptr, x, y, width, height));
+    return rcpp_result_gen;
+END_RCPP
+}
 // cvmat_destroy
 void cvmat_destroy(XPtrMat image);
 RcppExport SEXP _opencv_cvmat_destroy(SEXP imageSEXP) {
@@ -298,6 +313,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_opencv_cvmat_rect", (DL_FUNC) &_opencv_cvmat_rect, 5},
     {"_opencv_cvmat_destroy", (DL_FUNC) &_opencv_cvmat_destroy, 1},
     {"_opencv_cvmat_dead", (DL_FUNC) &_opencv_cvmat_dead, 1},
     {"_opencv_cvmat_size", (DL_FUNC) &_opencv_cvmat_size, 1},
