@@ -20,11 +20,12 @@ XPtrMat cvmat_hog(XPtrMat ptr){
     Rect r = found[i];
     size_t j;
     // Do not add small detections inside a bigger detection.
-    for ( j = 0; j < found.size(); j++ )
+    for ( j = 0; j < found.size(); j++ ){
       if ( j != i && (r & found[j]) == r )
         break;
       if ( j == found.size() )
         found_filtered.push_back(r);
+    }
   }
   for (size_t i = 0; i < found_filtered.size(); i++)
   {
