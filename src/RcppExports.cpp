@@ -120,6 +120,32 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// cvmat_raw_bgr
+XPtrMat cvmat_raw_bgr(Rcpp::RawVector image, int width, int height);
+RcppExport SEXP _opencv_cvmat_raw_bgr(SEXP imageSEXP, SEXP widthSEXP, SEXP heightSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::RawVector >::type image(imageSEXP);
+    Rcpp::traits::input_parameter< int >::type width(widthSEXP);
+    Rcpp::traits::input_parameter< int >::type height(heightSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvmat_raw_bgr(image, width, height));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cvmat_raw_bw
+XPtrMat cvmat_raw_bw(Rcpp::RawVector image, int width, int height);
+RcppExport SEXP _opencv_cvmat_raw_bw(SEXP imageSEXP, SEXP widthSEXP, SEXP heightSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::RawVector >::type image(imageSEXP);
+    Rcpp::traits::input_parameter< int >::type width(widthSEXP);
+    Rcpp::traits::input_parameter< int >::type height(heightSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvmat_raw_bw(image, width, height));
+    return rcpp_result_gen;
+END_RCPP
+}
 // cvmat_bitmap
 Rcpp::RawVector cvmat_bitmap(XPtrMat ptr);
 RcppExport SEXP _opencv_cvmat_bitmap(SEXP ptrSEXP) {
@@ -323,6 +349,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_camera", (DL_FUNC) &_opencv_cvmat_camera, 0},
     {"_opencv_cvmat_write", (DL_FUNC) &_opencv_cvmat_write, 2},
     {"_opencv_cvmat_resize", (DL_FUNC) &_opencv_cvmat_resize, 3},
+    {"_opencv_cvmat_raw_bgr", (DL_FUNC) &_opencv_cvmat_raw_bgr, 3},
+    {"_opencv_cvmat_raw_bw", (DL_FUNC) &_opencv_cvmat_raw_bw, 3},
     {"_opencv_cvmat_bitmap", (DL_FUNC) &_opencv_cvmat_bitmap, 1},
     {"_opencv_cvmat_copyto", (DL_FUNC) &_opencv_cvmat_copyto, 3},
     {"_opencv_cvmat_info", (DL_FUNC) &_opencv_cvmat_info, 1},

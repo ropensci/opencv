@@ -106,6 +106,29 @@ XPtrMat cvmat_resize(XPtrMat ptr, int width = 0, int height = 0){
 }
 
 // [[Rcpp::export]]
+XPtrMat cvmat_raw_bgr(Rcpp::RawVector image, int width = 0, int height = 0){
+  // 8bit Blue Green Red
+  if(image.length() != width * height * 3){
+    throw std::runtime_error("cvmat_raw_bgr requires data with 3 channels");
+  }
+  std::vector<uchar> x = Rcpp::as<std::vector<uchar>>(image);
+  cv::Mat output(height, width, CV_8UC3, x.data());
+  return cvmat_xptr(output);
+}
+
+
+// [[Rcpp::export]]
+XPtrMat cvmat_raw_bw(Rcpp::RawVector image, int width = 0, int height = 0){
+  // 8bit 1 channel (e.g. Black/White or Greyscale)
+  if(image.length() != width * height * 1){
+    throw std::runtime_error("cvmat_raw_bw requires data with 1 channel (e.g. grey or just black/white)");
+  }
+  std::vector<uchar> x = Rcpp::as<std::vector<uchar>>(image);
+  cv::Mat output(height, width, CV_8U, x.data());
+  return cvmat_xptr(output);
+}
+
+// [[Rcpp::export]]
 Rcpp::RawVector cvmat_bitmap(XPtrMat ptr){
   cv::Mat output;
   cv::Mat input = get_mat(ptr);

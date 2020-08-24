@@ -41,6 +41,14 @@ cvmat_resize <- function(ptr, width = 0L, height = 0L) {
     .Call('_opencv_cvmat_resize', PACKAGE = 'opencv', ptr, width, height)
 }
 
+cvmat_raw_bgr <- function(image, width = 0L, height = 0L) {
+    .Call('_opencv_cvmat_raw_bgr', PACKAGE = 'opencv', image, width, height)
+}
+
+cvmat_raw_bw <- function(image, width = 0L, height = 0L) {
+    .Call('_opencv_cvmat_raw_bw', PACKAGE = 'opencv', image, width, height)
+}
+
 cvmat_bitmap <- function(ptr) {
     .Call('_opencv_cvmat_bitmap', PACKAGE = 'opencv', ptr)
 }
