@@ -39,7 +39,7 @@ ocv_read <- function(path){
 
 #' @export
 #' @rdname opencv
-#' @param image a ocv image object
+#' @param image an ocv image object
 ocv_write <- function(image, path){
   path <- normalizePath(path, mustWork = FALSE)
   cvmat_write(image, path)

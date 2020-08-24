@@ -64,7 +64,7 @@ ocv_display(image)
 ocv_video(filter)
 }
 \arguments{
-\item{image}{a ocv image object}
+\item{image}{an ocv image object}
 
 \item{path}{image file such as png or jpeg}
 
