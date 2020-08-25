@@ -6,7 +6,7 @@
 \usage{
 ocv_keypoints(
   image,
-  method = c("FAST", "Harris", "BRIEF"),
+  method = c("FAST", "Harris"),
   control = ocv_keypoints_options(method, ...),
   ...
 )
@@ -43,14 +43,6 @@ Find key points in images
 }
 }
 
-\section{BRIEF algorithm arguments}{
-
-\itemize{
-\item bytes length of the descriptor in bytes, valid values are: 16, 32 (default) or 64 .
-\item use_orientation sample patterns using keypoints orientation, disabled by default.
-}
-}
-
 \examples{
 mona <- ocv_read('https://jeroen.github.io/images/monalisa.jpg')
 mona <- ocv_resize(mona, width = 320, height = 477)
@@ -59,8 +51,6 @@ mona <- ocv_resize(mona, width = 320, height = 477)
 pts <- ocv_keypoints(mona, method = "FAST", type = "TYPE_9_16", threshold = 40)
 # Harris
 pts <- ocv_keypoints(mona, method = "Harris", corners_max = 100)
-# BRIEF
-pts <- ocv_keypoints(mona, method = "BRIEF")
 
 ocv_destroy(mona)
 }
