@@ -8,6 +8,7 @@
 #' @param y vertical location
 #' @param width width of the area
 #' @param height height of the area
+#' @export
 #' @examples
 #' mona <- ocv_read('https://jeroen.github.io/images/monalisa.jpg')
 #'
