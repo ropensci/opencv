@@ -315,6 +315,33 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// cvkeypoints_fast
+Rcpp::List cvkeypoints_fast(XPtrMat ptr, int threshold, bool nonmaxSuppression, int type);
+RcppExport SEXP _opencv_cvkeypoints_fast(SEXP ptrSEXP, SEXP thresholdSEXP, SEXP nonmaxSuppressionSEXP, SEXP typeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtrMat >::type ptr(ptrSEXP);
+    Rcpp::traits::input_parameter< int >::type threshold(thresholdSEXP);
+    Rcpp::traits::input_parameter< bool >::type nonmaxSuppression(nonmaxSuppressionSEXP);
+    Rcpp::traits::input_parameter< int >::type type(typeSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvkeypoints_fast(ptr, threshold, nonmaxSuppression, type));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cvkeypoints_brief
+Rcpp::List cvkeypoints_brief(XPtrMat ptr, int bytes, bool use_orientation);
+RcppExport SEXP _opencv_cvkeypoints_brief(SEXP ptrSEXP, SEXP bytesSEXP, SEXP use_orientationSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtrMat >::type ptr(ptrSEXP);
+    Rcpp::traits::input_parameter< int >::type bytes(bytesSEXP);
+    Rcpp::traits::input_parameter< bool >::type use_orientation(use_orientationSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvkeypoints_brief(ptr, bytes, use_orientation));
+    return rcpp_result_gen;
+END_RCPP
+}
 // cvmat_hog
 XPtrMat cvmat_hog(XPtrMat ptr);
 RcppExport SEXP _opencv_cvmat_hog(SEXP ptrSEXP) {
@@ -366,6 +393,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_mog2", (DL_FUNC) &_opencv_cvmat_mog2, 1},
     {"_opencv_cvmat_knn", (DL_FUNC) &_opencv_cvmat_knn, 1},
     {"_opencv_cvmat_edges", (DL_FUNC) &_opencv_cvmat_edges, 1},
+    {"_opencv_cvkeypoints_fast", (DL_FUNC) &_opencv_cvkeypoints_fast, 4},
+    {"_opencv_cvkeypoints_brief", (DL_FUNC) &_opencv_cvkeypoints_brief, 3},
     {"_opencv_cvmat_hog", (DL_FUNC) &_opencv_cvmat_hog, 1},
     {"_opencv_cvmat_markers", (DL_FUNC) &_opencv_cvmat_markers, 1},
     {NULL, NULL, 0}

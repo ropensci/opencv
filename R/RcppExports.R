@@ -109,6 +109,14 @@ cvmat_edges <- function(ptr) {
     .Call('_opencv_cvmat_edges', PACKAGE = 'opencv', ptr)
 }
 
+cvkeypoints_fast <- function(ptr, threshold = 0L, nonmaxSuppression = TRUE, type) {
+    .Call('_opencv_cvkeypoints_fast', PACKAGE = 'opencv', ptr, threshold, nonmaxSuppression, type)
+}
+
+cvkeypoints_brief <- function(ptr, bytes = 32L, use_orientation = FALSE) {
+    .Call('_opencv_cvkeypoints_brief', PACKAGE = 'opencv', ptr, bytes, use_orientation)
+}
+
 cvmat_hog <- function(ptr) {
     .Call('_opencv_cvmat_hog', PACKAGE = 'opencv', ptr)
 }
