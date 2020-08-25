@@ -19,11 +19,6 @@
 #' \item maxCorners the maximum number of corners to consider
 #' \item num_layers the number of intermediate scales per octave
 #' }
-#' @section BRIEF algorithm arguments:
-#' \itemize{
-#' \item bytes length of the descriptor in bytes, valid values are: 16, 32 (default) or 64 .
-#' \item use_orientation sample patterns using keypoints orientation, disabled by default.
-#' }
 #' @export
 #' @examples
 #' mona <- ocv_read('https://jeroen.github.io/images/monalisa.jpg')
@@ -33,31 +28,25 @@
 #' pts <- ocv_keypoints(mona, method = "FAST", type = "TYPE_9_16", threshold = 40)
 #' # Harris
 #' pts <- ocv_keypoints(mona, method = "Harris", corners_max = 100)
-#' # BRIEF
-#' pts <- ocv_keypoints(mona, method = "BRIEF")
 #'
 #' ocv_destroy(mona)
-ocv_keypoints <- function(image, method = c("FAST", "Harris", "BRIEF"), control = ocv_keypoints_options(method, ...), ...){
+ocv_keypoints <- function(image, method = c("FAST", "Harris"), control = ocv_keypoints_options(method, ...), ...){
   method <- match.arg(method)
   params <- control
   if(method == "FAST"){
-    cvkeypoints_fast(image, params$threshold, params$nonmax_suppression, params$type)
+    cvkeypoints_fast(image, params$threshold, params$nonmaxSuppression, params$type)
   }else if(method == "Harris"){
     cvkeypoints_harris(image, params$octaves, params$threshold_corner, params$threshold_dog, params$corners_max, params$layers)
-  }else if(method == "BRIEF"){
-    cvkeypoints_brief(image, params$bytes, params$use_orientation)
   }
 }
 
-ocv_keypoints_options <- function(method = c("FAST", "Harris", "BRIEF"), ...){
+ocv_keypoints_options <- function(method = c("FAST", "Harris"), ...){
   method <- match.arg(method)
   ldots <- list(...)
   if(method == "FAST"){
     params <- list(threshold = 0, nonmaxSuppression = TRUE, type = c("TYPE_9_16", "TYPE_7_12", "TYPE_5_8"))
   }else if(method == "Harris"){
     params <- list(numOctaves = 6, corn_thresh = 0.01, DOG_thresh = 0.01, maxCorners = 5000, num_layers = 4)
-  }else if(method == "BRIEF"){
-    params <- list(bytes = 32, use_orientation = FALSE)
   }
   for(i in intersect(names(params), names(ldots))){
     params[[i]] <- ldots[[i]]

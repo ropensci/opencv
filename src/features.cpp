@@ -45,14 +45,14 @@ Rcpp::List cvkeypoints_fast(XPtrMat ptr, int threshold = 0, bool nonmaxSuppressi
 
 
 // [[Rcpp::export]]
-Rcpp::List cvkeypoints_brief(XPtrMat ptr, int bytes = 32, bool use_orientation = false){
+Rcpp::List cvkeypoints_harris(XPtrMat ptr,
+                              int numOctaves = 6, float corn_thresh = 0.01, float DOG_thresh = 0.01, int maxCorners = 5000, int num_layers = 4){
   cv::Mat img;
   cv::cvtColor(get_mat(ptr), img, cv::COLOR_BGR2GRAY);
   std::vector<cv::KeyPoint> keypoints;
-  auto featureDetector = cv::xfeatures2d::BriefDescriptorExtractor::create(bytes, use_orientation);
+  auto featureDetector = cv::xfeatures2d::HarrisLaplaceFeatureDetector::create(numOctaves, corn_thresh, DOG_thresh, maxCorners, num_layers);
   featureDetector->detect(img, keypoints);
   return keypoints_coords(keypoints);
 }
-
 
 

@@ -329,16 +329,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// cvkeypoints_brief
-Rcpp::List cvkeypoints_brief(XPtrMat ptr, int bytes, bool use_orientation);
-RcppExport SEXP _opencv_cvkeypoints_brief(SEXP ptrSEXP, SEXP bytesSEXP, SEXP use_orientationSEXP) {
+// cvkeypoints_harris
+Rcpp::List cvkeypoints_harris(XPtrMat ptr, int numOctaves, float corn_thresh, float DOG_thresh, int maxCorners, int num_layers);
+RcppExport SEXP _opencv_cvkeypoints_harris(SEXP ptrSEXP, SEXP numOctavesSEXP, SEXP corn_threshSEXP, SEXP DOG_threshSEXP, SEXP maxCornersSEXP, SEXP num_layersSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< XPtrMat >::type ptr(ptrSEXP);
-    Rcpp::traits::input_parameter< int >::type bytes(bytesSEXP);
-    Rcpp::traits::input_parameter< bool >::type use_orientation(use_orientationSEXP);
-    rcpp_result_gen = Rcpp::wrap(cvkeypoints_brief(ptr, bytes, use_orientation));
+    Rcpp::traits::input_parameter< int >::type numOctaves(numOctavesSEXP);
+    Rcpp::traits::input_parameter< float >::type corn_thresh(corn_threshSEXP);
+    Rcpp::traits::input_parameter< float >::type DOG_thresh(DOG_threshSEXP);
+    Rcpp::traits::input_parameter< int >::type maxCorners(maxCornersSEXP);
+    Rcpp::traits::input_parameter< int >::type num_layers(num_layersSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvkeypoints_harris(ptr, numOctaves, corn_thresh, DOG_thresh, maxCorners, num_layers));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -394,7 +397,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_knn", (DL_FUNC) &_opencv_cvmat_knn, 1},
     {"_opencv_cvmat_edges", (DL_FUNC) &_opencv_cvmat_edges, 1},
     {"_opencv_cvkeypoints_fast", (DL_FUNC) &_opencv_cvkeypoints_fast, 4},
-    {"_opencv_cvkeypoints_brief", (DL_FUNC) &_opencv_cvkeypoints_brief, 3},
+    {"_opencv_cvkeypoints_harris", (DL_FUNC) &_opencv_cvkeypoints_harris, 6},
     {"_opencv_cvmat_hog", (DL_FUNC) &_opencv_cvmat_hog, 1},
     {"_opencv_cvmat_markers", (DL_FUNC) &_opencv_cvmat_markers, 1},
     {NULL, NULL, 0}

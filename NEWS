@@ -1,6 +1,6 @@
 0.2
   - Add ocv_rectangle
-  - Add ocv_keypoints for keypoint detection using FAST, Harris, BRIEF
+  - Add ocv_keypoints for keypoint detection using FAST, Harris
 
 0.1
   - Initial CRAN release

@@ -113,8 +113,8 @@ cvkeypoints_fast <- function(ptr, threshold = 0L, nonmaxSuppression = TRUE, type
     .Call('_opencv_cvkeypoints_fast', PACKAGE = 'opencv', ptr, threshold, nonmaxSuppression, type)
 }
 
-cvkeypoints_brief <- function(ptr, bytes = 32L, use_orientation = FALSE) {
-    .Call('_opencv_cvkeypoints_brief', PACKAGE = 'opencv', ptr, bytes, use_orientation)
+cvkeypoints_harris <- function(ptr, numOctaves = 6L, corn_thresh = 0.01, DOG_thresh = 0.01, maxCorners = 5000L, num_layers = 4L) {
+    .Call('_opencv_cvkeypoints_harris', PACKAGE = 'opencv', ptr, numOctaves, corn_thresh, DOG_thresh, maxCorners, num_layers)
 }
 
 cvmat_hog <- function(ptr) {
