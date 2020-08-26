@@ -171,6 +171,12 @@ ocv_video <- function(filter){
   })
 }
 
+#' @export
+#' @rdname opencv
+ocv_version <- function(){
+  cvversion()
+}
+
 #' @importFrom magrittr %>%
 #' @export
 magrittr::`%>%`

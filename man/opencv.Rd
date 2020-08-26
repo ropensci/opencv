@@ -21,6 +21,7 @@
 \alias{ocv_copyto}
 \alias{ocv_display}
 \alias{ocv_video}
+\alias{ocv_version}
 \title{OpenCV Computer Vision}
 \usage{
 ocv_face(image)
@@ -62,6 +63,8 @@ ocv_copyto(image, target, mask)
 ocv_display(image)
 
 ocv_video(filter)
+
+ocv_version()
 }
 \arguments{
 \item{image}{an ocv image object}

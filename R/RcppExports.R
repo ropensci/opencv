@@ -125,3 +125,7 @@ cvmat_markers <- function(ptr) {
     .Call('_opencv_cvmat_markers', PACKAGE = 'opencv', ptr)
 }
 
+cvversion <- function() {
+    .Call('_opencv_cvversion', PACKAGE = 'opencv')
+}
+

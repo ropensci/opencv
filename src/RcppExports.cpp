@@ -367,6 +367,16 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// cvversion
+std::string cvversion();
+RcppExport SEXP _opencv_cvversion() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(cvversion());
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_rect", (DL_FUNC) &_opencv_cvmat_rect, 5},
@@ -400,6 +410,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvkeypoints_harris", (DL_FUNC) &_opencv_cvkeypoints_harris, 6},
     {"_opencv_cvmat_hog", (DL_FUNC) &_opencv_cvmat_hog, 1},
     {"_opencv_cvmat_markers", (DL_FUNC) &_opencv_cvmat_markers, 1},
+    {"_opencv_cvversion", (DL_FUNC) &_opencv_cvversion, 0},
     {NULL, NULL, 0}
 };
 
