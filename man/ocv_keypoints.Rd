@@ -50,7 +50,7 @@ mona <- ocv_resize(mona, width = 320, height = 477)
 # FAST-9
 pts <- ocv_keypoints(mona, method = "FAST", type = "TYPE_9_16", threshold = 40)
 # Harris
-pts <- ocv_keypoints(mona, method = "Harris", corners_max = 100)
+pts <- ocv_keypoints(mona, method = "Harris", maxCorners = 100)
 
 ocv_destroy(mona)
 }

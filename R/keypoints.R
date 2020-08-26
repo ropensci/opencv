@@ -27,7 +27,7 @@
 #' # FAST-9
 #' pts <- ocv_keypoints(mona, method = "FAST", type = "TYPE_9_16", threshold = 40)
 #' # Harris
-#' pts <- ocv_keypoints(mona, method = "Harris", corners_max = 100)
+#' pts <- ocv_keypoints(mona, method = "Harris", maxCorners = 100)
 #'
 #' ocv_destroy(mona)
 ocv_keypoints <- function(image, method = c("FAST", "Harris"), control = ocv_keypoints_options(method, ...), ...){
@@ -36,7 +36,7 @@ ocv_keypoints <- function(image, method = c("FAST", "Harris"), control = ocv_key
   if(method == "FAST"){
     cvkeypoints_fast(image, params$threshold, params$nonmaxSuppression, params$type)
   }else if(method == "Harris"){
-    cvkeypoints_harris(image, params$octaves, params$threshold_corner, params$threshold_dog, params$corners_max, params$layers)
+    cvkeypoints_harris(image, params$numOctaves, params$corn_thresh, params$DOG_thresh, params$maxCorners, params$num_layers)
   }
 }
 
