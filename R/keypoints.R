@@ -27,9 +27,15 @@
 #' # FAST-9
 #' pts <- ocv_keypoints(mona, method = "FAST", type = "TYPE_9_16", threshold = 40)
 #' # Harris
-#' pts <- ocv_keypoints(mona, method = "Harris", maxCorners = 100)
+#' pts <- ocv_keypoints(mona, method = "Harris", maxCorners = 50)
 #'
+#' # Area around convex hull of Harris points
+#' convexhull_idx <- grDevices::chull(pts$x, pts$y)
+#' ocv_polygon(mona, list(x = pts$x[convexhull_idx], y = pts$y[convexhull_idx]))
+#'
+#' \dontshow{
 #' ocv_destroy(mona)
+#' }
 ocv_keypoints <- function(image, method = c("FAST", "Harris"), control = ocv_keypoints_options(method, ...), ...){
   method <- match.arg(method)
   params <- control
@@ -52,13 +58,9 @@ ocv_keypoints_options <- function(method = c("FAST", "Harris"), ...){
     params[[i]] <- ldots[[i]]
   }
   if(is.character(params$type)){
-    params$type <- recode(params$type, from = c("TYPE_5_8", "TYPE_7_12", "TYPE_9_16"), to = c(0L, 1L, 2L))
+    params$type <- switch(params$type, "TYPE_5_8" = 0L, "TYPE_7_12" = 1L, "TYPE_9_16" = 2L)
   }
   params
 }
 
 
-
-recode <- function(x, from, to){
-  to[match(x, from)]
-}
