@@ -53,7 +53,6 @@ ocv_bbox(img, pts)
 
 # Bounding box of non-zero pixel area
 area <- ocv_polygon(img, pts, color = 0, crop = FALSE)
-area <- ocv_grayscale(area)
 area
 area <- ocv_bbox(area)
 area

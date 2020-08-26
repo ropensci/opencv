@@ -24,8 +24,16 @@ XPtrMat cvmat_rect(XPtrMat ptr, int x = 0, int y = 0, int width = 0, int height 
 // [[Rcpp::export]]
 XPtrMat cvmat_bbox(XPtrMat ptr){
   cv::Mat img = get_mat(ptr);
-  cv::Rect roi = cv::boundingRect(img);
-  cv::Mat output = img(roi);
+  cv::Mat output;
+  cv::Rect roi;
+  if(img.channels() > 1){
+    cv::Mat img_gray;
+    cv::cvtColor(img, img_gray, cv::COLOR_BGR2GRAY);
+    roi = cv::boundingRect(img_gray);
+  }else{
+    roi = cv::boundingRect(img);
+  }
+  output = img(roi);
   return cvmat_xptr(output);
 }
 
