@@ -3,9 +3,15 @@
 \name{opencv-area}
 \alias{opencv-area}
 \alias{ocv_rectangle}
+\alias{ocv_polygon}
+\alias{ocv_bbox}
 \title{OpenCV area manipulation}
 \usage{
 ocv_rectangle(image, x = 0L, y = 0L, width, height)
+
+ocv_polygon(image, pts, crop = FALSE, color = 255)
+
+ocv_bbox(image, pts)
 }
 \arguments{
 \item{image}{an ocv image object}
@@ -17,6 +23,12 @@ ocv_rectangle(image, x = 0L, y = 0L, width, height)
 \item{width}{width of the area}
 
 \item{height}{height of the area}
+
+\item{pts}{a list of points with elements x and y}
+
+\item{crop}{crop the resulting area to its bounding box}
+
+\item{color}{color for the non-polygon area}
 }
 \description{
 Manipulate image regions
@@ -29,5 +41,26 @@ ocv_rectangle(mona, x = 400, y = 300, height = 300, width = 350)
 ocv_rectangle(mona, x = 0, y = 100, height = 200)
 ocv_rectangle(mona, x = 500, y = 0, width = 75)
 
+# Polygon area
+img <- ocv_resize(mona, width = 320, height = 477)
+pts <- list(x = c(184, 172, 146, 114,  90,  76,  92, 163, 258),
+            y = c(72,   68,  70,  90, 110, 398, 412, 385, 210))
+ocv_polygon(img, pts)
+ocv_polygon(img, pts, crop = TRUE)
+
+# Bounding box based on points
+ocv_bbox(img, pts)
+
+# Bounding box of non-zero pixel area
+area <- ocv_polygon(img, pts, color = 0, crop = FALSE)
+area <- ocv_grayscale(area)
+area
+area <- ocv_bbox(area)
+area
+
+\dontshow{
 ocv_destroy(mona)
+ocv_destroy(img)
+ocv_destroy(area)
+}
 }

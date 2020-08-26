@@ -5,6 +5,18 @@ cvmat_rect <- function(ptr, x = 0L, y = 0L, width = 0L, height = 0L) {
     .Call('_opencv_cvmat_rect', PACKAGE = 'opencv', ptr, x, y, width, height)
 }
 
+cvmat_bbox <- function(ptr) {
+    .Call('_opencv_cvmat_bbox', PACKAGE = 'opencv', ptr)
+}
+
+cvpoints_bbox <- function(ptr, pts) {
+    .Call('_opencv_cvpoints_bbox', PACKAGE = 'opencv', ptr, pts)
+}
+
+cvmat_polygon <- function(ptr, pts, crop = FALSE, color = 255L) {
+    .Call('_opencv_cvmat_polygon', PACKAGE = 'opencv', ptr, pts, crop, color)
+}
+
 cvmat_destroy <- function(image) {
     invisible(.Call('_opencv_cvmat_destroy', PACKAGE = 'opencv', image))
 }
@@ -75,6 +87,10 @@ data_prefix <- function() {
 
 set_num_threads <- function(n = 0L) {
     .Call('_opencv_set_num_threads', PACKAGE = 'opencv', n)
+}
+
+cvmat_grayscale <- function(src) {
+    .Call('_opencv_cvmat_grayscale', PACKAGE = 'opencv', src)
 }
 
 cvmat_blur <- function(ptr, ksize) {

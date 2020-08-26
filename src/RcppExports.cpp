@@ -21,6 +21,43 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// cvmat_bbox
+XPtrMat cvmat_bbox(XPtrMat ptr);
+RcppExport SEXP _opencv_cvmat_bbox(SEXP ptrSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtrMat >::type ptr(ptrSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvmat_bbox(ptr));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cvpoints_bbox
+XPtrMat cvpoints_bbox(XPtrMat ptr, Rcpp::List pts);
+RcppExport SEXP _opencv_cvpoints_bbox(SEXP ptrSEXP, SEXP ptsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtrMat >::type ptr(ptrSEXP);
+    Rcpp::traits::input_parameter< Rcpp::List >::type pts(ptsSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvpoints_bbox(ptr, pts));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cvmat_polygon
+XPtrMat cvmat_polygon(XPtrMat ptr, Rcpp::List pts, bool crop, int color);
+RcppExport SEXP _opencv_cvmat_polygon(SEXP ptrSEXP, SEXP ptsSEXP, SEXP cropSEXP, SEXP colorSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtrMat >::type ptr(ptrSEXP);
+    Rcpp::traits::input_parameter< Rcpp::List >::type pts(ptsSEXP);
+    Rcpp::traits::input_parameter< bool >::type crop(cropSEXP);
+    Rcpp::traits::input_parameter< int >::type color(colorSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvmat_polygon(ptr, pts, crop, color));
+    return rcpp_result_gen;
+END_RCPP
+}
 // cvmat_destroy
 void cvmat_destroy(XPtrMat image);
 RcppExport SEXP _opencv_cvmat_destroy(SEXP imageSEXP) {
@@ -222,6 +259,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// cvmat_grayscale
+XPtrMat cvmat_grayscale(XPtrMat src);
+RcppExport SEXP _opencv_cvmat_grayscale(SEXP srcSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtrMat >::type src(srcSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvmat_grayscale(src));
+    return rcpp_result_gen;
+END_RCPP
+}
 // cvmat_blur
 XPtrMat cvmat_blur(XPtrMat ptr, size_t ksize);
 RcppExport SEXP _opencv_cvmat_blur(SEXP ptrSEXP, SEXP ksizeSEXP) {
@@ -380,6 +428,9 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_rect", (DL_FUNC) &_opencv_cvmat_rect, 5},
+    {"_opencv_cvmat_bbox", (DL_FUNC) &_opencv_cvmat_bbox, 1},
+    {"_opencv_cvpoints_bbox", (DL_FUNC) &_opencv_cvpoints_bbox, 2},
+    {"_opencv_cvmat_polygon", (DL_FUNC) &_opencv_cvmat_polygon, 4},
     {"_opencv_cvmat_destroy", (DL_FUNC) &_opencv_cvmat_destroy, 1},
     {"_opencv_cvmat_dead", (DL_FUNC) &_opencv_cvmat_dead, 1},
     {"_opencv_cvmat_size", (DL_FUNC) &_opencv_cvmat_size, 1},
@@ -398,6 +449,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_opencv_livestream", (DL_FUNC) &_opencv_livestream, 1},
     {"_opencv_data_prefix", (DL_FUNC) &_opencv_data_prefix, 0},
     {"_opencv_set_num_threads", (DL_FUNC) &_opencv_set_num_threads, 1},
+    {"_opencv_cvmat_grayscale", (DL_FUNC) &_opencv_cvmat_grayscale, 1},
     {"_opencv_cvmat_blur", (DL_FUNC) &_opencv_cvmat_blur, 2},
     {"_opencv_cvmat_sketch", (DL_FUNC) &_opencv_cvmat_sketch, 2},
     {"_opencv_cvmat_stylize", (DL_FUNC) &_opencv_cvmat_stylize, 1},

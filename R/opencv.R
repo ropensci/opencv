@@ -173,6 +173,12 @@ ocv_video <- function(filter){
 
 #' @export
 #' @rdname opencv
+ocv_grayscale <- function(image){
+  cvmat_grayscale(image)
+}
+
+#' @export
+#' @rdname opencv
 ocv_version <- function(){
   cvversion()
 }
