@@ -20,7 +20,7 @@ Rcpp::List keypoints_coords(const std::vector<cv::KeyPoint>& pts){
 
 
 // [[Rcpp::export]]
-Rcpp::List cvkeypoints_fast(XPtrMat ptr, int threshold = 0, bool nonmaxSuppression = true, int type = cv::FastFeatureDetector::TYPE_9_16){
+Rcpp::List cvkeypoints_fast(XPtrMat ptr, int threshold = 0, bool nonmaxSuppression = true, int type = 2){
   cv::Mat img;
   cv::cvtColor(get_mat(ptr), img, cv::COLOR_BGR2GRAY);
   std::vector<cv::KeyPoint> keypoints;
