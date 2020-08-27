@@ -30,7 +30,7 @@ Rcpp::List cvkeypoints_fast(XPtrMat ptr, int threshold = 0, bool nonmaxSuppressi
   return keypoints_coords(keypoints);
 #else
   // versions < 4 had CV_VERSION_EPOCH instead of CV_VERSION_MAJOR and cv::FastFeatureDetector::DetectorType did not exist (was just an integer)
-#ifdef CV_VERSION_EPOCH
+#if defined(CV_VERSION_EPOCH) || (CV_VERSION_MAJOR < 4)
   int neighbourhood;
 #else
   cv::FastFeatureDetector::DetectorType neighbourhood;
