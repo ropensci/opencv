@@ -153,7 +153,9 @@ Rcpp::List cvmat_info(XPtrMat image){
   return Rcpp::List::create(
     Rcpp::_["width"] = get_mat(image).cols,
     Rcpp::_["height"] = get_mat(image).rows,
-    Rcpp::_["channels"] = get_mat(image).channels()
+    Rcpp::_["channels"] = get_mat(image).channels(),
+    Rcpp::_["depth"] = get_mat(image).depth(),
+    Rcpp::_["type"] = get_mat(image).type()
   );
 }
 
