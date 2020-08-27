@@ -52,10 +52,6 @@ pts <- ocv_keypoints(mona, method = "FAST", type = "TYPE_9_16", threshold = 40)
 # Harris
 pts <- ocv_keypoints(mona, method = "Harris", maxCorners = 50)
 
-# Area around convex hull of Harris points
-convexhull_idx <- grDevices::chull(pts$x, pts$y)
-ocv_polygon(mona, list(x = pts$x[convexhull_idx], y = pts$y[convexhull_idx]))
-
 \dontshow{
 ocv_destroy(mona)
 }

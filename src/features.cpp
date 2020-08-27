@@ -1,12 +1,12 @@
 #include <Rcpp.h>
 #include "util.hpp"
-#include <opencv2/features2d.hpp>
+#include <opencv2/features2d/features2d.hpp>
+#ifdef HAVE_XFEATURES2D
 #include <opencv2/xfeatures2d.hpp>
+#endif
 
-using namespace cv;
-using namespace cv::xfeatures2d;
 
-Rcpp::List keypoints_coords(const std::vector<KeyPoint>& pts){
+Rcpp::List keypoints_coords(const std::vector<cv::KeyPoint>& pts){
   std::vector<int> x;
   std::vector<int> y;
   for (size_t i = 0; i < pts.size(); ++i){
@@ -24,23 +24,28 @@ Rcpp::List cvkeypoints_fast(XPtrMat ptr, int threshold = 0, bool nonmaxSuppressi
   cv::Mat img;
   cv::cvtColor(get_mat(ptr), img, cv::COLOR_BGR2GRAY);
   std::vector<cv::KeyPoint> keypoints;
+#ifndef HAVE_XFEATURES2D
+  Rcpp::Rcout << "Keypoint detection disabled as module xfeatures2d from opencv_contrib is not present." << std::endl;
+  return keypoints_coords(keypoints);
+#else
   cv::FastFeatureDetector::DetectorType neighbourhood;
   switch(type){
-    case FastFeatureDetector::TYPE_9_16:
-      neighbourhood = FastFeatureDetector::TYPE_9_16;
-      break;
-    case FastFeatureDetector::TYPE_7_12:
-      neighbourhood = FastFeatureDetector::TYPE_7_12;
-      break;
-    case FastFeatureDetector::TYPE_5_8:
-      neighbourhood = FastFeatureDetector::TYPE_5_8;
-      break;
-    default:
-      neighbourhood = FastFeatureDetector::TYPE_9_16;
-      break;
+  case cv::FastFeatureDetector::TYPE_9_16:
+    neighbourhood = cv::FastFeatureDetector::TYPE_9_16;
+    break;
+  case cv::FastFeatureDetector::TYPE_7_12:
+    neighbourhood = cv::FastFeatureDetector::TYPE_7_12;
+    break;
+  case cv::FastFeatureDetector::TYPE_5_8:
+    neighbourhood = cv::FastFeatureDetector::TYPE_5_8;
+    break;
+  default:
+    neighbourhood = cv::FastFeatureDetector::TYPE_9_16;
+  break;
   }
   cv::xfeatures2d::FASTForPointSet(img, keypoints, threshold, nonmaxSuppression, neighbourhood);
   return keypoints_coords(keypoints);
+#endif
 }
 
 
@@ -50,9 +55,14 @@ Rcpp::List cvkeypoints_harris(XPtrMat ptr,
   cv::Mat img;
   cv::cvtColor(get_mat(ptr), img, cv::COLOR_BGR2GRAY);
   std::vector<cv::KeyPoint> keypoints;
+#ifndef HAVE_XFEATURES2D
+  Rcpp::Rcout << "Keypoint detection disabled as module xfeatures2d from opencv_contrib is not present." << std::endl;
+  return keypoints_coords(keypoints);
+#else
   auto featureDetector = cv::xfeatures2d::HarrisLaplaceFeatureDetector::create(numOctaves, corn_thresh, DOG_thresh, maxCorners, num_layers);
   featureDetector->detect(img, keypoints);
   return keypoints_coords(keypoints);
+#endif
 }
 
 
