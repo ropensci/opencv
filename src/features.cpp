@@ -28,7 +28,12 @@ Rcpp::List cvkeypoints_fast(XPtrMat ptr, int threshold = 0, bool nonmaxSuppressi
   Rcpp::Rcout << "Keypoint detection disabled as module xfeatures2d from opencv_contrib is not present." << std::endl;
   return keypoints_coords(keypoints);
 #else
+  // versions < 4 had CV_VERSION_EPOCH instead of CV_VERSION_MAJOR and cv::FastFeatureDetector::DetectorType did not exist (was just an integer)
+#ifdef CV_VERSION_EPOCH
+  int neighbourhood;
+#else
   cv::FastFeatureDetector::DetectorType neighbourhood;
+#endif
   switch(type){
   case cv::FastFeatureDetector::TYPE_9_16:
     neighbourhood = cv::FastFeatureDetector::TYPE_9_16;

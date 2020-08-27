@@ -86,7 +86,7 @@ fi
 
 echo "#include $PKG_TEST_HEADER_XFEATURES2D" | ${CXX11CPP} ${CPPFLAGS} ${PKG_CFLAGS}  -xc++ - >/dev/null 2>>configure.log
 if [ $? -ne 0 ]; then
-  echo "Module ($PKG_TEST_HEADER_XFEATURES2D) has not been found on your system, disabling keypoint detection."
+  echo "Module $PKG_TEST_HEADER_XFEATURES2D has not been found on your system, disabling keypoint detection."
 else
   PKG_CFLAGS="$PKG_CFLAGS -DHAVE_XFEATURES2D"
 fi
