@@ -1,6 +1,6 @@
 VERSION = 4.0.1
 RWINLIB = ../windows/opencv-$(VERSION)
-PKG_CPPFLAGS = -I$(RWINLIB)/include/opencv4
+PKG_CPPFLAGS = -I$(RWINLIB)/include/opencv4 -DHAVE_XFEATURES2D
 TARGET = lib$(subst gcc,,$(COMPILED_BY))$(R_ARCH)
 
 PKG_LIBS = \
