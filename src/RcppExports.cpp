@@ -56,8 +56,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // cvmat_polygon
-XPtrMat cvmat_polygon(XPtrMat ptr, Rcpp::List pts, bool convex, bool crop, int color, bool chull);
-RcppExport SEXP _opencv_cvmat_polygon(SEXP ptrSEXP, SEXP ptsSEXP, SEXP convexSEXP, SEXP cropSEXP, SEXP colorSEXP, SEXP chullSEXP) {
+XPtrMat cvmat_polygon(XPtrMat ptr, Rcpp::List pts, bool convex, bool crop, int color);
+RcppExport SEXP _opencv_cvmat_polygon(SEXP ptrSEXP, SEXP ptsSEXP, SEXP convexSEXP, SEXP cropSEXP, SEXP colorSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -66,8 +66,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< bool >::type convex(convexSEXP);
     Rcpp::traits::input_parameter< bool >::type crop(cropSEXP);
     Rcpp::traits::input_parameter< int >::type color(colorSEXP);
-    Rcpp::traits::input_parameter< bool >::type chull(chullSEXP);
-    rcpp_result_gen = Rcpp::wrap(cvmat_polygon(ptr, pts, convex, crop, color, chull));
+    rcpp_result_gen = Rcpp::wrap(cvmat_polygon(ptr, pts, convex, crop, color));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -318,6 +317,27 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// enums_types
+Rcpp::List enums_types(int maximum);
+RcppExport SEXP _opencv_enums_types(SEXP maximumSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type maximum(maximumSEXP);
+    rcpp_result_gen = Rcpp::wrap(enums_types(maximum));
+    return rcpp_result_gen;
+END_RCPP
+}
+// enums_depth
+Rcpp::List enums_depth();
+RcppExport SEXP _opencv_enums_depth() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(enums_depth());
+    return rcpp_result_gen;
+END_RCPP
+}
 // cvmat_face
 XPtrMat cvmat_face(XPtrMat ptr, const char * facedata, const char * eyedata);
 RcppExport SEXP _opencv_cvmat_face(SEXP ptrSEXP, SEXP facedataSEXP, SEXP eyedataSEXP) {
@@ -444,7 +464,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_bbox", (DL_FUNC) &_opencv_cvmat_bbox, 1},
     {"_opencv_cvpoints_bbox", (DL_FUNC) &_opencv_cvpoints_bbox, 2},
     {"_opencv_cvpoints_chull", (DL_FUNC) &_opencv_cvpoints_chull, 1},
-    {"_opencv_cvmat_polygon", (DL_FUNC) &_opencv_cvmat_polygon, 6},
+    {"_opencv_cvmat_polygon", (DL_FUNC) &_opencv_cvmat_polygon, 5},
     {"_opencv_cvmat_destroy", (DL_FUNC) &_opencv_cvmat_destroy, 1},
     {"_opencv_cvmat_dead", (DL_FUNC) &_opencv_cvmat_dead, 1},
     {"_opencv_cvmat_size", (DL_FUNC) &_opencv_cvmat_size, 1},
@@ -467,6 +487,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_blur", (DL_FUNC) &_opencv_cvmat_blur, 2},
     {"_opencv_cvmat_sketch", (DL_FUNC) &_opencv_cvmat_sketch, 2},
     {"_opencv_cvmat_stylize", (DL_FUNC) &_opencv_cvmat_stylize, 1},
+    {"_opencv_enums_types", (DL_FUNC) &_opencv_enums_types, 1},
+    {"_opencv_enums_depth", (DL_FUNC) &_opencv_enums_depth, 0},
     {"_opencv_cvmat_face", (DL_FUNC) &_opencv_cvmat_face, 3},
     {"_opencv_cvmat_facemask", (DL_FUNC) &_opencv_cvmat_facemask, 2},
     {"_opencv_cvmat_mog2", (DL_FUNC) &_opencv_cvmat_mog2, 1},

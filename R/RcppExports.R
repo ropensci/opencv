@@ -17,8 +17,8 @@ cvpoints_chull <- function(pts) {
     .Call('_opencv_cvpoints_chull', PACKAGE = 'opencv', pts)
 }
 
-cvmat_polygon <- function(ptr, pts, convex = FALSE, crop = FALSE, color = 255L, chull = FALSE) {
-    .Call('_opencv_cvmat_polygon', PACKAGE = 'opencv', ptr, pts, convex, crop, color, chull)
+cvmat_polygon <- function(ptr, pts, convex = FALSE, crop = FALSE, color = 255L) {
+    .Call('_opencv_cvmat_polygon', PACKAGE = 'opencv', ptr, pts, convex, crop, color)
 }
 
 cvmat_destroy <- function(image) {
@@ -107,6 +107,14 @@ cvmat_sketch <- function(ptr, color) {
 
 cvmat_stylize <- function(ptr) {
     .Call('_opencv_cvmat_stylize', PACKAGE = 'opencv', ptr)
+}
+
+enums_types <- function(maximum = 4L) {
+    .Call('_opencv_enums_types', PACKAGE = 'opencv', maximum)
+}
+
+enums_depth <- function() {
+    .Call('_opencv_enums_depth', PACKAGE = 'opencv')
 }
 
 cvmat_face <- function(ptr, facedata, eyedata) {

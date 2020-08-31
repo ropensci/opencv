@@ -76,23 +76,15 @@ Rcpp::List cvpoints_chull(Rcpp::List pts){
 
 
 // [[Rcpp::export]]
-XPtrMat cvmat_polygon(XPtrMat ptr, Rcpp::List pts, bool convex = false, bool crop = false, int color = 255, bool chull = false){
+XPtrMat cvmat_polygon(XPtrMat ptr, Rcpp::List pts, bool convex = false, bool crop = false, int color = 255){
   auto points = as_points(pts);
   cv::Mat img = get_mat(ptr);
   cv::Mat mask = cv::Mat::zeros(img.rows, img.cols, CV_8U);
-
-  std::vector<cv::Point> points_subset;
-  if(chull){
-    std::vector<cv::Point> points_subset;
-    cv::convexHull(points, points_subset);
-  }else{
-    points_subset = points;
-  }
   if(convex){
-    cv::fillConvexPoly(mask, points_subset, cv::Scalar(255, 255, 255));
+    cv::fillConvexPoly(mask, points, cv::Scalar(255, 255, 255));
   }else{
     std::vector<std::vector<cv::Point>> polygons;
-    polygons.push_back(points_subset);
+    polygons.push_back(points);
     cv::fillPoly(mask, polygons, cv::Scalar(255, 255, 255));
   }
   cv::Mat area(img.rows, img.cols, img.type());
