@@ -1,3 +1,6 @@
+enums <- new.env()
+
+
 .onAttach <- function(libname, pkgname){
   if(is_macos()){
     if(is_iterm2()){
@@ -9,6 +12,17 @@
       packageStartupMessage("Warning: Camera might crash rstudio due to Mojave privacy protection")
     }
   }
+  enums$type <- enums_types()
+  enums$depth <- enums_depth()
+}
+
+enum_label <- function(type, id){
+  kv <- enums[[type]]
+  recoder(id, from = kv$key, to = kv$value)
+}
+enum_id <- function(type, label){
+  kv <- enums[[type]]
+  recoder(label, from = kv$value, to = kv$key)
 }
 
 .onLoad <- function(libname, pkgname){

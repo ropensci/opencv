@@ -137,7 +137,10 @@ ocv_markers <- function(image){
 #' @export
 #' @rdname opencv
 ocv_info <- function(image){
-  cvmat_info(image)
+  info <- cvmat_info(image)
+  info$type  <- enum_label("type", info$type)
+  info$depth <- enum_label("depth", info$depth)
+  info
 }
 
 #' @export
@@ -170,6 +173,7 @@ ocv_video <- function(filter){
     return(out)
   })
 }
+
 
 #' @export
 #' @rdname opencv
