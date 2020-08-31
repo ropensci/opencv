@@ -23,6 +23,7 @@
 #'             y = c(72,   68,  70,  90, 110, 398, 412, 385, 210))
 #' ocv_polygon(img, pts)
 #' ocv_polygon(img, pts, crop = TRUE)
+#' ocv_polygon(img, pts, convex = TRUE, crop = TRUE, chull = TRUE)
 #'
 #' # Bounding box based on points
 #' ocv_bbox(img, pts)
@@ -52,11 +53,13 @@ ocv_rectangle <- function(image, x = 0L, y = 0L, width, height){
 #' @export
 #' @rdname opencv-area
 #' @param pts a list of points with elements x and y
+#' @param convex are the points convex
 #' @param crop crop the resulting area to its bounding box
 #' @param color color for the non-polygon area
-ocv_polygon <- function(image, pts, crop = FALSE, color = 255){
+#' @param chull get the set of convex hull points of \code{pts} before extracting the polygon
+ocv_polygon <- function(image, pts, convex = FALSE, crop = FALSE, color = 255, chull = FALSE){
   stopifnot(is.list(pts) && all(c("x", "y") %in% names(pts)))
-  cvmat_polygon(image, pts, crop, color)
+  cvmat_polygon(image, pts, convex, crop, color, chull)
 }
 
 #' @export
@@ -69,4 +72,12 @@ ocv_bbox <- function(image, pts){
     stopifnot(is.list(pts) && all(c("x", "y") %in% names(pts)))
     cvpoints_bbox(image, pts)
   }
+}
+
+#' @export
+#' @rdname opencv-area
+#' @param pts a list of points with elements x and y
+ocv_chull <- function(pts){
+  stopifnot(is.list(pts) && all(c("x", "y") %in% names(pts)))
+  cvpoints_chull(pts)
 }

@@ -13,8 +13,12 @@ cvpoints_bbox <- function(ptr, pts) {
     .Call('_opencv_cvpoints_bbox', PACKAGE = 'opencv', ptr, pts)
 }
 
-cvmat_polygon <- function(ptr, pts, crop = FALSE, color = 255L) {
-    .Call('_opencv_cvmat_polygon', PACKAGE = 'opencv', ptr, pts, crop, color)
+cvpoints_chull <- function(pts) {
+    .Call('_opencv_cvpoints_chull', PACKAGE = 'opencv', pts)
+}
+
+cvmat_polygon <- function(ptr, pts, convex = FALSE, crop = FALSE, color = 255L, chull = FALSE) {
+    .Call('_opencv_cvmat_polygon', PACKAGE = 'opencv', ptr, pts, convex, crop, color, chull)
 }
 
 cvmat_destroy <- function(image) {

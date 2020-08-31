@@ -13,6 +13,18 @@ std::vector<cv::Point> as_points(Rcpp::List pts){
   return points;
 }
 
+Rcpp::List points_coords(const std::vector<cv::Point>& pts){
+  std::vector<int> x;
+  std::vector<int> y;
+  for (size_t i = 0; i < pts.size(); ++i){
+    x.push_back(pts[i].x);
+    y.push_back(pts[i].y);
+  }
+  Rcpp::List out = Rcpp::List::create(Rcpp::Named("x") = x,
+                                      Rcpp::Named("y") = y);
+  return out;
+}
+
 // [[Rcpp::export]]
 XPtrMat cvmat_rect(XPtrMat ptr, int x = 0, int y = 0, int width = 0, int height = 0){
   cv::Mat img = get_mat(ptr);
@@ -51,13 +63,38 @@ XPtrMat cvpoints_bbox(XPtrMat ptr, Rcpp::List pts){
   return cvmat_xptr(output);
 }
 
+// [[Rcpp::export]]
+Rcpp::List cvpoints_chull(Rcpp::List pts){
+  std::vector<cv::Point> points = as_points(pts);
+  if(points.size() == 0){
+    return points_coords(points);
+  }
+  std::vector<cv::Point> points_chull;
+  cv::convexHull(points, points_chull);
+  return points_coords(points_chull);
+}
+
 
 // [[Rcpp::export]]
-XPtrMat cvmat_polygon(XPtrMat ptr, Rcpp::List pts, bool crop = false, int color = 255){
+XPtrMat cvmat_polygon(XPtrMat ptr, Rcpp::List pts, bool convex = false, bool crop = false, int color = 255, bool chull = false){
   auto points = as_points(pts);
   cv::Mat img = get_mat(ptr);
   cv::Mat mask = cv::Mat::zeros(img.rows, img.cols, CV_8U);
-  cv::fillConvexPoly(mask, points, cv::Scalar(255));
+
+  std::vector<cv::Point> points_subset;
+  if(chull){
+    std::vector<cv::Point> points_subset;
+    cv::convexHull(points, points_subset);
+  }else{
+    points_subset = points;
+  }
+  if(convex){
+    cv::fillConvexPoly(mask, points_subset, cv::Scalar(255, 255, 255));
+  }else{
+    std::vector<std::vector<cv::Point>> polygons;
+    polygons.push_back(points_subset);
+    cv::fillPoly(mask, polygons, cv::Scalar(255, 255, 255));
+  }
   cv::Mat area(img.rows, img.cols, img.type());
   area.setTo(cv::Scalar(color, color, color));
   img.copyTo(area, mask);

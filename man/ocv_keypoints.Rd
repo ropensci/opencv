@@ -52,6 +52,9 @@ pts <- ocv_keypoints(mona, method = "FAST", type = "TYPE_9_16", threshold = 40)
 # Harris
 pts <- ocv_keypoints(mona, method = "Harris", maxCorners = 50)
 
+# Convex Hull of points
+pts <- ocv_chull(pts)
+
 \dontshow{
 ocv_destroy(mona)
 }

@@ -29,6 +29,9 @@
 #' # Harris
 #' pts <- ocv_keypoints(mona, method = "Harris", maxCorners = 50)
 #'
+#' # Convex Hull of points
+#' pts <- ocv_chull(pts)
+#'
 #' \dontshow{
 #' ocv_destroy(mona)
 #' }

@@ -5,13 +5,23 @@
 \alias{ocv_rectangle}
 \alias{ocv_polygon}
 \alias{ocv_bbox}
+\alias{ocv_chull}
 \title{OpenCV area manipulation}
 \usage{
 ocv_rectangle(image, x = 0L, y = 0L, width, height)
 
-ocv_polygon(image, pts, crop = FALSE, color = 255)
+ocv_polygon(
+  image,
+  pts,
+  convex = FALSE,
+  crop = FALSE,
+  color = 255,
+  chull = FALSE
+)
 
 ocv_bbox(image, pts)
+
+ocv_chull(pts)
 }
 \arguments{
 \item{image}{an ocv image object}
@@ -26,9 +36,13 @@ ocv_bbox(image, pts)
 
 \item{pts}{a list of points with elements x and y}
 
+\item{convex}{are the points convex}
+
 \item{crop}{crop the resulting area to its bounding box}
 
 \item{color}{color for the non-polygon area}
+
+\item{chull}{get the set of convex hull points of \code{pts} before extracting the polygon}
 }
 \description{
 Manipulate image regions
@@ -47,6 +61,7 @@ pts <- list(x = c(184, 172, 146, 114,  90,  76,  92, 163, 258),
             y = c(72,   68,  70,  90, 110, 398, 412, 385, 210))
 ocv_polygon(img, pts)
 ocv_polygon(img, pts, crop = TRUE)
+ocv_polygon(img, pts, convex = TRUE, crop = TRUE, chull = TRUE)
 
 # Bounding box based on points
 ocv_bbox(img, pts)

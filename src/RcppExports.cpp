@@ -44,17 +44,30 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// cvpoints_chull
+Rcpp::List cvpoints_chull(Rcpp::List pts);
+RcppExport SEXP _opencv_cvpoints_chull(SEXP ptsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::List >::type pts(ptsSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvpoints_chull(pts));
+    return rcpp_result_gen;
+END_RCPP
+}
 // cvmat_polygon
-XPtrMat cvmat_polygon(XPtrMat ptr, Rcpp::List pts, bool crop, int color);
-RcppExport SEXP _opencv_cvmat_polygon(SEXP ptrSEXP, SEXP ptsSEXP, SEXP cropSEXP, SEXP colorSEXP) {
+XPtrMat cvmat_polygon(XPtrMat ptr, Rcpp::List pts, bool convex, bool crop, int color, bool chull);
+RcppExport SEXP _opencv_cvmat_polygon(SEXP ptrSEXP, SEXP ptsSEXP, SEXP convexSEXP, SEXP cropSEXP, SEXP colorSEXP, SEXP chullSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< XPtrMat >::type ptr(ptrSEXP);
     Rcpp::traits::input_parameter< Rcpp::List >::type pts(ptsSEXP);
+    Rcpp::traits::input_parameter< bool >::type convex(convexSEXP);
     Rcpp::traits::input_parameter< bool >::type crop(cropSEXP);
     Rcpp::traits::input_parameter< int >::type color(colorSEXP);
-    rcpp_result_gen = Rcpp::wrap(cvmat_polygon(ptr, pts, crop, color));
+    Rcpp::traits::input_parameter< bool >::type chull(chullSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvmat_polygon(ptr, pts, convex, crop, color, chull));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -430,7 +443,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_rect", (DL_FUNC) &_opencv_cvmat_rect, 5},
     {"_opencv_cvmat_bbox", (DL_FUNC) &_opencv_cvmat_bbox, 1},
     {"_opencv_cvpoints_bbox", (DL_FUNC) &_opencv_cvpoints_bbox, 2},
-    {"_opencv_cvmat_polygon", (DL_FUNC) &_opencv_cvmat_polygon, 4},
+    {"_opencv_cvpoints_chull", (DL_FUNC) &_opencv_cvpoints_chull, 1},
+    {"_opencv_cvmat_polygon", (DL_FUNC) &_opencv_cvmat_polygon, 6},
     {"_opencv_cvmat_destroy", (DL_FUNC) &_opencv_cvmat_destroy, 1},
     {"_opencv_cvmat_dead", (DL_FUNC) &_opencv_cvmat_dead, 1},
     {"_opencv_cvmat_size", (DL_FUNC) &_opencv_cvmat_size, 1},
