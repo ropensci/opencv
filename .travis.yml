@@ -12,7 +12,16 @@ matrix:
           packages:
             - libopencv-dev
             - opencv-data
-    - dist: xenial # up-to-date 3.4 branch
+    - dist: bionic # backported 4.2 branch
+      addons:
+        apt:
+          update: true
+          sources:
+            - sourceline: 'ppa:cran/opencv-4.2'
+          packages:
+            - libopencv-dev
+            - opencv-data
+    - dist: xenial # backported 3.4 branch
       addons:
         apt:
           update: true
@@ -21,7 +30,7 @@ matrix:
           packages:
             - libopencv-dev
             - opencv-data
-    - dist: xenial # 3.2 branch (Bionic / Buster)
+    - dist: xenial # backported 3.2 branch (Bionic / Buster)
       addons:
         apt:
           update: true
