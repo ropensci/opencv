@@ -15,7 +15,6 @@ matrix:
     - dist: bionic # backported 4.2 branch
       addons:
         apt:
-          update: true
           sources:
             - sourceline: 'ppa:cran/opencv-4.2'
           packages:
