@@ -5,22 +5,7 @@ fortran: false
 pandoc: false
 
 matrix:
-  include:
-    - dist: bionic
-      addons:
-        apt:
-          packages:
-            - libopencv-dev
-            - opencv-data
-    - dist: bionic # backported 4.2 branch
-      addons:
-        apt:
-          sources:
-            - sourceline: 'ppa:cran/opencv-4.2'
-          packages:
-            - libopencv-dev
-            - opencv-data
-    - dist: xenial # backported 3.4 branch
+    - dist: xenial
       addons:
         apt:
           update: true
@@ -28,16 +13,6 @@ matrix:
             - sourceline: 'ppa:cran/opencv'
           packages:
             - libopencv-dev
-            - opencv-data
-    - dist: xenial # backported 3.2 branch (Bionic / Buster)
-      addons:
-        apt:
-          update: true
-          sources:
-            - sourceline: 'ppa:cran/opencv-3.2'
-          packages:
-            - libopencv-dev
-            - libopencv-shape-dev
             - opencv-data
     - os: osx
       brew_packages: opencv
