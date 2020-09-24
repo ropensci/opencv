@@ -1,4 +1,5 @@
 0.2
+  - Windows / MacOS: upgrade binary packages to OpenCV 4.4.0
   - Add ocv_rectangle
   - Add ocv_polygon
   - Add ocv_bbox

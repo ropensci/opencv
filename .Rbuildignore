@@ -11,3 +11,4 @@
 ^LICENSE\.md$
 ^README\.md$
 ^configure.log$
+^.github$
