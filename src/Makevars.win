@@ -1,4 +1,4 @@
-VERSION = 4.0.1
+VERSION = 4.4.0
 RWINLIB = ../windows/opencv-$(VERSION)
 PKG_CPPFLAGS = -I$(RWINLIB)/include/opencv4 -DHAVE_XFEATURES2D
 TARGET = lib$(subst gcc,,$(COMPILED_BY))$(R_ARCH)
@@ -6,7 +6,7 @@ TARGET = lib$(subst gcc,,$(COMPILED_BY))$(R_ARCH)
 PKG_LIBS = \
 	-L$(RWINLIB)/$(TARGET) \
 	-L$(RWINLIB)/lib$(R_ARCH) \
-	-lopencv_gapi -lopencv_ml -lopencv_objdetect -lopencv_photo -lopencv_stitching \
+	-lopencv_ml -lopencv_objdetect -lopencv_photo -lopencv_stitching \
 	-lopencv_video -lopencv_calib3d -lopencv_xfeatures2d -lopencv_features2d -lopencv_highgui -lopencv_flann \
 	-lopencv_videoio -lopencv_imgcodecs -lopencv_imgproc -lopencv_core -ltbb \
 	-ljpeg -lwebp -lpng -lz -ltiff \
