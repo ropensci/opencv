@@ -13,7 +13,7 @@ XPtrMat cvmat_blur(XPtrMat ptr, size_t ksize){
 XPtrMat cvmat_sketch(XPtrMat ptr, bool color){
   Mat out1;
   Mat out2;
-#if CV_VERSION_EPOCH < 3
+#ifdef HAVE_OPENCV_3
   throw std::runtime_error("pencilSketch requires OpenCV 3 or newer");
 #else
   pencilSketch(get_mat(ptr),out1, out2, 10 , 0.1f, 0.03f);
@@ -24,7 +24,7 @@ XPtrMat cvmat_sketch(XPtrMat ptr, bool color){
 // [[Rcpp::export]]
 XPtrMat cvmat_stylize(XPtrMat ptr){
   Mat out;
-#if CV_VERSION_EPOCH < 3
+#ifdef HAVE_OPENCV_3
   throw std::runtime_error("stylization requires OpenCV 3 or newer");
 #else
   stylization(get_mat(ptr), out);
