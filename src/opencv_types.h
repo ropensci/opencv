@@ -1,6 +1,14 @@
 #define R_NO_REMAP
 #define STRICT_R_HEADERS
 
+#if CV_VERSION_EPOCH >= 3 || CV_VERSION_MAJOR >= 3
+#define HAVE_OPENCV_3
+#endif
+
+#if CV_VERSION_EPOCH >= 4 || CV_VERSION_MAJOR >= 4
+#define HAVE_OPENCV_4
+#endif
+
 #include <Rcpp.h>
 #include <opencv2/opencv.hpp>
 

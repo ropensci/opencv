@@ -35,7 +35,7 @@ XPtrMat cvmat_rect(XPtrMat ptr, int x = 0, int y = 0, int width = 0, int height 
 
 // [[Rcpp::export]]
 XPtrMat cvmat_bbox(XPtrMat ptr){
-#if defined(CV_VERSION_EPOCH) && (CV_VERSION_EPOCH < 3)
+#ifndef HAVE_OPENCV_3
   Rcpp::Rcout << "ocv_bbox works only if you provide points in your version of opencv, returning original image" << std::endl;
   return ptr;
 #else
