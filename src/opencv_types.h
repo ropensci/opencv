@@ -4,11 +4,11 @@
 #include <Rcpp.h>
 #include <opencv2/opencv.hpp>
 
-#if CV_VERSION_EPOCH >= 3 || CV_VERSION_MAJOR >= 3
+#if CV_VERSION_EPOCH >= 3 || (!defined(CV_VERSION_EPOCH) && CV_VERSION_MAJOR >= 3)
 #define HAVE_OPENCV_3
 #endif
 
-#if CV_VERSION_EPOCH >= 4 || CV_VERSION_MAJOR >= 4
+#if !defined(CV_VERSION_EPOCH) && CV_VERSION_MAJOR >= 4
 #define HAVE_OPENCV_4
 #endif
 
