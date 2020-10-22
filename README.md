@@ -5,10 +5,13 @@
   such as edge, body or face detection. These can either be applied to analyze 
   static images, or to filter live video footage from a camera device.
 
+<!-- badges: start -->
 [![Build Status](https://travis-ci.org/ropensci/opencv.svg?branch=master)](https://travis-ci.org/ropensci/opencv)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropensci/opencv?branch=master&svg=true)](https://ci.appveyor.com/project/jeroen/opencv)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/opencv)](http://cran.r-project.org/package=opencv)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/opencv)](http://cran.r-project.org/web/packages/opencv/index.html)
+[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+<!-- badges: end -->
 
 
 ## Installation
