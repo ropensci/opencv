@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # Anticonf (tm) script by Jeroen Ooms (2020)
 PKG_CONFIG_NAME="opencv4"
 PKG_CONFIG_NAME_ALT="opencv"
@@ -16,17 +16,17 @@ calib3d,features2d,highgui,videoio,flann,xobjdetect,imgcodecs,objdetect,xphoto,i
 #export PKG_CONFIG_PATH="/usr/local/opt/opencv@3/lib/pkgconfig"
 
 # Use pkg-config if available
-PCVERSION=$(pkg-config --version 2>/dev/null)
+PCVERSION=`pkg-config --version 2>/dev/null`
 if [ $? -eq 0 ]; then
   echo "This is pkg-config $PCVERSION"
   if pkg-config --exists ${PKG_CONFIG_NAME} ; then
-    PKGCONFIG_CFLAGS=$(pkg-config --cflags ${PKG_CONFIG_NAME})
-    PKGCONFIG_LIBS=$(pkg-config --libs ${PKG_CONFIG_NAME})
-    PKGCONFIG_PREFIX=$(pkg-config --variable=prefix ${PKG_CONFIG_NAME})
+    PKGCONFIG_CFLAGS=`pkg-config --cflags ${PKG_CONFIG_NAME}`
+    PKGCONFIG_LIBS=`pkg-config --libs ${PKG_CONFIG_NAME}`
+    PKGCONFIG_PREFIX=`pkg-config --variable=prefix ${PKG_CONFIG_NAME}`
   elif pkg-config --exists ${PKG_CONFIG_NAME_ALT}; then
-    PKGCONFIG_CFLAGS=$(pkg-config --cflags ${PKG_CONFIG_NAME_ALT})
-    PKGCONFIG_LIBS=$(pkg-config --libs ${PKG_CONFIG_NAME_ALT})
-    PKGCONFIG_PREFIX=$(pkg-config --variable=prefix ${PKG_CONFIG_NAME_ALT})
+    PKGCONFIG_CFLAGS=`pkg-config --cflags ${PKG_CONFIG_NAME_ALT}`
+    PKGCONFIG_LIBS=`pkg-config --libs ${PKG_CONFIG_NAME_ALT}`
+    PKGCONFIG_PREFIX=`pkg-config --variable=prefix ${PKG_CONFIG_NAME_ALT}`
   fi
 fi
 
@@ -58,13 +58,13 @@ echo "Using PKG_CFLAGS=$PKG_CFLAGS"
 echo "Using PKG_LIBS=$PKG_LIBS"
 
 # OpenCV 4 enforces C++11 in the headers
-CPPFLAGS=$(${R_HOME}/bin/R CMD config CPPFLAGS)
-CXX11STD=$(${R_HOME}/bin/R CMD config CXX11STD)
+CPPFLAGS=`${R_HOME}/bin/R CMD config CPPFLAGS`
+CXX11STD=`${R_HOME}/bin/R CMD config CXX11STD`
 if [ $? -eq 0 ]; then
-CXX11=$(${R_HOME}/bin/R CMD config CXX11)
+CXX11=`${R_HOME}/bin/R CMD config CXX11`
 CXX11CPP="$CXX11 -E $CXX11STD"
 else
-CXX11CPP=$(${R_HOME}/bin/R CMD config CXXCPP)
+CXX11CPP=`${R_HOME}/bin/R CMD config CXXCPP`
 fi
 
 # Test configuration
