@@ -38,19 +38,16 @@ if [ "$PKGCONFIG_CFLAGS" ] || [ "$PKGCONFIG_LIBS" ]; then
   if [ "$PKGCONFIG_PREFIX" ]; then
     PKG_CFLAGS="$PKG_CFLAGS -D_DATA_PREFIX=${PKGCONFIG_PREFIX}"
   fi
-else
-  case "$OSTYPE" in "darwin"*)
+elif [ `uname` = "Darwin" ]; then
   brew --version 2>/dev/null
   if [ $? -eq 0 ]; then
     BREWDIR=`brew --prefix`
-    PKG_CFLAGS="-I$BREWDIR/opt/$PKG_BREW_NAME/include"
-    PKG_LIBS="-L$BREWDIR/opt/$PKG_BREW_NAME/lib $PKG_LIBS"
+    PKG_CFLAGS="-I$BREWDIR/opt/opencv/include"
+    PKG_LIBS="-L$BREWDIR/opt/opencv/lib $PKG_LIBS"
   else
     curl -sfL "https://autobrew.github.io/scripts/opencv" > autobrew
-    source autobrew
+    . ./autobrew
   fi
-  ;;
-  esac
 fi
 
 # For debugging
