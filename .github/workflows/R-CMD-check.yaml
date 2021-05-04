@@ -51,12 +51,8 @@ jobs:
           restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
 
       - name: Install system dependencies
-        if: runner.os == 'Linux'
-        run: |
-          while read -r cmd
-          do
-            eval sudo $cmd
-          done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "20.04"))')
+        if: runner.os != 'Windows'
+        run: if [ "$RUNNER_OS" == "Linux" ]; then sudo apt-get install -y libopencv-dev; else brew install opencv; fi
 
       - name: Install dependencies
         run: |
