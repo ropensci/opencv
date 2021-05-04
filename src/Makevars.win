@@ -5,7 +5,7 @@ TARGET = lib$(subst gcc,,$(COMPILED_BY))$(R_ARCH)
 
 PKG_LIBS = \
 	-L$(RWINLIB)/$(TARGET) \
-	-L$(RWINLIB)/lib$(R_ARCH) \
+	-L$(RWINLIB)/lib$(R_ARCH)$(CRT) \
 	-lopencv_ml -lopencv_objdetect -lopencv_photo -lopencv_stitching \
 	-lopencv_video -lopencv_calib3d -lopencv_xfeatures2d -lopencv_features2d -lopencv_highgui -lopencv_flann \
 	-lopencv_videoio -lopencv_imgcodecs -lopencv_imgproc -lopencv_core -ltbb \
