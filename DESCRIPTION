@@ -17,7 +17,6 @@ BugReports: https://github.com/ropensci/opencv/issues
 LinkingTo: Rcpp
 Imports: Rcpp, magrittr
 Suggests: grDevices
-LazyData: true
 Encoding: UTF-8
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
