@@ -39,7 +39,7 @@ if [ "$PKGCONFIG_CFLAGS" ] || [ "$PKGCONFIG_LIBS" ]; then
     PKG_CFLAGS="$PKG_CFLAGS -D_DATA_PREFIX=${PKGCONFIG_PREFIX}"
   fi
 elif [ `uname` = "Darwin" ]; then
-  brew --version 2>/dev/null
+  test ! "$CI" && brew --version 2>/dev/null
   if [ $? -eq 0 ]; then
     BREWDIR=`brew --prefix`
     PKG_CFLAGS="-I$BREWDIR/opt/opencv/include"
@@ -70,7 +70,6 @@ if [ $? -ne 0 ]; then
   echo "-----------------------------[ ANTICONF ]-------------------------------"
   echo "Configuration failed to find $PKG_CONFIG_NAME library. Try installing:"
   echo " * deb: $PKG_DEB_NAME (Debian, Ubuntu, etc)"
-  echo "   -> for Ubuntu Xenial use: ppa:cran/opencv"
   echo " * rpm: $PKG_RPM_NAME (Fedora, CentOS, RHEL)"
   echo " * brew: $PKG_BREW_NAME (Mac OSX)"
   echo "If $PKG_CONFIG_NAME is already installed, check that 'pkg-config' is in your"

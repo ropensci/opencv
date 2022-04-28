@@ -1,3 +1,6 @@
+0.2.2
+  - MacOS: update binaries to opencv 4.5.5
+
 0.2
   - Windows / MacOS: upgrade binary packages to OpenCV 4.4.0
   - Add ocv_rectangle
