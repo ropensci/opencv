@@ -1,3 +1,6 @@
+0.2.3
+  - Compile with CXX17 when available to fix compiler warnings
+
 0.2.2
   - MacOS: update binaries to opencv 4.5.5
 

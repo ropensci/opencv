@@ -54,18 +54,26 @@ fi
 echo "Using PKG_CFLAGS=$PKG_CFLAGS"
 echo "Using PKG_LIBS=$PKG_LIBS"
 
-# OpenCV 4 enforces C++11 in the headers
-CPPFLAGS=`${R_HOME}/bin/R CMD config CPPFLAGS`
-CXX11STD=`${R_HOME}/bin/R CMD config CXX11STD`
-if [ $? -eq 0 ]; then
-CXX11=`${R_HOME}/bin/R CMD config CXX11`
-CXX11CPP="$CXX11 -E $CXX11STD"
+# Use CXX17 if available (preferred for recent opencv)
+CXX17=`${R_HOME}/bin/R CMD config CXX17` || unset CXX17
+
+if [ "$CXX17" ]; then
+echo "Found C++17 compiler: $CXX17"
+CXXVER=CXX17
 else
-CXX11CPP=`${R_HOME}/bin/R CMD config CXXCPP`
+echo "Using C++11 compiler"
+CXXVER=CXX11
 fi
 
+CXX=$($R_HOME/bin/R CMD config ${CXXVER})
+CXXSTD=$($R_HOME/bin/R CMD config ${CXXVER}STD)
+CXXFLAGS="$($R_HOME/bin/R CMD config ${CXXVER}FLAGS)"
+CPPFLAGS="$($R_HOME/bin/R CMD config CPPFLAGS)"
+CXXCPP="$CXX $CXXSTD -E"
+
 # Test configuration
-echo "#include $PKG_TEST_HEADER" | ${CXX11CPP} ${CPPFLAGS} ${PKG_CFLAGS} -xc++ - >/dev/null 2>configure.log
+echo "#include $PKG_TEST_HEADER" | ${CXXCPP} ${CPPFLAGS} ${PKG_CFLAGS} ${CXXFLAGS} -xc++ - >/dev/null 2>configure.log
+
 if [ $? -ne 0 ]; then
   echo "-----------------------------[ ANTICONF ]-------------------------------"
   echo "Configuration failed to find $PKG_CONFIG_NAME library. Try installing:"
@@ -80,16 +88,15 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-echo "#include $PKG_TEST_HEADER_XFEATURES2D" | ${CXX11CPP} ${CPPFLAGS} ${PKG_CFLAGS}  -xc++ - >/dev/null 2>>configure.log
+echo "#include $PKG_TEST_HEADER_XFEATURES2D" | ${CXXCPP} ${CPPFLAGS} ${PKG_CFLAGS}  ${CXXFLAGS} -xc++ - >/dev/null 2>>configure.log
 if [ $? -ne 0 ]; then
   echo "Module $PKG_TEST_HEADER_XFEATURES2D has not been found on your system, disabling keypoint detection."
 else
   PKG_CFLAGS="$PKG_CFLAGS -DHAVE_XFEATURES2D"
 fi
 
-
 # Write to Makevars
-sed -e "s|@cflags@|$PKG_CFLAGS|" -e "s|@libs@|$PKG_LIBS|" src/Makevars.in > src/Makevars
+sed -e "s|@cflags@|$PKG_CFLAGS|" -e "s|@libs@|$PKG_LIBS|" -e "s|CXX11|${CXXVER}|" src/Makevars.in > src/Makevars
 
 # Success
 exit 0
