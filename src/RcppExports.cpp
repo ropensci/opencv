@@ -453,14 +453,25 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// cvmat_qrcode
-Rcpp::RObject cvmat_qrcode(XPtrMat ptr);
-RcppExport SEXP _opencv_cvmat_qrcode(SEXP ptrSEXP) {
+// cvmat_qrtext
+Rcpp::RObject cvmat_qrtext(XPtrMat ptr);
+RcppExport SEXP _opencv_cvmat_qrtext(SEXP ptrSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< XPtrMat >::type ptr(ptrSEXP);
-    rcpp_result_gen = Rcpp::wrap(cvmat_qrcode(ptr));
+    rcpp_result_gen = Rcpp::wrap(cvmat_qrtext(ptr));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cvmat_qrmask
+XPtrMat cvmat_qrmask(XPtrMat ptr);
+RcppExport SEXP _opencv_cvmat_qrmask(SEXP ptrSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtrMat >::type ptr(ptrSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvmat_qrmask(ptr));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -514,7 +525,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvkeypoints_harris", (DL_FUNC) &_opencv_cvkeypoints_harris, 6},
     {"_opencv_cvmat_hog", (DL_FUNC) &_opencv_cvmat_hog, 1},
     {"_opencv_cvmat_markers", (DL_FUNC) &_opencv_cvmat_markers, 1},
-    {"_opencv_cvmat_qrcode", (DL_FUNC) &_opencv_cvmat_qrcode, 1},
+    {"_opencv_cvmat_qrtext", (DL_FUNC) &_opencv_cvmat_qrtext, 1},
+    {"_opencv_cvmat_qrmask", (DL_FUNC) &_opencv_cvmat_qrmask, 1},
     {"_opencv_cvversion", (DL_FUNC) &_opencv_cvversion, 0},
     {NULL, NULL, 0}
 };
