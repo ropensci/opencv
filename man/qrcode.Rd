@@ -9,6 +9,9 @@ ocv_qrtext(image)
 
 ocv_qrmask(image)
 }
+\arguments{
+\item{image}{an ocv image object}
+}
 \description{
 Detect a QR code
 }

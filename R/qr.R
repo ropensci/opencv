@@ -3,6 +3,7 @@
 #' Detect a QR code
 #'
 #' @export
+#' @inheritParams ocv_write
 #' @rdname qrcode
 ocv_qrtext <- function(image){
   cvmat_qrtext(image)
