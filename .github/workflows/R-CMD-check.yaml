@@ -31,6 +31,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - if: matrix.config.os == 'ubuntu-18.04'
+        run: sudo add-apt-repository ppa:cran/opencv-3.4
+
       - if: runner.os == 'linux'
         run: sudo apt-get install libopencv-dev
 
