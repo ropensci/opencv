@@ -454,7 +454,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // cvmat_qrcode
-Rcpp::CharacterVector cvmat_qrcode(XPtrMat ptr);
+Rcpp::RObject cvmat_qrcode(XPtrMat ptr);
 RcppExport SEXP _opencv_cvmat_qrcode(SEXP ptrSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
