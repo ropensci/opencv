@@ -13,8 +13,3 @@ ocv_facemask <- function(image){
   cvmat_facemask(image, facedata)
 }
 
-#' @export
-#' @rdname opencv
-ocv_qrcode <- function(image){
-  cvmat_qrcode(image)
-}
