@@ -17,5 +17,5 @@ LinkingTo: Rcpp
 Imports: Rcpp, magrittr
 Suggests: grDevices
 Encoding: UTF-8
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)

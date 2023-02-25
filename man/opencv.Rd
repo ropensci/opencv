@@ -3,6 +3,7 @@
 \name{ocv_face}
 \alias{ocv_face}
 \alias{ocv_facemask}
+\alias{ocv_qrcode}
 \alias{ocv_read}
 \alias{ocv_write}
 \alias{ocv_destroy}
@@ -28,6 +29,8 @@
 ocv_face(image)
 
 ocv_facemask(image)
+
+ocv_qrcode(image)
 
 ocv_read(path)
 

@@ -153,6 +153,10 @@ cvmat_markers <- function(ptr) {
     .Call('_opencv_cvmat_markers', PACKAGE = 'opencv', ptr)
 }
 
+cvmat_qrcode <- function(ptr) {
+    .Call('_opencv_cvmat_qrcode', PACKAGE = 'opencv', ptr)
+}
+
 cvversion <- function() {
     .Call('_opencv_cvversion', PACKAGE = 'opencv')
 }
