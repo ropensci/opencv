@@ -2,16 +2,6 @@ enums <- new.env()
 
 
 .onAttach <- function(libname, pkgname){
-  if(is_macos()){
-    if(is_iterm2()){
-      version <- Sys.getenv('TERM_PROGRAM_VERSION', NA)
-      if(!is.na(version) && as.numeric_version(version) < '3.2.8'){
-        packageStartupMessage("Your iTerm2 is outdated which may crash R. Upgrade ASAP")
-      }
-    } else if(is_rstudio() && is_mojave()){
-      packageStartupMessage("Warning: Camera might crash rstudio due to Mojave privacy protection")
-    }
-  }
   enums$type <- enums_types()
   enums$depth <- enums_depth()
 }
