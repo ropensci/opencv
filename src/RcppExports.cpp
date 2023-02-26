@@ -246,13 +246,15 @@ BEGIN_RCPP
 END_RCPP
 }
 // livestream
-void livestream(Rcpp::Function filter);
-RcppExport SEXP _opencv_livestream(SEXP filterSEXP) {
+Rcpp::RObject livestream(Rcpp::Function filter, bool stop_on_result);
+RcppExport SEXP _opencv_livestream(SEXP filterSEXP, SEXP stop_on_resultSEXP) {
 BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< Rcpp::Function >::type filter(filterSEXP);
-    livestream(filter);
-    return R_NilValue;
+    Rcpp::traits::input_parameter< bool >::type stop_on_result(stop_on_resultSEXP);
+    rcpp_result_gen = Rcpp::wrap(livestream(filter, stop_on_result));
+    return rcpp_result_gen;
 END_RCPP
 }
 // data_prefix
@@ -507,7 +509,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvmat_copyto", (DL_FUNC) &_opencv_cvmat_copyto, 3},
     {"_opencv_cvmat_info", (DL_FUNC) &_opencv_cvmat_info, 1},
     {"_opencv_cvmat_display", (DL_FUNC) &_opencv_cvmat_display, 1},
-    {"_opencv_livestream", (DL_FUNC) &_opencv_livestream, 1},
+    {"_opencv_livestream", (DL_FUNC) &_opencv_livestream, 2},
     {"_opencv_data_prefix", (DL_FUNC) &_opencv_data_prefix, 0},
     {"_opencv_set_num_threads", (DL_FUNC) &_opencv_set_num_threads, 1},
     {"_opencv_cvmat_grayscale", (DL_FUNC) &_opencv_cvmat_grayscale, 1},

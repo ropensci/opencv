@@ -18,3 +18,15 @@ ocv_qrtext <- function(image){
 ocv_qrmask <- function(image){
   cvmat_qrmask(image)
 }
+
+#' @export
+#' @rdname qrcode
+qr_scanner <- function(){
+  ocv_video(function(im){
+    out <- ocv_qrmask(im)
+    value <- attr(out, 'value')
+    if(length(value)){
+      list(out = out, value = value)
+    }
+  }, stop_on_result = TRUE)
+}

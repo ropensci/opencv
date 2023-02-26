@@ -160,20 +160,12 @@ ocv_display <- function(image){
 #' @export
 #' @rdname opencv
 #' @param filter an R function that takes and returns an opecv image
-ocv_video <- function(filter){
+ocv_video <- function(filter, stop_on_result = FALSE){
   if(!is.function(filter))
     stop("Filter must be a function")
   message("Starting video window (could be behind this window)")
-  livestream(function(image){
-    if(!inherits(image, 'opencv-image'))
-      stop("Image must be opencv-image")
-    out <- filter(image)
-    if(!inherits(out, 'opencv-image'))
-      stop("Output must be opencv-image")
-    return(out)
-  })
+  livestream(filter, stop_on_result)
 }
-
 
 #' @export
 #' @rdname opencv

@@ -3,11 +3,14 @@
 \name{ocv_qrtext}
 \alias{ocv_qrtext}
 \alias{ocv_qrmask}
+\alias{qr_scanner}
 \title{Detect QR codes}
 \usage{
 ocv_qrtext(image)
 
 ocv_qrmask(image)
+
+qr_scanner()
 }
 \arguments{
 \item{image}{an ocv image object}

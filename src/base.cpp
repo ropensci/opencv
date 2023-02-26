@@ -175,25 +175,46 @@ void cvmat_display(XPtrMat ptr){
 }
 
 // [[Rcpp::export]]
-void livestream(Rcpp::Function filter){
+Rcpp::RObject livestream(Rcpp::Function filter, bool stop_on_result = false){
   VideoCapture cap(0);
   if(!cap.isOpened())
     throw std::runtime_error("Failed to open Camera");
   Mat image;
   namedWindow("mywindow", 1);
+  Rcpp::RObject out = R_NilValue;
   try {
     for(int i = 0;;i++) {
       cap >> image;
-      XPtrMat out(filter(cvmat_xptr(image)));
-      imshow("mywindow", get_mat(out));
+      Rcpp::RObject val = filter(cvmat_xptr(image));
+      if(stop_on_result){
+        if(val != R_NilValue){
+          out = val;
+          break;
+        }
+        imshow("mywindow", image);
+      } else {
+        if(val.inherits("opencv-image")){
+          imshow("mywindow", get_mat(XPtrMat(val)));
+        } else {
+          REprintf("\rFilter function did not return opencv-image object. Showing input image. (%d)", i);
+          imshow("mywindow", image);
+        }
+      }
       if(waitKey(30) >= 0 || cv::getWindowProperty("mywindow", 0) < 0)
         break;
       Rcpp::checkUserInterrupt();
     }
-  } catch(Rcpp::internal::InterruptedException e) { }
-  cap.release();
-  cv::destroyWindow("mywindow");
-  cv::waitKey(1);
+  } catch(Rcpp::internal::InterruptedException e) {
+    cap.release();
+    cv::destroyWindow("mywindow");
+    cv::waitKey(1);
+  } catch(std::exception e) {
+    cap.release();
+    cv::destroyWindow("mywindow");
+    cv::waitKey(1);
+    throw e;
+  }
+  return out;
 }
 
 // [[Rcpp::export]]

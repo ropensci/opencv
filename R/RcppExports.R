@@ -81,8 +81,8 @@ cvmat_display <- function(ptr) {
     invisible(.Call('_opencv_cvmat_display', PACKAGE = 'opencv', ptr))
 }
 
-livestream <- function(filter) {
-    invisible(.Call('_opencv_livestream', PACKAGE = 'opencv', filter))
+livestream <- function(filter, stop_on_result = FALSE) {
+    .Call('_opencv_livestream', PACKAGE = 'opencv', filter, stop_on_result)
 }
 
 data_prefix <- function() {

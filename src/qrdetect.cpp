@@ -29,7 +29,7 @@ XPtrMat cvmat_qrmask(XPtrMat ptr){
                 1.0,
                 CV_RGB(118, 185, 0), //font color
                 2);
-
+    ptr.attr("value") = Rcpp::CharacterVector::create(data);
   }
   return ptr;
 }
