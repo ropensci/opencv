@@ -63,7 +63,7 @@ ocv_copyto(image, target, mask)
 
 ocv_display(image)
 
-ocv_video(filter)
+ocv_video(filter, stop_on_result = FALSE)
 
 ocv_grayscale(image)
 
