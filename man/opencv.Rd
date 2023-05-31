@@ -87,6 +87,8 @@ ocv_version()
 \item{mask}{only copy pixels from the mask}
 
 \item{filter}{an R function that takes and returns an opecv image}
+
+\item{stop_on_result}{stop if an object is detected}
 }
 \description{
 Tools to experiment with computer vision algorithms. Use \link{ocv_read} and

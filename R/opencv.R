@@ -160,6 +160,7 @@ ocv_display <- function(image){
 #' @export
 #' @rdname opencv
 #' @param filter an R function that takes and returns an opecv image
+#' @param stop_on_result stop if an object is detected
 ocv_video <- function(filter, stop_on_result = FALSE){
   if(!is.function(filter))
     stop("Filter must be a function")
