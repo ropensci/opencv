@@ -1,14 +1,14 @@
-VERSION = 4.4.0
+VERSION = 4.7.0
 RWINLIB = ../windows/opencv-$(VERSION)
 PKG_CPPFLAGS = -I$(RWINLIB)/include/opencv4 -DHAVE_XFEATURES2D
 TARGET = lib$(subst gcc,,$(COMPILED_BY))$(R_ARCH)
 
 PKG_LIBS = \
 	-L$(RWINLIB)/$(TARGET) \
-	-L$(RWINLIB)/lib$(R_ARCH)$(CRT) \
-	-lopencv_ml -lopencv_objdetect -lopencv_photo -lopencv_stitching \
-	-lopencv_video -lopencv_calib3d -lopencv_xfeatures2d -lopencv_features2d -lopencv_highgui -lopencv_flann \
-	-lopencv_videoio -lopencv_imgcodecs -lopencv_imgproc -lopencv_core -ltbb \
+	-L$(RWINLIB)/lib$(R_ARCH) \
+	-lopencv_ml470 -lopencv_objdetect470 -lopencv_photo470 -lopencv_stitching470 \
+	-lopencv_video470 -lopencv_calib3d470 -lopencv_xfeatures2d470 -lopencv_features2d470 -lopencv_highgui470 -lopencv_flann470 \
+	-lopencv_videoio470 -lopencv_imgcodecs470 -lopencv_imgproc470 -lopencv_core470 -llibopenjp2 -lquirc -ltbb \
 	-ljpeg -lwebp -lpng -lz -ltiff \
 	-lcomctl32 -lgdi32 -lole32 -lsetupapi -lws2_32 -lavifil32 -lavicap32 -lwinmm -lmsvfw32 \
 	-lopengl32 -lglu32 -lcomdlg32 -lOleAut32 -luuid
