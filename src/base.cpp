@@ -208,7 +208,7 @@ Rcpp::RObject livestream(Rcpp::Function filter, bool stop_on_result = false){
     cap.release();
     cv::destroyWindow("mywindow");
     cv::waitKey(1);
-  } catch(std::exception e) {
+  } catch(std::exception& e) {
     cap.release();
     cv::destroyWindow("mywindow");
     cv::waitKey(1);
