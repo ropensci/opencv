@@ -11,11 +11,13 @@ Description: Exposes some of the available 'OpenCV' <https://opencv.org/> algori
     static images, or to filter live video footage from a camera device.
 License: MIT + file LICENSE
 SystemRequirements: OpenCV 3 or newer: libopencv-dev (Debian, Ubuntu) or opencv-devel (Fedora)
-URL: https://docs.ropensci.org/opencv/ https://github.com/ropensci/opencv 
+URL: https://ropensci.r-universe.dev/opencv 
 BugReports: https://github.com/ropensci/opencv/issues
 LinkingTo: Rcpp
 Imports: Rcpp, magrittr
-Suggests: grDevices
+Suggests: 
+    grDevices,
+    qrcode
 Encoding: UTF-8
 RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)

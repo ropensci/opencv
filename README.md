@@ -31,13 +31,6 @@ On Ubuntu or Fedora you need [`libopencv-dev`](https://packages.debian.org/testi
 sudo apt-get install libopencv-dev
 ```
 
-For Ubuntu 16.04 (Xenial) and Ubuntu 18.04 (Bionic) we provide [a PPA](https://launchpad.net/~cran/+archive/ubuntu/opencv) with more recent versions of OpenCV:
-
-```sh
-sudo add-apt-repository ppa:cran/opencv
-sudo apt-get install libopencv-dev
-```
-
 And then install the R bindings:
 
 ```r
