@@ -5,6 +5,12 @@
 #' @export
 #' @inheritParams ocv_write
 #' @rdname qrcode
+#' @examples
+#' png("test.png")
+#' plot(qrcode::qr_code("This is a test"))
+#' dev.off()
+#' ocv_qrtext(ocv_read('test.png'))
+#' unlink("test.png")
 ocv_qrtext <- function(image){
   cvmat_qrtext(image)
 }

@@ -19,6 +19,11 @@ qr_scanner()
 Detect a QR code
 }
 \examples{
+png("test.png")
+plot(qrcode::qr_code("This is a test"))
+dev.off()
+ocv_qrtext(ocv_read('test.png'))
+unlink("test.png")
 \dontrun{
 # QR code scanner
 ocv_camera(ocv_qrmask)
