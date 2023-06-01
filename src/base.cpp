@@ -164,7 +164,7 @@ void cvmat_display(XPtrMat ptr){
   namedWindow("mywindow", 1);
   imshow("mywindow", get_mat(ptr));
   try {
-    for(int i = 0;;i++) {
+    while(true) {
       if(waitKey(30) >= 0 || cv::getWindowProperty("mywindow", 0) < 0)
         break;
       Rcpp::checkUserInterrupt();
