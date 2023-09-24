@@ -1,19 +1,16 @@
-VERSION = 4.7.0
-RWINLIB = ../windows/opencv-$(VERSION)
+RWINLIB = ../windows/opencv
 PKG_CPPFLAGS = -I$(RWINLIB)/include/opencv4 -DHAVE_XFEATURES2D
-TARGET = lib$(subst gcc,,$(COMPILED_BY))$(R_ARCH)
+OLDLIBDIR = lib${subst gcc,,${COMPILED_BY}}${R_ARCH}
 
 PKG_LIBS = \
-	-L$(RWINLIB)/$(TARGET) \
-	-L$(RWINLIB)/lib$(R_ARCH) \
-	-lopencv_ml470 -lopencv_objdetect470 -lopencv_photo470 -lopencv_stitching470 \
-	-lopencv_video470 -lopencv_calib3d470 -lopencv_xfeatures2d470 -lopencv_features2d470 -lopencv_highgui470 -lopencv_flann470 \
-	-lopencv_videoio470 -lopencv_imgcodecs470 -lopencv_imgproc470 -lopencv_core470 -llibopenjp2 -lquirc -ltbb \
-	-ljpeg -lwebp -lpng -lz -ltiff \
+	-L$(RWINLIB)/$(OLDLIBDIR) \
+	-L$(RWINLIB)/lib \
+	-lopencv_ml480 -lopencv_objdetect480 -lopencv_photo480 -lopencv_stitching480 \
+	-lopencv_video480 -lopencv_calib3d480 -lopencv_xfeatures2d480 -lopencv_features2d480 -lopencv_highgui480 -lopencv_flann480 \
+	-lopencv_videoio480 -lopencv_imgcodecs480 -lopencv_imgproc480 -lopencv_core480 -llibopenjp2 -lquirc \
+	-ljpeg -lwebp -lsharpyuv -lpng -lz -ltiff \
 	-lcomctl32 -lgdi32 -lole32 -lsetupapi -lws2_32 -lavifil32 -lavicap32 -lwinmm -lmsvfw32 \
 	-lopengl32 -lglu32 -lcomdlg32 -lOleAut32 -luuid
-
-CXX_STD=CXX11
 
 all: clean winlibs
 
