@@ -9,7 +9,7 @@ PKG_LIBS = \
 	-lopencv_video480 -lopencv_calib3d480 -lopencv_xfeatures2d480 -lopencv_features2d480 -lopencv_highgui480 -lopencv_flann480 \
 	-lopencv_videoio480 -lopencv_imgcodecs480 -lopencv_imgproc480 -lopencv_core480 -llibopenjp2 -lquirc \
 	-ljpeg -lwebp -lsharpyuv -lpng -lz -ltiff \
-	-lcomctl32 -lgdi32 -lole32 -lsetupapi -lws2_32 -lavifil32 -lavicap32 -lwinmm -lmsvfw32 \
+	-lcomctl32 -lgdi32 -lole32 -lsetupapi -lws2_32 -lwinmm \
 	-lopengl32 -lglu32 -lcomdlg32 -lOleAut32 -luuid
 
 all: clean winlibs
