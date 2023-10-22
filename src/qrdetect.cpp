@@ -1,5 +1,18 @@
 #include "util.hpp"
+#include <opencv2/wechat_qrcode.hpp>
+
 using namespace cv;
+
+// [[Rcpp::export]]
+Rcpp::RObject cvmat_wechatqr(XPtrMat ptr){
+  wechat_qrcode::WeChatQRCode qrDet = wechat_qrcode::WeChatQRCode();
+  std::vector<std::string> data = qrDet.detectAndDecode(get_mat(ptr));
+  Rcpp::CharacterVector res;
+  for(int i = 0; i < data.size(); i++){
+    res.push_back(data.at(i));
+  }
+  return res;
+}
 
 // [[Rcpp::export]]
 Rcpp::RObject cvmat_qrtext(XPtrMat ptr){

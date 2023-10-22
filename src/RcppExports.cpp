@@ -455,6 +455,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// cvmat_wechatqr
+Rcpp::RObject cvmat_wechatqr(XPtrMat ptr);
+RcppExport SEXP _opencv_cvmat_wechatqr(SEXP ptrSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtrMat >::type ptr(ptrSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvmat_wechatqr(ptr));
+    return rcpp_result_gen;
+END_RCPP
+}
 // cvmat_qrtext
 Rcpp::RObject cvmat_qrtext(XPtrMat ptr);
 RcppExport SEXP _opencv_cvmat_qrtext(SEXP ptrSEXP) {
@@ -527,6 +538,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvkeypoints_harris", (DL_FUNC) &_opencv_cvkeypoints_harris, 6},
     {"_opencv_cvmat_hog", (DL_FUNC) &_opencv_cvmat_hog, 1},
     {"_opencv_cvmat_markers", (DL_FUNC) &_opencv_cvmat_markers, 1},
+    {"_opencv_cvmat_wechatqr", (DL_FUNC) &_opencv_cvmat_wechatqr, 1},
     {"_opencv_cvmat_qrtext", (DL_FUNC) &_opencv_cvmat_qrtext, 1},
     {"_opencv_cvmat_qrmask", (DL_FUNC) &_opencv_cvmat_qrmask, 1},
     {"_opencv_cvversion", (DL_FUNC) &_opencv_cvversion, 0},

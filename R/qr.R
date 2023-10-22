@@ -16,6 +16,13 @@ ocv_qrtext <- function(image){
 }
 
 #' @export
+#' @inheritParams ocv_write
+#' @rdname qrcode
+ocv_qrwechat <- function(image){
+  cvmat_wechatqr(image)
+}
+
+#' @export
 #' @rdname qrcode
 #' @examples \dontrun{
 #' # QR code scanner
