@@ -3,25 +3,23 @@
 
 using namespace cv;
 
-// [[Rcpp::export]]
-Rcpp::RObject cvmat_wechatqr(XPtrMat ptr){
+std::string qr_scan_opencv(XPtrMat ptr){
+  static QRCodeDetector qrDet = QRCodeDetector();
+  return qrDet.detectAndDecode(get_mat(ptr));
+}
+
+std::string qr_scan_wechat(XPtrMat ptr){
   static wechat_qrcode::WeChatQRCode qrDet = wechat_qrcode::WeChatQRCode();
   std::vector<std::string> data = qrDet.detectAndDecode(get_mat(ptr));
-  if(data.size() > 0){
-    Rcpp::CharacterVector res;
-    for(int i = 0; i < data.size(); i++){
-      res.push_back(data.at(i));
-    }
-    return res;
-  }
-  return R_NilValue;
+  if(data.size() > 0)
+    return data.at(0);
+  return std::string();
 }
 
 // [[Rcpp::export]]
-Rcpp::RObject cvmat_qrtext(XPtrMat ptr){
-  static QRCodeDetector qrDet = QRCodeDetector();
-  std::string data = qrDet.detectAndDecode(get_mat(ptr));
-  if(data.length()>0){
+Rcpp::RObject cvmat_qrtext(XPtrMat ptr, bool use_wechat = true){
+  std::string data = use_wechat ? qr_scan_wechat(ptr) : qr_scan_opencv(ptr);
+  if(data.length()){
     return Rcpp::CharacterVector::create(data);
   }
   return R_NilValue;

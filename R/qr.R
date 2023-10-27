@@ -12,14 +12,8 @@
 #' ocv_qrtext(ocv_read('test.png'))
 #' unlink("test.png")
 ocv_qrtext <- function(image){
-  cvmat_qrtext(image)
-}
-
-#' @export
-#' @inheritParams ocv_write
-#' @rdname qrcode
-ocv_qrwechat <- function(image){
-  cvmat_wechatqr(image)
+  use_wechat <- TRUE
+  cvmat_qrtext(image, use_wechat)
 }
 
 #' @export

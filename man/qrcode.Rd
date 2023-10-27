@@ -2,14 +2,11 @@
 % Please edit documentation in R/qr.R
 \name{ocv_qrtext}
 \alias{ocv_qrtext}
-\alias{ocv_qrwechat}
 \alias{ocv_qrmask}
 \alias{qr_scanner}
 \title{Detect QR codes}
 \usage{
 ocv_qrtext(image)
-
-ocv_qrwechat(image)
 
 ocv_qrmask(image)
 
