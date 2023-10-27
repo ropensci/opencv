@@ -5,7 +5,7 @@ using namespace cv;
 
 // [[Rcpp::export]]
 Rcpp::RObject cvmat_wechatqr(XPtrMat ptr){
-  wechat_qrcode::WeChatQRCode qrDet = wechat_qrcode::WeChatQRCode();
+  static wechat_qrcode::WeChatQRCode qrDet = wechat_qrcode::WeChatQRCode();
   std::vector<std::string> data = qrDet.detectAndDecode(get_mat(ptr));
   if(data.size() > 0){
     Rcpp::CharacterVector res;
@@ -19,7 +19,7 @@ Rcpp::RObject cvmat_wechatqr(XPtrMat ptr){
 
 // [[Rcpp::export]]
 Rcpp::RObject cvmat_qrtext(XPtrMat ptr){
-  QRCodeDetector qrDet = QRCodeDetector();
+  static QRCodeDetector qrDet = QRCodeDetector();
   std::string data = qrDet.detectAndDecode(get_mat(ptr));
   if(data.length()>0){
     return Rcpp::CharacterVector::create(data);
@@ -29,7 +29,7 @@ Rcpp::RObject cvmat_qrtext(XPtrMat ptr){
 
 // [[Rcpp::export]]
 XPtrMat cvmat_qrmask(XPtrMat ptr){
-  QRCodeDetector qrDet = QRCodeDetector();
+  static QRCodeDetector qrDet = QRCodeDetector();
   Mat img = get_mat(ptr);
   std::vector<Point> points;
   std::string data = qrDet.detectAndDecode(img, points);
