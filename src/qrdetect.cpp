@@ -7,11 +7,14 @@ using namespace cv;
 Rcpp::RObject cvmat_wechatqr(XPtrMat ptr){
   wechat_qrcode::WeChatQRCode qrDet = wechat_qrcode::WeChatQRCode();
   std::vector<std::string> data = qrDet.detectAndDecode(get_mat(ptr));
-  Rcpp::CharacterVector res;
-  for(int i = 0; i < data.size(); i++){
-    res.push_back(data.at(i));
+  if(data.size() > 0){
+    Rcpp::CharacterVector res;
+    for(int i = 0; i < data.size(); i++){
+      res.push_back(data.at(i));
+    }
+    return res;
   }
-  return res;
+  return R_NilValue;
 }
 
 // [[Rcpp::export]]
