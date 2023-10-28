@@ -6,17 +6,17 @@
 \alias{qr_scanner}
 \title{Detect QR codes}
 \usage{
-ocv_qrtext(image, use_wechat = TRUE)
+ocv_qrtext(image, decoder = c("wechat", "quirc"))
 
-ocv_qrmask(image, use_wechat = TRUE)
+ocv_qrmask(image, decoder = c("wechat", "quirc"))
 
 qr_scanner()
 }
 \arguments{
 \item{image}{an ocv image object}
 
-\item{use_wechat}{use the wechat decoder This is the preferable implementation,
-set to FALSE to use the QUIRC decoder (not available on all platforms).}
+\item{decoder}{which decoder implementation to use. The 'wechat' decoder is
+the default and generally has better performance and fault-tolerance.}
 }
 \description{
 Detect a QR code from an image. The \code{ocv_qrtext} function returns the text

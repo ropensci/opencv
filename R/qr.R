@@ -7,23 +7,23 @@
 #' @export
 #' @inheritParams ocv_write
 #' @rdname qrcode
-#' @param use_wechat use the wechat decoder This is the preferable implementation,
-#' set to FALSE to use the QUIRC decoder (not available on all platforms).
+#' @param decoder which decoder implementation to use. The 'wechat' decoder is
+#' the default and generally has better performance and fault-tolerance.
 #' @examples
 #' png("test.png")
 #' plot(qrcode::qr_code("This is a test"))
 #' dev.off()
 #' ocv_qrtext(ocv_read('test.png'))
 #' unlink("test.png")
-ocv_qrtext <- function(image, use_wechat = TRUE){
-  use_wechat <- as.logical(use_wechat)
+ocv_qrtext <- function(image, decoder = c("wechat", "quirc")){
+  use_wechat <- match.arg(decoder) == 'wechat'
   cvmat_qrtext(image, use_wechat)
 }
 
 #' @export
 #' @rdname qrcode
-ocv_qrmask <- function(image, use_wechat = TRUE){
-  use_wechat <- as.logical(use_wechat)
+ocv_qrmask <- function(image, decoder = c("wechat", "quirc")){
+  use_wechat <- match.arg(decoder) == 'wechat'
   cvmat_qrmask(image, use_wechat)
 }
 
