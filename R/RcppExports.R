@@ -157,8 +157,8 @@ cvmat_qrtext <- function(ptr, use_wechat = TRUE) {
     .Call('_opencv_cvmat_qrtext', PACKAGE = 'opencv', ptr, use_wechat)
 }
 
-cvmat_qrmask <- function(ptr) {
-    .Call('_opencv_cvmat_qrmask', PACKAGE = 'opencv', ptr)
+cvmat_qrmask <- function(ptr, use_wechat = TRUE) {
+    .Call('_opencv_cvmat_qrmask', PACKAGE = 'opencv', ptr, use_wechat)
 }
 
 cvversion <- function() {
