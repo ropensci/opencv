@@ -15,12 +15,13 @@ qr_scanner()
 \arguments{
 \item{image}{an ocv image object}
 
-\item{use_wechat}{use the wechat implementation.}
+\item{use_wechat}{use the wechat decoder This is the preferable implementation,
+set to FALSE to use the QUIRC decoder (not available on all platforms).}
 }
 \description{
 Detect a QR code from an image. The \code{ocv_qrtext} function returns the text
 content from the QR, and \code{ocv_qrmask} returns an annotated image with the QR
-area highlighted, and the QR text as an attribute.
+area highlighted, and text value as an attribute.
 }
 \examples{
 png("test.png")

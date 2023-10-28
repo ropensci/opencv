@@ -2,12 +2,13 @@
 #'
 #' Detect a QR code from an image. The `ocv_qrtext` function returns the text
 #' content from the QR, and `ocv_qrmask` returns an annotated image with the QR
-#' area highlighted, and the QR text as an attribute.
+#' area highlighted, and text value as an attribute.
 #'
 #' @export
 #' @inheritParams ocv_write
 #' @rdname qrcode
-#' @param use_wechat use the wechat implementation.
+#' @param use_wechat use the wechat decoder This is the preferable implementation,
+#' set to FALSE to use the QUIRC decoder (not available on all platforms).
 #' @examples
 #' png("test.png")
 #' plot(qrcode::qr_code("This is a test"))
