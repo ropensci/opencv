@@ -6,17 +6,21 @@
 \alias{qr_scanner}
 \title{Detect QR codes}
 \usage{
-ocv_qrtext(image)
+ocv_qrtext(image, use_wechat = TRUE)
 
-ocv_qrmask(image)
+ocv_qrmask(image, use_wechat = TRUE)
 
 qr_scanner()
 }
 \arguments{
 \item{image}{an ocv image object}
+
+\item{use_wechat}{use the wechat implementation.}
 }
 \description{
-Detect a QR code
+Detect a QR code from an image. The \code{ocv_qrtext} function returns the text
+content from the QR, and \code{ocv_qrmask} returns an annotated image with the QR
+area highlighted, and the QR text as an attribute.
 }
 \examples{
 png("test.png")
@@ -24,8 +28,4 @@ plot(qrcode::qr_code("This is a test"))
 dev.off()
 ocv_qrtext(ocv_read('test.png'))
 unlink("test.png")
-\dontrun{
-# QR code scanner
-ocv_camera(ocv_qrmask)
-}
 }

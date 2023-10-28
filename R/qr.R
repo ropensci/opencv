@@ -21,10 +21,6 @@ ocv_qrtext <- function(image, use_wechat = TRUE){
 
 #' @export
 #' @rdname qrcode
-#' @examples \dontrun{
-#' # QR code scanner
-#' ocv_camera(ocv_qrmask)
-#' }
 ocv_qrmask <- function(image, use_wechat = TRUE){
   use_wechat <- as.logical(use_wechat)
   cvmat_qrmask(image, use_wechat)
