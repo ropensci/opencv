@@ -1,6 +1,4 @@
 #include "util.hpp"
-#include <opencv2/wechat_qrcode.hpp>
-
 using namespace cv;
 
 std::string qr_scan_opencv(XPtrMat ptr, Mat &points){
@@ -8,6 +6,8 @@ std::string qr_scan_opencv(XPtrMat ptr, Mat &points){
   return qrDet.detectAndDecode(get_mat(ptr), points);
 }
 
+#ifdef HAVE_WECHATQR
+#include <opencv2/wechat_qrcode.hpp>
 std::string qr_scan_wechat(XPtrMat ptr, Mat &points){
   static wechat_qrcode::WeChatQRCode qrDet = wechat_qrcode::WeChatQRCode();
   std::vector<Mat> pointsvec;
@@ -18,6 +18,9 @@ std::string qr_scan_wechat(XPtrMat ptr, Mat &points){
   }
   return std::string();
 }
+#else
+#define qr_scan_wechat qr_scan_opencv
+#endif
 
 // [[Rcpp::export]]
 Rcpp::RObject cvmat_qrtext(XPtrMat ptr, bool use_wechat = true){
