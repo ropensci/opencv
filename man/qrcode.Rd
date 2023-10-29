@@ -3,24 +3,38 @@
 \name{ocv_qr_detect}
 \alias{ocv_qr_detect}
 \alias{qr_scanner}
-\title{Detect QR codes}
+\title{Detect and Decode a QR code}
 \usage{
-ocv_qr_detect(image, return_image = FALSE, decoder = c("wechat", "quirc"))
+ocv_qr_detect(image, draw = FALSE, decoder = c("wechat", "quirc"))
 
-qr_scanner(...)
+qr_scanner(draw = FALSE, decoder = c("wechat", "quirc"))
 }
 \arguments{
-\item{image}{an ocv image object}
+\item{image}{an ocv image object created from e.g. \code{\link[=ocv_read]{ocv_read()}}}
 
-\item{decoder}{which decoder implementation to use. The 'wechat' decoder is
-the default and generally has better performance and fault-tolerance.}
+\item{draw}{if TRUE, the function returns an annotated image showing
+the position and value of the QR code.}
 
-\item{...}{parameters passed to \link{ocv_qr_detect}}
+\item{decoder}{which decoder implementation to use, see details.}
+}
+\value{
+if a QR code is detected, this returns either the text value of the QR,
+or if \code{draw} it returns the annotated image, with the value as an attribute.
+Returns NULL if no QR was found in the image.
 }
 \description{
-Detect a QR code from an image. The \code{ocv_qr_detect} function returns the text
-content from the QR, and \code{ocv_qr_mask} returns an annotated image with the QR
-area highlighted, and text value as an attribute.
+Detect and decode a QR code from an image or camera. By default it returns
+the text value from the QR code if detected, or NULL if no QR was found. If
+\code{draw = TRUE} then it returns an annotated image with the position and
+value of the QR drawn into the image, and qr text value as an attribute.
+}
+\details{
+OpenCV has two separate QR decoders. The 'wechat' decoder was added in
+libopencv 4.5.2 and generally has better performance and fault-tolerance.
+The old 'quirc' decoder is available on some older versions of libopencv as
+a plug-in, but many Linux distros did not include it. If you get an error
+\emph{Library QUIRC is not linked. No decoding is performed.} this sadly means
+your Linux distribution is too old and does not support QR decoding.
 }
 \examples{
 png("test.png")

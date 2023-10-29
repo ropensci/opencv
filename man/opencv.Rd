@@ -70,7 +70,7 @@ ocv_grayscale(image)
 ocv_version()
 }
 \arguments{
-\item{image}{an ocv image object}
+\item{image}{an ocv image object created from e.g. \code{\link[=ocv_read]{ocv_read()}}}
 
 \item{path}{image file such as png or jpeg}
 
