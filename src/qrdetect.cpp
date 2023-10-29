@@ -21,7 +21,7 @@ static std::string qr_scan_opencv(XPtrMat ptr, Mat &points){
 }
 
 // [[Rcpp::export]]
-SEXP cvmat_qr_detect(XPtrMat ptr, bool use_wechat = true, bool return_image = false){
+SEXP cvmat_qr_detect(XPtrMat ptr, bool return_image = false, bool use_wechat = true){
   Mat points;
 #ifdef HAVE_WECHATQR
   std::string data = use_wechat ? qr_scan_wechat(ptr, points) : qr_scan_opencv(ptr, points);

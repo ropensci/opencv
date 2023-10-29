@@ -456,15 +456,15 @@ BEGIN_RCPP
 END_RCPP
 }
 // cvmat_qr_detect
-SEXP cvmat_qr_detect(XPtrMat ptr, bool use_wechat, bool return_image);
-RcppExport SEXP _opencv_cvmat_qr_detect(SEXP ptrSEXP, SEXP use_wechatSEXP, SEXP return_imageSEXP) {
+SEXP cvmat_qr_detect(XPtrMat ptr, bool return_image, bool use_wechat);
+RcppExport SEXP _opencv_cvmat_qr_detect(SEXP ptrSEXP, SEXP return_imageSEXP, SEXP use_wechatSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< XPtrMat >::type ptr(ptrSEXP);
-    Rcpp::traits::input_parameter< bool >::type use_wechat(use_wechatSEXP);
     Rcpp::traits::input_parameter< bool >::type return_image(return_imageSEXP);
-    rcpp_result_gen = Rcpp::wrap(cvmat_qr_detect(ptr, use_wechat, return_image));
+    Rcpp::traits::input_parameter< bool >::type use_wechat(use_wechatSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvmat_qr_detect(ptr, return_image, use_wechat));
     return rcpp_result_gen;
 END_RCPP
 }

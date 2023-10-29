@@ -15,20 +15,15 @@
 #' dev.off()
 #' ocv_qrtext(ocv_read('test.png'))
 #' unlink("test.png")
-ocv_qr_detect <- function(image, decoder = c("wechat", "quirc")){
+ocv_qr_detect <- function(image, return_image = FALSE, decoder = c("wechat", "quirc")){
+  return_image <- as.logical(return_image)
   use_wechat <- match.arg(decoder) == 'wechat'
-  cvmat_qrtext(image, use_wechat)
+  cvmat_qr_detect(image, return_image, use_wechat)
 }
 
 #' @export
 #' @rdname qrcode
-ocv_qr_mask <- function(image, decoder = c("wechat", "quirc")){
-  use_wechat <- match.arg(decoder) == 'wechat'
-  cvmat_qrmask(image, use_wechat)
-}
-
-#' @export
-#' @rdname qrcode
-qr_scanner <- function(){
-  ocv_video(ocv_qr_detect, stop_on_result = TRUE)
+#' @param ... parameters passed to [ocv_qr_detect]
+qr_scanner <- function(...){
+  ocv_video(function(image) ocv_qr_detect(image, ...) , stop_on_result = TRUE)
 }

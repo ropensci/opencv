@@ -2,21 +2,20 @@
 % Please edit documentation in R/qr.R
 \name{ocv_qr_detect}
 \alias{ocv_qr_detect}
-\alias{ocv_qr_mask}
 \alias{qr_scanner}
 \title{Detect QR codes}
 \usage{
-ocv_qr_detect(image, decoder = c("wechat", "quirc"))
+ocv_qr_detect(image, return_image = FALSE, decoder = c("wechat", "quirc"))
 
-ocv_qr_mask(image, decoder = c("wechat", "quirc"))
-
-qr_scanner()
+qr_scanner(...)
 }
 \arguments{
 \item{image}{an ocv image object}
 
 \item{decoder}{which decoder implementation to use. The 'wechat' decoder is
 the default and generally has better performance and fault-tolerance.}
+
+\item{...}{parameters passed to \link{ocv_qr_detect}}
 }
 \description{
 Detect a QR code from an image. The \code{ocv_qr_detect} function returns the text
