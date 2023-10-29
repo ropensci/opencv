@@ -4,10 +4,8 @@
 #' the text value from the QR code if detected, or NULL if no QR was found. If
 #' `draw = TRUE` then it returns an annotated image with the position and
 #' value of the QR drawn into the image, and qr text value as an attribute.
-#'
-#' The `qr_scanner` function tries to open the camera device (if available on
-#' your computer) and repeats calling [ocv_qr_detect] until it has found a QR
-#' code, or until interrupted.
+#' The `qr_scanner` function opens the camera device (if available on your
+#' computer) and repeats [ocv_qr_detect] until it a QR is detected.
 #'
 #' OpenCV has two separate QR decoders. The 'wechat' decoder was added in
 #' libopencv 4.5.2 and generally has better performance and fault-tolerance.

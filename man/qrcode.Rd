@@ -27,12 +27,10 @@ Detect and decode a QR code from an image or camera. By default it returns
 the text value from the QR code if detected, or NULL if no QR was found. If
 \code{draw = TRUE} then it returns an annotated image with the position and
 value of the QR drawn into the image, and qr text value as an attribute.
+The \code{qr_scanner} function opens the camera device (if available on your
+computer) and repeats \link{ocv_qr_detect} until it a QR is detected.
 }
 \details{
-The \code{qr_scanner} function tries to open the camera device (if available on
-your computer) and repeats calling \link{ocv_qr_detect} until it has found a QR
-code, or until interrupted.
-
 OpenCV has two separate QR decoders. The 'wechat' decoder was added in
 libopencv 4.5.2 and generally has better performance and fault-tolerance.
 The old 'quirc' decoder is available on some older versions of libopencv as
