@@ -174,6 +174,12 @@ void cvmat_display(XPtrMat ptr){
   cv::waitKey(1);
 }
 
+static void stop_video(VideoCapture &cap){
+  cap.release();
+  cv::destroyWindow("mywindow");
+  cv::waitKey(1);
+}
+
 // [[Rcpp::export]]
 Rcpp::RObject livestream(Rcpp::Function filter, bool stop_on_result = false){
   VideoCapture cap(0);
@@ -189,6 +195,7 @@ Rcpp::RObject livestream(Rcpp::Function filter, bool stop_on_result = false){
       if(stop_on_result){
         if(val != R_NilValue){
           out = val;
+          stop_video(cap);
           break;
         }
         imshow("mywindow", image);
@@ -205,13 +212,9 @@ Rcpp::RObject livestream(Rcpp::Function filter, bool stop_on_result = false){
       Rcpp::checkUserInterrupt();
     }
   } catch(Rcpp::internal::InterruptedException e) {
-    cap.release();
-    cv::destroyWindow("mywindow");
-    cv::waitKey(1);
+    stop_video(cap);
   } catch(std::exception& e) {
-    cap.release();
-    cv::destroyWindow("mywindow");
-    cv::waitKey(1);
+    stop_video(cap);
     throw e;
   }
   return out;
