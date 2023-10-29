@@ -1,5 +1,6 @@
 0.4.0
   - Add QR code detector
+  - Windows: update to libopencv 4.8.1
 
 0.3.0
   - Windows: update to libopencv 4.8.0
