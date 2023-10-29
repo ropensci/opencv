@@ -153,12 +153,8 @@ cvmat_markers <- function(ptr) {
     .Call('_opencv_cvmat_markers', PACKAGE = 'opencv', ptr)
 }
 
-cvmat_qrtext <- function(ptr, use_wechat = TRUE) {
-    .Call('_opencv_cvmat_qrtext', PACKAGE = 'opencv', ptr, use_wechat)
-}
-
-cvmat_qrmask <- function(ptr, use_wechat = TRUE) {
-    .Call('_opencv_cvmat_qrmask', PACKAGE = 'opencv', ptr, use_wechat)
+cvmat_qr_detect <- function(ptr, use_wechat = TRUE, return_image = FALSE) {
+    .Call('_opencv_cvmat_qr_detect', PACKAGE = 'opencv', ptr, use_wechat, return_image)
 }
 
 cvversion <- function() {

@@ -455,27 +455,16 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// cvmat_qrtext
-Rcpp::RObject cvmat_qrtext(XPtrMat ptr, bool use_wechat);
-RcppExport SEXP _opencv_cvmat_qrtext(SEXP ptrSEXP, SEXP use_wechatSEXP) {
+// cvmat_qr_detect
+SEXP cvmat_qr_detect(XPtrMat ptr, bool use_wechat, bool return_image);
+RcppExport SEXP _opencv_cvmat_qr_detect(SEXP ptrSEXP, SEXP use_wechatSEXP, SEXP return_imageSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< XPtrMat >::type ptr(ptrSEXP);
     Rcpp::traits::input_parameter< bool >::type use_wechat(use_wechatSEXP);
-    rcpp_result_gen = Rcpp::wrap(cvmat_qrtext(ptr, use_wechat));
-    return rcpp_result_gen;
-END_RCPP
-}
-// cvmat_qrmask
-SEXP cvmat_qrmask(XPtrMat ptr, bool use_wechat);
-RcppExport SEXP _opencv_cvmat_qrmask(SEXP ptrSEXP, SEXP use_wechatSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< XPtrMat >::type ptr(ptrSEXP);
-    Rcpp::traits::input_parameter< bool >::type use_wechat(use_wechatSEXP);
-    rcpp_result_gen = Rcpp::wrap(cvmat_qrmask(ptr, use_wechat));
+    Rcpp::traits::input_parameter< bool >::type return_image(return_imageSEXP);
+    rcpp_result_gen = Rcpp::wrap(cvmat_qr_detect(ptr, use_wechat, return_image));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -529,8 +518,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_opencv_cvkeypoints_harris", (DL_FUNC) &_opencv_cvkeypoints_harris, 6},
     {"_opencv_cvmat_hog", (DL_FUNC) &_opencv_cvmat_hog, 1},
     {"_opencv_cvmat_markers", (DL_FUNC) &_opencv_cvmat_markers, 1},
-    {"_opencv_cvmat_qrtext", (DL_FUNC) &_opencv_cvmat_qrtext, 2},
-    {"_opencv_cvmat_qrmask", (DL_FUNC) &_opencv_cvmat_qrmask, 2},
+    {"_opencv_cvmat_qr_detect", (DL_FUNC) &_opencv_cvmat_qr_detect, 3},
     {"_opencv_cvversion", (DL_FUNC) &_opencv_cvversion, 0},
     {NULL, NULL, 0}
 };
