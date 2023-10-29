@@ -10,7 +10,8 @@ Description: Exposes some of the available 'OpenCV' <https://opencv.org/> algori
     such as a QR code scanner, and edge, body or face detection. These can either be 
     applied to analyze static images, or to filter live video footage from a camera device.
 License: MIT + file LICENSE
-SystemRequirements: OpenCV 3 or newer: libopencv-dev (Debian, Ubuntu) or opencv-devel (Fedora)
+SystemRequirements: OpenCV 3 or newer: libopencv-dev (Debian, Ubuntu) or opencv-devel (Fedora).
+    The QR code detector requires at least libopencv 4.5.2.
 URL: https://ropensci.r-universe.dev/opencv 
 BugReports: https://github.com/ropensci/opencv/issues
 LinkingTo: Rcpp
