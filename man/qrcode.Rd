@@ -29,6 +29,10 @@ the text value from the QR code if detected, or NULL if no QR was found. If
 value of the QR drawn into the image, and qr text value as an attribute.
 }
 \details{
+The \code{qr_scanner} function tries to open the camera device (if available on
+your computer) and repeats calling \link{ocv_qr_detect} until it has found a QR
+code, or until interrupted.
+
 OpenCV has two separate QR decoders. The 'wechat' decoder was added in
 libopencv 4.5.2 and generally has better performance and fault-tolerance.
 The old 'quirc' decoder is available on some older versions of libopencv as
@@ -40,6 +44,6 @@ your Linux distribution is too old and does not support QR decoding.
 png("test.png")
 plot(qrcode::qr_code("This is a test"))
 dev.off()
-ocv_qrtext(ocv_read('test.png'))
+ocv_qr_detect(ocv_read('test.png'))
 unlink("test.png")
 }

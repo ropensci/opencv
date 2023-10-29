@@ -5,6 +5,10 @@
 #' `draw = TRUE` then it returns an annotated image with the position and
 #' value of the QR drawn into the image, and qr text value as an attribute.
 #'
+#' The `qr_scanner` function tries to open the camera device (if available on
+#' your computer) and repeats calling [ocv_qr_detect] until it has found a QR
+#' code, or until interrupted.
+#'
 #' OpenCV has two separate QR decoders. The 'wechat' decoder was added in
 #' libopencv 4.5.2 and generally has better performance and fault-tolerance.
 #' The old 'quirc' decoder is available on some older versions of libopencv as
@@ -25,7 +29,7 @@
 #' png("test.png")
 #' plot(qrcode::qr_code("This is a test"))
 #' dev.off()
-#' ocv_qrtext(ocv_read('test.png'))
+#' ocv_qr_detect(ocv_read('test.png'))
 #' unlink("test.png")
 ocv_qr_detect <- function(image, draw = FALSE, decoder = c("wechat", "quirc")){
   draw <- as.logical(draw)
