@@ -5,5 +5,5 @@ test_that("qr scanner works", {
   txt <- ocv_qr_detect(img)
   outimg <- ocv_qr_detect(img, draw = TRUE)
   expect_s3_class(outimg, "opencv-image")
-  expect_equal(txt, "https://www.r-project.org")
+  expect_equal(c(txt), "https://www.r-project.org")
 })
