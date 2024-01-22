@@ -35,10 +35,14 @@ SEXP cvmat_qr_detect(XPtrMat ptr, bool return_image = false, bool use_wechat = t
   cv::Mat img = get_mat(ptr);
   if(!use_wechat)
     points = points.reshape(1, 4);
-  for (int i = 0; i < points.size().height; i++) {
+  int len = points.size().height;
+  Rcpp::IntegerMatrix corners(len, 2);
+  for (int i = 0; i < len; i++) {
     Point pt1 = cv::Point(points.row(i));
     Point pt2 = cv::Point(points.row((i + 1) % 4));
     line(img, pt1, pt2, Scalar(255, 0, 0), 3);
+    corners[i] = pt1.x;
+    corners[i+len] = pt1.y;
   }
   cv::putText(img, data,
               cv::Point(10, img.rows / 2), //left-middle position
@@ -47,6 +51,7 @@ SEXP cvmat_qr_detect(XPtrMat ptr, bool return_image = false, bool use_wechat = t
               CV_RGB(118, 185, 0), //font color
               2);
   ptr.attr("value") = Rcpp::CharacterVector::create(data);
+  ptr.attr("points") = corners;
   return ptr;
 }
 
