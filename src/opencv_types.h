@@ -16,5 +16,9 @@
 #define HAVE_WECHATQR
 #endif
 
+#if (CV_VERSION_MAJOR * 100 + CV_VERSION_MINOR * 10 + CV_VERSION_REVISION >= 344)
+#define HAVE_QUIRC
+#endif
+
 void finalize_mat(cv::Mat * frame);
 typedef Rcpp::XPtr<cv::Mat, Rcpp::PreserveStorage, finalize_mat, true> XPtrMat;
