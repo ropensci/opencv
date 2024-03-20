@@ -16,8 +16,12 @@ static std::string qr_scan_wechat(XPtrMat ptr, Mat &points){
 #endif
 
 static std::string qr_scan_opencv(XPtrMat ptr, Mat &points){
+#ifdef HAVE_QUIRC
   static QRCodeDetector qrDet = QRCodeDetector();
   return qrDet.detectAndDecode(get_mat(ptr), points);
+#else
+  throw std::runtime_error("QR scanner requires OpenCV 3.4.4 or newer");
+#endif
 }
 
 // [[Rcpp::export]]
