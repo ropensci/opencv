@@ -12,7 +12,8 @@ Description: Exposes some of the available 'OpenCV' <https://opencv.org/> algori
 License: MIT + file LICENSE
 SystemRequirements: OpenCV 3 or newer: libopencv-dev (Debian, Ubuntu) or opencv-devel (Fedora).
     The QR code detector requires at least libopencv 4.5.2.
-URL: https://ropensci.r-universe.dev/opencv 
+URL: https://docs.ropensci.org/opencv
+    https://ropensci.r-universe.dev/opencv 
 BugReports: https://github.com/ropensci/opencv/issues
 LinkingTo: Rcpp
 Imports: Rcpp, magrittr
