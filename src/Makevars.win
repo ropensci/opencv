@@ -1,7 +1,15 @@
+PKG_CONFIG_NAME = opencv4
+PKG_CONFIG ?= $(BINPREF)pkg-config
+PKG_LIBS := $(shell $(PKG_CONFIG) --libs $(PKG_CONFIG_NAME))
+
+ifneq ($(findstring wechat,$(PKG_LIBS)),)
+$(info using $(PKG_CONFIG_NAME) from Rtools)
+PKG_CPPFLAGS := $(shell $(PKG_CONFIG) --cflags $(PKG_CONFIG_NAME))
+OPENCVDATA := $(shell $(PKG_CONFIG) --variable=prefix $(PKG_CONFIG_NAME))/share/opencv4
+else
 RWINLIB = ../windows/opencv
 PKG_CPPFLAGS = -I$(RWINLIB)/include/opencv4 -DHAVE_XFEATURES2D
 OLDLIBDIR = lib${subst gcc,,${COMPILED_BY}}${R_ARCH}
-
 PKG_LIBS = \
 	-L$(RWINLIB)/$(OLDLIBDIR) \
 	-L$(RWINLIB)/lib \
@@ -9,13 +17,19 @@ PKG_LIBS = \
 	-lopencv_video481 -lopencv_calib3d481 -lopencv_xfeatures2d481 -lopencv_features2d481 -lopencv_highgui481 -lopencv_flann481 \
 	-lopencv_videoio481 -lopencv_imgcodecs481 -lopencv_imgproc481 -lopencv_core481 -llibopenjp2 -lquirc \
 	-ljpeg -lwebp -lsharpyuv -lpng -lz -ltiff -lpthread -lgdi32 -lole32 -lopengl32 -lcomdlg32 -lOleAut32 -luuid
+OPENCVDATA = $(RWINLIB)/share
+endif
 
-all: clean winlibs
+all: $(SHLIB) copydata
+
+$(OBJECTS): $(RWINLIB)
+
+$(RWINLIB):
+	"${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe" "../tools/winlibs.R"
+
+copydata:
+	rm -Rf ../inst/share && mkdir -p ../inst
+	cp -Rf $(OPENCVDATA) ../inst/share
 
 clean:
 	rm -f $(SHLIB) $(OBJECTS)
-
-winlibs:
-	"${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe" "../tools/winlibs.R" ${VERSION}
-	mkdir -p ../inst
-	cp -r $(RWINLIB)/share ../inst/
