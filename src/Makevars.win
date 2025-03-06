@@ -17,7 +17,7 @@ PKG_LIBS = \
 	-lopencv_video481 -lopencv_calib3d481 -lopencv_xfeatures2d481 -lopencv_features2d481 -lopencv_highgui481 -lopencv_flann481 \
 	-lopencv_videoio481 -lopencv_imgcodecs481 -lopencv_imgproc481 -lopencv_core481 -llibopenjp2 -lquirc \
 	-ljpeg -lwebp -lsharpyuv -lpng -lz -ltiff -lpthread -lgdi32 -lole32 -lopengl32 -lcomdlg32 -lOleAut32 -luuid
-OPENCVDATA = $(RWINLIB)/share/opencv4
+OPENCVDATA = $(RWINLIB)/share
 endif
 
 all: $(SHLIB) copydata
@@ -28,8 +28,8 @@ $(RWINLIB):
 	"${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe" "../tools/winlibs.R"
 
 copydata:
-	rm -Rf ../inst/share && mkdir -p ../inst/share
-	cp -Rf $(OPENCVDATA) ../inst/share/
+	rm -Rf ../inst/share && mkdir -p ../inst
+	cp -Rf $(OPENCVDATA) ../inst/share
 
 clean:
 	rm -f $(SHLIB) $(OBJECTS)
