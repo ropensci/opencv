@@ -1,14 +1,15 @@
 PKG_CONFIG_NAME = opencv4
 PKG_CONFIG ?= $(BINPREF)pkg-config
 PKG_LIBS := $(shell $(PKG_CONFIG) --libs $(PKG_CONFIG_NAME))
+STATIC_CFLAGS = -DHAVE_XFEATURES2D
 
-ifneq ($(findstring wechat,$(PKG_LIBS)),)
+ifneq ($(findstring xfeatures2d,$(PKG_LIBS)),)
 $(info using $(PKG_CONFIG_NAME) from Rtools)
-PKG_CPPFLAGS := $(shell $(PKG_CONFIG) --cflags $(PKG_CONFIG_NAME))
+PKG_CPPFLAGS := $(shell $(PKG_CONFIG) --cflags $(PKG_CONFIG_NAME)) $(STATIC_CFLAGS)
 OPENCVDATA := $(shell $(PKG_CONFIG) --variable=prefix $(PKG_CONFIG_NAME))/share/opencv4
 else
 RWINLIB = ../windows/opencv
-PKG_CPPFLAGS = -I$(RWINLIB)/include/opencv4 -DHAVE_XFEATURES2D
+PKG_CPPFLAGS = -I$(RWINLIB)/include/opencv4 $(STATIC_CFLAGS)
 OLDLIBDIR = lib${subst gcc,,${COMPILED_BY}}${R_ARCH}
 PKG_LIBS = \
 	-L$(RWINLIB)/$(OLDLIBDIR) \
