@@ -50,3 +50,5 @@ jobs:
           needs: check
 
       - uses: r-lib/actions/check-r-package@v2
+        env:
+          MAKEFLAGS: -j4

@@ -8,7 +8,7 @@ $(info using $(PKG_CONFIG_NAME) from Rtools)
 PKG_CPPFLAGS := $(shell $(PKG_CONFIG) --cflags $(PKG_CONFIG_NAME)) $(STATIC_CFLAGS)
 OPENCVDATA := $(shell $(PKG_CONFIG) --variable=prefix $(PKG_CONFIG_NAME))/share/opencv4
 else
-RWINLIB = ../windows/opencv
+RWINLIB = ../.deps/opencv
 PKG_CPPFLAGS = -I$(RWINLIB)/include/opencv4 $(STATIC_CFLAGS)
 OLDLIBDIR = lib${subst gcc,,${COMPILED_BY}}${R_ARCH}
 PKG_LIBS = \
@@ -21,16 +21,16 @@ PKG_LIBS = \
 OPENCVDATA = $(RWINLIB)/share
 endif
 
-all: $(SHLIB) copydata
+all: copydata
 
-$(OBJECTS): $(RWINLIB)
+$(OBJECTS): | $(RWINLIB)
 
 $(RWINLIB):
 	"${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe" "../tools/winlibs.R"
 
-copydata:
+copydata: | $(RWINLIB)
 	rm -Rf ../inst/share && mkdir -p ../inst
 	cp -Rf $(OPENCVDATA) ../inst/share
 
-clean:
-	rm -f $(SHLIB) $(OBJECTS)
+cleanup: $(SHLIB)
+	@rm -Rf $(RWINLIB)
