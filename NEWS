@@ -1,3 +1,6 @@
+0.5.2
+  - Build with CXX17 for now until libopencv fixes the C++20 warnings
+
 0.5.0
   - Windows: use opencv from Rtools when available (R >= 4.5)
 
