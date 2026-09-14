@@ -49,7 +49,7 @@ ocv_keypoints_options <- function(method = c("FAST", "Harris"), ...){
   method <- match.arg(method)
   ldots <- list(...)
   if(method == "FAST"){
-    params <- list(threshold = 0, nonmaxSuppression = TRUE, type = c("TYPE_9_16", "TYPE_7_12", "TYPE_5_8"))
+    params <- list(threshold = 0, nonmaxSuppression = TRUE, type = "TYPE_5_8")
   }else if(method == "Harris"){
     params <- list(numOctaves = 6, corn_thresh = 0.01, DOG_thresh = 0.01, maxCorners = 5000, num_layers = 4)
   }
