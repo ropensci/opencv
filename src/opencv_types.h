@@ -12,6 +12,18 @@
 #define HAVE_OPENCV_4
 #endif
 
+/* OpenCV 5 moved boundingRect/convexHull into the new 'geometry' module and
+   CascadeClassifier into the 'xobjdetect' contrib module. */
+#if !defined(CV_VERSION_EPOCH) && CV_VERSION_MAJOR >= 5
+#define HAVE_OPENCV_5
+#ifdef HAVE_OPENCV_GEOMETRY
+#include <opencv2/geometry.hpp>
+#endif
+#ifdef HAVE_OPENCV_XOBJDETECT
+#include <opencv2/xobjdetect.hpp>
+#endif
+#endif
+
 #if (CV_VERSION_MAJOR * 100 + CV_VERSION_MINOR * 10 + CV_VERSION_REVISION >= 452)
 #define HAVE_WECHATQR
 #endif

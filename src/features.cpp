@@ -1,7 +1,7 @@
 #include <Rcpp.h>
 #include "util.hpp"
 #include <opencv2/core/version.hpp>
-#include <opencv2/features2d/features2d.hpp>
+#include <opencv2/features2d.hpp>
 #ifdef HAVE_XFEATURES2D
 #include <opencv2/xfeatures2d.hpp>
 #endif

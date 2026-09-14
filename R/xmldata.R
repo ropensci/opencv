@@ -1,5 +1,5 @@
 find_data_dir <- function(){
-  datapath <- c("/share/opencv", "/share/opencv4", "/share/OpenCV")
+  datapath <- c("/share/opencv", "/share/opencv5", "/share/opencv4", "/share/OpenCV")
   paths <- c(
     system.file('share/opencv4', package = 'opencv'),
     system.file('share', package = 'opencv'),

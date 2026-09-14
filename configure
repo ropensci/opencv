@@ -1,7 +1,6 @@
 #!/bin/sh
-# Anticonf (tm) script by Jeroen Ooms (2020)
 PKG_CONFIG_NAME="opencv4"
-PKG_CONFIG_NAME_ALT="opencv"
+PKG_CONFIG_NAME_ALT="opencv5"
 PKG_DEB_NAME="libopencv-dev"
 PKG_RPM_NAME="opencv-devel"
 PKG_BREW_NAME="opencv"
