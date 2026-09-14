@@ -21,6 +21,7 @@ jobs:
           - {os: macos-latest,    r: 'release'}
           - {os: macos-15-intel,  r: 'release'}
           - {os: windows-latest,  r: 'release'}
+          - {os: windows-11-arm,  r: 'release'}
           - {os: windows-latest,  r: 'devel'}
           - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
           - {os: ubuntu-latest,   r: 'release'}
@@ -45,6 +46,7 @@ jobs:
         with:
           extra-packages: any::rcmdcheck
           needs: check
+          pak-version: devel
 
       - uses: r-lib/actions/check-r-package@v2
         env:

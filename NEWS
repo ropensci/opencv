@@ -1,5 +1,6 @@
 0.6.0
-  - Add support for opencv 5, drop support for opencv 3.
+  - Add support for opencv 5, drop support for opencv 3
+  - Remove legacy things for old versions of R and opencv
 
 0.5.2
   - Build with CXX17 for now until libopencv fixes the C++20 warnings

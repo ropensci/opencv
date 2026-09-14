@@ -54,21 +54,10 @@ echo "Using PKG_CFLAGS=$PKG_CFLAGS"
 echo "Using PKG_LIBS=$PKG_LIBS"
 
 # Use CXX17 if available (preferred for recent opencv)
-CXX17=`${R_HOME}/bin/R CMD config CXX17` || unset CXX17
-
-if [ "$CXX17" ]; then
-echo "Found C++17 compiler: $CXX17"
-CXXVER=CXX17
-else
-echo "Using C++11 compiler"
-CXXVER=CXX11
-fi
-
-CXX=$($R_HOME/bin/R CMD config ${CXXVER})
-CXXSTD=$($R_HOME/bin/R CMD config ${CXXVER}STD)
-CXXFLAGS="$($R_HOME/bin/R CMD config ${CXXVER}FLAGS)"
+CXX=$($R_HOME/bin/R CMD config CXX)
+CXXFLAGS="$($R_HOME/bin/R CMD config CXXFLAGS)"
 CPPFLAGS="$($R_HOME/bin/R CMD config CPPFLAGS)"
-CXXCPP="$CXX $CXXSTD -E"
+CXXCPP="$CXX -E"
 
 # Test configuration
 echo "#include $PKG_TEST_HEADER" | ${CXXCPP} ${CPPFLAGS} ${PKG_CFLAGS} ${CXXFLAGS} -xc++ - >/dev/null 2>configure.log
