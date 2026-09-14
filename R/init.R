@@ -30,7 +30,7 @@ is_iterm2 <- function(){
 }
 
 is_check <- function(){
-  grepl('opencv.Rcheck', getwd(), fixed = TRUE)
+  grepl('opencv.Rcheck', getwd(), fixed = TRUE) && identical(Sys.getenv("NOT_CRAN"), "")
 }
 
 is_mojave <- function(){
