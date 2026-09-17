@@ -1,3 +1,6 @@
+0.6.1
+  - Fix bug jpeg driver in MacOS binaries
+
 0.6.0
   - Add support for opencv 5, drop support for opencv 3
   - Remove legacy things for old versions of R and opencv
